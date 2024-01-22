@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 
 import User from '../models/user';
 import Role from '../models/role';
+import Country from '../models/country';
+import Experience from '../models/experience';
 
 import { generateToken, generateCode, hashCode, compareCode } from "../helper/encrypt";
 
@@ -45,14 +47,20 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
 
         let roleUser
 
-        if(role) {
+        if (role) {
             roleUser = await Role.findOne({ role })
         } else {
             roleUser = await Role.findOne({ role: `${default_role}` })
         }
 
-        if(!roleUser) {
+        if (!roleUser) {
             return res.status(400).json({ message: "Role does not exists" })
+        }
+
+        const country = await Country.findOne({ name: "Not Specified" })
+
+        if (!country) {
+            return res.status(400).json({ message: "Country does noe exists" })
         }
 
         const hashedCode = await hashCode(code)
@@ -60,7 +68,8 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
         const newUser = new User({
             nickname,
             code: hashedCode,
-            role: roleUser._id
+            role: roleUser._id,
+            country: country._id
         })
 
         await newUser.save()
@@ -78,9 +87,23 @@ export const firstTime = async (req: Request, res: Response): Promise<Response> 
 
     try {
 
+        const role = await Role.findOne({ role: `${default_role}` })
+
+        if (!role) {
+            return res.status(400).json({ message: "Role does not exists" })
+        }
+
+        const country = await Country.findOne({ name: "Not Specified" })
+
+        if (!country) {
+            return res.status(400).json({ message: "Country does noe exists" })
+        }
+
         const newUser = new User({
             nickname: `user${generateCode(6)}`,
-            code: hashCode(generateCode(10))
+            code: hashCode(generateCode(10)),
+            role: role._id,
+            country: country._id
         })
 
         const user = await newUser.save()
@@ -89,7 +112,7 @@ export const firstTime = async (req: Request, res: Response): Promise<Response> 
 
         const userRegistered = await User.findById(user._id).select("-code")
 
-        if(!userRegistered) {
+        if (!userRegistered) {
             return res.status(400).json({ message: "User does not exists" })
         }
 
@@ -112,7 +135,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 
         const user = await User.findById(id).select("-code")
 
-        if(!user) {
+        if (!user) {
             return res.status(400).json({ message: "User does not exists" })
         }
 
@@ -137,13 +160,13 @@ export const authLogin = async (req: Request, res: Response): Promise<Response> 
 
         const user = await User.findOne({ nickname })
 
-        if(!user) {
+        if (!user) {
             return res.status(400).json({ message: "Fields do not match" })
         }
 
         const isCodeValid = await compareCode(code, user.code)
 
-        if(!isCodeValid) {
+        if (!isCodeValid) {
             return res.status(400).json({ message: "Fields do not match" })
         }
 
@@ -168,7 +191,7 @@ export const removeUser = async (req: Request, res: Response): Promise<Response>
 
         const user = await User.findById(id)
 
-        if(!user) {
+        if (!user) {
             return res.status(400).json({ message: "User does not exists" })
         }
 

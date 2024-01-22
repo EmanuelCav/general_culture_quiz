@@ -1,13 +1,13 @@
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 import { ICategory } from "./Question";
 
 export interface IUser extends Document {
-    _id: string;
+    _id: Types.ObjectId;
     nickname: string;
     code: string;
     statistics: IStatistic[];
-    role: IRole;
+    role: Types.ObjectId;
     points: IExperience;
     amountOptions: number;
     amountQuestions: number;
@@ -17,14 +17,14 @@ export interface IUser extends Document {
 }
 
 export interface IRole extends Document {
-    _id: string;
+    _id: Types.ObjectId;
     role: string;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 }
 
 export interface IStatistic extends Document {
-    _id: string;
+    _id: Types.ObjectId;
     category: ICategory;
     questions: number;
     corrects: number;
@@ -35,14 +35,14 @@ export interface IStatistic extends Document {
 }
 
 export interface ICountry extends Document {
-    _id: string;
+    _id: Types.ObjectId;
     name: string;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 }
 
 export interface IExperience extends Document {
-    _id: string;
+    _id: Types.ObjectId;
     day: number;
     month: number;
     year: number;

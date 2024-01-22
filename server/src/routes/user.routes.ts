@@ -5,6 +5,9 @@ import * as userCtrl from '../controller/user.ctrl';
 import loginValid from '../middleware/validation/user/login.valid';
 import createValid from '../middleware/validation/user/create.valid';
 
+import auth from '../middleware/auth/auth';
+import access from '../middleware/auth/access';
+
 const router = Router()
 
 router.get('/users', userCtrl.users)
@@ -15,6 +18,6 @@ router.post('/users/firsttime', userCtrl.firstTime)
 router.post('/users/:id/login', userCtrl.login)
 router.post('/users/login', loginValid, userCtrl.authLogin)
 
-router.delete('/users/:id', userCtrl.removeUser)
+router.delete('/users/:id', [auth, access], userCtrl.removeUser)
 
 export default router

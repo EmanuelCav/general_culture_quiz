@@ -13,6 +13,8 @@ import './database/database'
 import userRoute from './routes/user.routes';
 import roleRoute from './routes/role.routes';
 import categoryRoute from './routes/category.routes';
+import countryRoute from './routes/country.routes';
+import experienceRoute from './routes/experience.routes';
 
 const app = express()
 
@@ -40,6 +42,8 @@ app.use(express.static(path.join(__dirname, "../public")))
 app.use(userRoute)
 app.use(roleRoute)
 app.use(categoryRoute)
+app.use(countryRoute)
+app.use(experienceRoute)
 
 app.listen(app.get('port'), () => {
     console.log("Server is running on port " + app.get('port'));
