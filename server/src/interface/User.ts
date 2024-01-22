@@ -1,17 +1,15 @@
 import { Document, Types } from "mongoose";
 
-import { ICategory } from "./Question";
-
 export interface IUser extends Document {
     _id: Types.ObjectId;
     nickname: string;
     code: string;
-    statistics: IStatistic[];
+    statistics: Types.ObjectId[];
     role: Types.ObjectId;
-    points: IExperience;
+    points: Types.ObjectId;
     amountOptions: number;
     amountQuestions: number;
-    country: ICountry;
+    country: Types.ObjectId;
     createdAt: NativeDate;
     updatedAt: NativeDate;
     language: Types.ObjectId;
@@ -26,7 +24,7 @@ export interface IRole extends Document {
 
 export interface IStatistic extends Document {
     _id: Types.ObjectId;
-    category: ICategory;
+    category: Types.ObjectId;
     questions: number;
     corrects: number;
     user: IUser;
@@ -48,8 +46,8 @@ export interface IExperience extends Document {
     month: number;
     year: number;
     total: number;
-    user: IUser;
-    bestPuntuation: Number;
+    user: Types.ObjectId;
+    bestPuntuation: number;
     lastGame: string;
     createdAt: NativeDate;
     updatedAt: NativeDate;
