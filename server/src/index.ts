@@ -15,6 +15,7 @@ import roleRoute from './routes/role.routes';
 import categoryRoute from './routes/category.routes';
 import countryRoute from './routes/country.routes';
 import experienceRoute from './routes/experience.routes';
+import languageRoute from './routes/language.routes';
 
 const app = express()
 
@@ -44,6 +45,7 @@ app.use(roleRoute)
 app.use(categoryRoute)
 app.use(countryRoute)
 app.use(experienceRoute)
+app.use(languageRoute)
 
 app.listen(app.get('port'), () => {
     console.log("Server is running on port " + app.get('port'));

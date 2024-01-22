@@ -9,7 +9,7 @@ import access from '../middleware/auth/access';
 
 const router = Router()
 
-router.get('/categories', [auth, access], categoryCtrl.categories)
+router.get('/categories', categoryCtrl.categories)
 
 router.post('/categories', [auth, access], categoryValid, categoryCtrl.createCategory)
 

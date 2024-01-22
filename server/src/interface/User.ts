@@ -14,6 +14,7 @@ export interface IUser extends Document {
     country: ICountry;
     createdAt: NativeDate;
     updatedAt: NativeDate;
+    language: Types.ObjectId;
 }
 
 export interface IRole extends Document {
@@ -52,4 +53,11 @@ export interface IExperience extends Document {
     lastGame: string;
     createdAt: NativeDate;
     updatedAt: NativeDate;
-} 
+}
+
+export interface ILanguage extends Document {
+    _id: Types.ObjectId;
+    language: string;
+    createdAt: NativeDate;
+    updatedAt: NativeDate;
+}

@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import User from '../models/user';
 import Role from '../models/role';
 import Country from '../models/country';
-import Experience from '../models/experience';
+import Language from '../models/language';
 
 import { generateToken, generateCode, hashCode, compareCode } from "../helper/encrypt";
 
@@ -63,13 +63,20 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
             return res.status(400).json({ message: "Country does noe exists" })
         }
 
+        const language = await Language.findOne({ language: "English" })
+
+        if (!language) {
+            return res.status(400).json({ message: "Language does noe exists" })
+        }
+
         const hashedCode = await hashCode(code)
 
         const newUser = new User({
             nickname,
             code: hashedCode,
             role: roleUser._id,
-            country: country._id
+            country: country._id,
+            language: language._id
         })
 
         await newUser.save()
@@ -99,11 +106,18 @@ export const firstTime = async (req: Request, res: Response): Promise<Response> 
             return res.status(400).json({ message: "Country does noe exists" })
         }
 
+        const language = await Language.findOne({ language: "English" })
+
+        if (!language) {
+            return res.status(400).json({ message: "Language does noe exists" })
+        }
+
         const newUser = new User({
             nickname: `user${generateCode(6)}`,
             code: hashCode(generateCode(10)),
             role: role._id,
-            country: country._id
+            country: country._id,
+            language: language._id
         })
 
         const user = await newUser.save()

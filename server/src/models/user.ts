@@ -43,6 +43,11 @@ const userSchema = new Schema({
     country: {
         type: Types.ObjectId,
         ref: 'Country'
+    },
+
+    language: {
+        type: Types.ObjectId,
+        ref: 'Language'
     }
 
 }, {
