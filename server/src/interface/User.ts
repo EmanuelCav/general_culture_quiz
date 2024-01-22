@@ -5,7 +5,7 @@ import { ICategory } from "./Question";
 export interface IUser extends Document {
     _id: string;
     nickname: string;
-    code?: string;
+    code: string;
     statistics: IStatistic[];
     role: IRole;
     points: IExperience;

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import bcryptjs from 'bcryptjs';
 
 import { jwt_key } from '../config/config';
 
@@ -12,15 +13,28 @@ export const generateToken = (id: string): string => {
 
 }
 
-export const generateUserNumber = (): string => {
+export const generateCode = (times: number): string => {
 
-    let code: string = ''
+    let userNumber: string = ''
     
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < times; i++) {
         const number = Math.floor(Math.random() * 10)
-        code+=String(number)
+        userNumber+=String(number)
     }
 
-    return code
+    return userNumber
+
+}
+
+export const hashCode = async (code: string): Promise<string> => {
+
+    const salt = await bcryptjs.genSalt(8)
+    return await bcryptjs.hash(code, salt)
+
+}
+
+export const compareCode = async (code: string, hash: string): Promise<boolean> => {
+
+    return await bcryptjs.compare(code, hash)
 
 }

@@ -1,0 +1,1 @@
+export const isNicknameValid = /^[a-zA-Z0-9]+$/
