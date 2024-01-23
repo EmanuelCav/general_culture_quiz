@@ -7,7 +7,7 @@ export const createExperience = async (req: Request, res: Response): Promise<Res
 
     try {
 
-        const user = await User.findById(req.user)
+        const user = await User.findById(req.user).select("-code")
 
         if(!user) {
             return res.status(400).json({ message: "User does not exists" })
@@ -24,6 +24,7 @@ export const createExperience = async (req: Request, res: Response): Promise<Res
         }, {
             new: true
         })
+        .select("-code")
 
         return res.status(200).json(userUpdated)
 

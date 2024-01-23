@@ -28,16 +28,6 @@ export interface IQuestion extends Document {
     updatedAt: NativeDate;
 }
 
-export interface IOption extends Document {
-    _id: Types.ObjectId;
-    option: string;
-    question: Types.ObjectId;
-    category: Types.ObjectId;
-    createdAt: NativeDate;
-    updatedAt: NativeDate;
-}
-
-
 export interface IImage extends Document {
     _id: Types.ObjectId;
     image: string;

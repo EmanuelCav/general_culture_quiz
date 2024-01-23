@@ -16,8 +16,7 @@ const questionSchema = new Schema({
     },
 
     options: [{
-        type: Types.ObjectId,
-        ref: 'Option'
+        type: String
     }],
 
     answer: {

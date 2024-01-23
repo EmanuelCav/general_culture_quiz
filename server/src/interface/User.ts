@@ -28,7 +28,6 @@ export interface IStatistic extends Document {
     questions: number;
     corrects: number;
     user: IUser;
-    isSelect: boolean;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 }

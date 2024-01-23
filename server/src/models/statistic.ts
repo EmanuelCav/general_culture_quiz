@@ -22,11 +22,6 @@ const statisticSchema = new Schema({
     user: {
         type: Types.ObjectId,
         ref: 'User'
-    },
-
-    isSelect: {
-        type: Boolean,
-        default: false
     }
 
 }, {

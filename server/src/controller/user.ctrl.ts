@@ -186,8 +186,14 @@ export const authLogin = async (req: Request, res: Response): Promise<Response> 
 
         const token: string = generateToken(user._id)
 
+        const userLogged = await User.findById(user._id).select("-code")
+
+        if(!userLogged) {
+            return res.status(400).json({ message: "User does not exists" })
+        }
+
         return res.status(200).json({
-            user,
+            user: userLogged,
             token
         })
 

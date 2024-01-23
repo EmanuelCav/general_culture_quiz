@@ -1,6 +1,6 @@
 import { Schema, model, Types } from "mongoose";
 
-import { IQuestion } from "../interface/Question";
+import { IGame } from "../interface/Question";
 
 const gameSchema = new Schema({
 
@@ -29,4 +29,4 @@ const gameSchema = new Schema({
     versionKey: false
 })
 
-export default model<IQuestion>('Question', gameSchema)
+export default model<IGame>('Game', gameSchema)
