@@ -8,3 +8,4 @@ export const access_role = process.env.ACCESS_ROLE
 export const cloud_name = process.env.CLOUD_NAME
 export const api_key = process.env.API_KEY
 export const api_secret = process.env.API_SECRET
+export const folder_cloud = process.env.FOLDER_CLOUD
