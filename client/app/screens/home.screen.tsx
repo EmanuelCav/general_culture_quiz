@@ -1,9 +1,18 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 
-const Home = () => {
+import { StackNavigation } from '../types/props.types'
+
+import Menu from '../components/home/menu'
+import Banner from '../components/adds/banner'
+import User from '../components/home/user'
+import { homeStyles } from '../styles/home.styles'
+
+const Home = ({ navigation }: { navigation: StackNavigation }) => {
   return (
-    <View>
-        <Text>jjll</Text>
+    <View style={homeStyles.containerHome}>
+      <Banner />
+      <User />
+      <Menu navigation={navigation} />
     </View>
   )
 }
