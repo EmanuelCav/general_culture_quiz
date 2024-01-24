@@ -5,11 +5,12 @@ import { StackNavigation } from '../types/props.types'
 import Menu from '../components/home/menu'
 import Banner from '../components/adds/banner'
 import User from '../components/home/user'
-import { homeStyles } from '../styles/home.styles'
+
+import { generalStyles } from '../styles/general.styles'
 
 const Home = ({ navigation }: { navigation: StackNavigation }) => {
   return (
-    <View style={homeStyles.containerHome}>
+    <View style={generalStyles.containerGeneral}>
       <Banner />
       <User />
       <Menu navigation={navigation} />

@@ -1,30 +1,35 @@
-import React from 'react'
-import { View, Text, Pressable } from 'react-native'
+import { View } from 'react-native'
 
 import { StackNavigation } from '../../types/props.types'
+
 import { homeStyles } from '../../styles/home.styles'
-import { generalStyles } from '../../styles/general.styles'
+
+import ButtonMenu from '../components/buttonMenu'
 
 const Menu = ({ navigation }: { navigation: StackNavigation }) => {
 
-    const redirectPlay = () => {
+    const play = () => {
         navigation.navigate('Play')
+    }
+
+    const statistics = () => {
+        navigation.navigate('Statistics')
+    }
+
+    const ranking = () => {
+        navigation.navigate('Ranking')
+    }
+
+    const settings = () => {
+        navigation.navigate('Settings')
     }
 
     return (
         <View style={homeStyles.containerMenu}>
-            <Pressable style={generalStyles.buttonMenu} onPress={redirectPlay}>
-                <Text style={generalStyles.buttonMenuText}>Play</Text>
-            </Pressable>
-            <Pressable style={generalStyles.buttonMenu} onPress={redirectPlay}>
-                <Text style={generalStyles.buttonMenuText}>Statistics</Text>
-            </Pressable>
-            <Pressable style={generalStyles.buttonMenu}>
-                <Text style={generalStyles.buttonMenuText} onPress={redirectPlay}>Ranking</Text>
-            </Pressable>
-            <Pressable style={generalStyles.buttonMenu}>
-                <Text style={generalStyles.buttonMenuText} onPress={redirectPlay}>Settings</Text>
-            </Pressable>
+            <ButtonMenu text='JUGAR' func={play} />
+            <ButtonMenu text='ESTADÍSTICAS' func={statistics} />
+            <ButtonMenu text='CLASIFICACIÓN' func={ranking} />
+            <ButtonMenu text='AJUSTES' func={settings} />
         </View>
     )
 }

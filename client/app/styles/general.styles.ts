@@ -2,6 +2,10 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 export const generalStyles = StyleSheet.create({
 
+    containerGeneral: {
+        height: '100%'
+    },
+
     containerBanner: {
         height: '20%',
         backgroundColor: '#ff0000'

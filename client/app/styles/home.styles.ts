@@ -2,10 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export const homeStyles = StyleSheet.create({
 
-    containerHome: {
-        height: '100%'
-    },
-
     containerMenu: {
         flex: 1,
         flexDirection: 'column',
