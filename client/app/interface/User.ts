@@ -7,3 +7,8 @@ export interface IUserInfo {
     token?: string;
     user?: any;
 }
+
+export interface IOptionUser {
+    amountQuestions?: number;
+    amountOptions?: number;
+}
