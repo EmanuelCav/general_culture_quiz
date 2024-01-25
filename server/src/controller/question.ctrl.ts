@@ -3,6 +3,7 @@ import fs from 'fs-extra';
 
 import Question from '../models/question';
 import Category from '../models/category';
+import Statistic from '../models/statistic';
 import Game from '../models/game';
 import User from '../models/user';
 import Image from '../models/image';
@@ -16,35 +17,37 @@ import { folder_cloud } from '../config/config';
 
 export const questionsGame = async (req: Request, res: Response): Promise<Response> => {
 
-    const { gid, cid } = req.params
+    const { id } = req.params
 
     try {
 
-        const game = await Game.findById(gid)
+        const game = await Game.findById(id)
 
         if (!game) {
             return res.status(400).json({ message: "Game does not exists" })
         }
-
-        const category = await Category.findById(cid)
-
-        if (!category) {
-            return res.status(400).json({ message: "Category does not exists" })
-        }
-
-        const user = await User.findById(req.user)
-
+        
+        const user = await User.findById(req.user).select("-code")
+        
         if (!user) {
             return res.status(400).json({ message: "USER does not exists" })
         }
 
-        const questions = await Question.find({ category: cid })
+        const statistics = await Statistic.find({ user: req.user, isSelect: true })
+
+        let categories = []
+
+        for (let i = 0; i < statistics.length; i++) {
+            categories.push(statistics[i].category)
+        }
+
+        const questions = await Question.find({ category: categories })
 
         const shuffleQuestions: IQuestion[] = shuffle(questions)
 
         for (let i = 0; i < 5; i++) {
 
-            await Game.findByIdAndUpdate(gid, {
+            await Game.findByIdAndUpdate(id, {
                 $push: {
                     questions: shuffleQuestions[i]._id
                 }
@@ -54,7 +57,7 @@ export const questionsGame = async (req: Request, res: Response): Promise<Respon
 
         }
 
-        const gameGenerated = await Game.findById(gid)
+        const gameGenerated = await Game.findById(id)
 
         if (!gameGenerated) {
             return res.status(400).json({ message: "Game does not exists" })

@@ -3,6 +3,7 @@ import { Document, Types } from "mongoose";
 export interface ICategory extends Document {
     _id: Types.ObjectId;
     category: string;
+    icon: string;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 }
@@ -12,7 +13,7 @@ export interface IGame extends Document {
     questions: Types.ObjectId[];
     corrects: number;
     user: Types.ObjectId;
-    category: Types.ObjectId;
+    categories: Types.ObjectId[];
     createdAt: NativeDate;
     updatedAt: NativeDate;
 }

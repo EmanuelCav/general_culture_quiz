@@ -9,6 +9,11 @@ const countrySchema = new Schema({
         required: true,
         trim: true,
         unique: true
+    },
+
+    flag: {
+        type: String,
+        default: "https://res.cloudinary.com/projects-emanuek/image/upload/v1706184369/ninguno_y4m7bi.png"
     }
 
 }, {

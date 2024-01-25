@@ -1,9 +1,24 @@
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
-const Settings = () => {
+import Labels from '../components/settings/labels'
+import ButtonAccept from '../components/components/buttonAccept'
+import UserSettings from '../components/settings/userSettings'
+
+import { generalStyles } from '../styles/general.styles'
+
+import { StackNavigation } from '../types/props.types'
+
+const Settings = ({ navigation }: { navigation: StackNavigation }) => {
+
+  const goBack = () => {
+    navigation.goBack()
+  }
+
   return (
-    <View>
-      <Text>Settings</Text>
+    <View style={generalStyles.containerGeneral}>
+      <Labels />
+      <UserSettings />
+      <ButtonAccept text='Aceptar' func={goBack} />
     </View>
   )
 }

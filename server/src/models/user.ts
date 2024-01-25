@@ -48,6 +48,11 @@ const userSchema = new Schema({
     language: {
         type: Types.ObjectId,
         ref: 'Language'
+    },
+
+    helps: {
+        type: Number,
+        default: 3
     }
 
 }, {

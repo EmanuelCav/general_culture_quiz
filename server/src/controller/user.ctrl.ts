@@ -63,7 +63,7 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
             return res.status(400).json({ message: "Country does noe exists" })
         }
 
-        const language = await Language.findOne({ language: "English" })
+        const language = await Language.findOne({ language: "Español" })
 
         if (!language) {
             return res.status(400).json({ message: "Language does noe exists" })
@@ -106,7 +106,7 @@ export const firstTime = async (req: Request, res: Response): Promise<Response> 
             return res.status(400).json({ message: "Country does noe exists" })
         }
 
-        const language = await Language.findOne({ language: "English" })
+        const language = await Language.findOne({ language: "Español" })
 
         if (!language) {
             return res.status(400).json({ message: "Language does noe exists" })

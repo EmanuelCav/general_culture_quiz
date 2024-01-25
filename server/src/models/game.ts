@@ -19,10 +19,10 @@ const gameSchema = new Schema({
         ref: 'User'
     },
 
-    category: {
+    categories: [{
         type: Types.ObjectId,
-        ref: 'Category'
-    }
+        ref: 'Statistic'
+    }]
 
 }, {
     timestamps: true,

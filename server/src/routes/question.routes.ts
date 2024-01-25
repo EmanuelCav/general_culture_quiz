@@ -9,7 +9,7 @@ const router = Router()
 
 router.post('/questions/category/:id', [access, auth], questionCtrl.createQuestion)
 
-router.patch('/questions/games/:gid/categories/:cid', auth, questionCtrl.questionsGame)
+router.patch('/questions/games/:id', auth, questionCtrl.questionsGame)
 router.patch('/questions/:id/options', [access, auth], questionCtrl.pushOption)
 
 export default router

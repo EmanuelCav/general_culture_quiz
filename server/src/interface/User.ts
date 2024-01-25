@@ -28,6 +28,7 @@ export interface IStatistic extends Document {
     questions: number;
     corrects: number;
     user: IUser;
+    isSelect: boolean;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 }
@@ -35,6 +36,7 @@ export interface IStatistic extends Document {
 export interface ICountry extends Document {
     _id: Types.ObjectId;
     name: string;
+    flag: string;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 }

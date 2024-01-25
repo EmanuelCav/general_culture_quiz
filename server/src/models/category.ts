@@ -9,6 +9,11 @@ const categorySchema = new Schema({
         required: true,
         trim: true,
         unique: true
+    },
+
+    icon: {
+        type: String,
+        trim: true
     }
 
 }, {
