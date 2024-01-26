@@ -5,7 +5,8 @@ import { IUserInfo, IUserReducer } from '../../interface/User'
 
 const initialState: IUserReducer = {
     user: {},
-    isLoggedIn: false
+    isLoggedIn: false,
+    profile: {}
 }
 
 const userSlice = createSlice({
@@ -15,6 +16,7 @@ const userSlice = createSlice({
         auth: (state, action: PayloadAction<IUserInfo>) => {
             state.isLoggedIn = true
             state.user = action.payload
+            state.profile = action.payload.user!
         }
     }
 })

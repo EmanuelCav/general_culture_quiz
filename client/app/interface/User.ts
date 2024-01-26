@@ -3,6 +3,7 @@ import { ICateogory } from "./Game";
 export interface IUserReducer {
     isLoggedIn: boolean;
     user: IUserInfo;
+    profile: IUser;
 }
 
 export interface IUserInfo {
@@ -11,16 +12,16 @@ export interface IUserInfo {
 }
 
 export interface IUser {
-    _id: string;
-    nickname: string;
-    statistics: IStatistic[];
-    amountOptions: number;
-    amountQuestions: number;
-    country: ICountry;
-    language: ILanguage;
-    helps: number;
-    createdAt: string;
-    updatedAt: string;
+    _id?: string;
+    nickname?: string;
+    statistics?: IStatistic[];
+    amountOptions?: number;
+    amountQuestions?: number;
+    country?: ICountry;
+    language?: ILanguage;
+    helps?: number;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 export interface IStatistic {

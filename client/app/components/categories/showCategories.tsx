@@ -10,7 +10,7 @@ const ShowCategories = ({ user }: { user: IUserInfo }) => {
   return (
     <View style={playStyles.containerShowCategories}>
         {
-          user.user?.statistics.map((statistic: IStatistic) => {
+          user.user?.statistics!.map((statistic: IStatistic) => {
             return <Statistic statistic={statistic} key={statistic._id} /> 
           })
         }

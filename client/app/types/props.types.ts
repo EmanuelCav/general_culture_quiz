@@ -34,3 +34,8 @@ export type AmountOptionsPropsType = {
     amountOptions?: number;
     setOptionsUser: (optionsUser: IOptionUser) => void;
 }
+
+export type StatisticDataPropsType = {
+    text: string;
+    data: number | string;
+}

@@ -6,7 +6,7 @@ import { generalStyles } from '../../../styles/general.styles'
 
 const ButtonOptions = ({ text, func }: ButtonOptionPropsType) => {
   return (
-    <Pressable style={[generalStyles.buttonMenu]}>
+    <Pressable style={[generalStyles.buttonMenu]} >
         <Text>{text}</Text>
     </Pressable>
   )
