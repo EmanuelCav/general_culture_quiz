@@ -193,7 +193,16 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 
     try {
 
-        const user = await User.findById(id).select("-code")
+        const user = await User.findById(id).
+        select("-code -role")
+        .populate({
+            path: "statistics",
+            populate: {
+                path: "category"
+            }
+        })
+        .populate("country")
+        .populate("language")
 
         if (!user) {
             return res.status(400).json({ message: "User does not exists" })

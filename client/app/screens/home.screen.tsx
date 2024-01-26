@@ -11,11 +11,14 @@ import User from '../components/home/user'
 import { generalStyles } from '../styles/general.styles'
 
 import { IReducer } from '../interface/General';
+
 import { firstTimeAction, loginAction } from '../server/actions/user.actions';
+
+import { selector } from '../helper/selector';
 
 const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
-  const user = useSelector((state: IReducer) => state).user
+  const user = useSelector((state: IReducer) => selector(state).user)
 
   const dispatch = useDispatch()
 
@@ -28,7 +31,7 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
     dispatch(firstTimeAction() as any)
     
-  }, [])
+  }, [user.isLoggedIn])
   
 
   return (

@@ -5,9 +5,11 @@ import { generalStyles } from "../../styles/general.styles"
 
 import { IReducer } from "../../interface/General";
 
+import { selector } from "../../helper/selector";
+
 const Loading = () => {
 
-    const response = useSelector((state: IReducer) => state).response
+    const response = useSelector((state: IReducer) => selector(state).response)
 
     return (
         <>
