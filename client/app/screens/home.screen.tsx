@@ -11,7 +11,7 @@ import User from '../components/home/user'
 import { generalStyles } from '../styles/general.styles'
 
 import { IReducer } from '../interface/General';
-import { firstTimeAction } from '../server/actions/user.actions';
+import { firstTimeAction, loginAction } from '../server/actions/user.actions';
 
 const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
@@ -22,7 +22,7 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
   useEffect(() => {
     
     if(user.isLoggedIn) {
-      console.log("User is Logged in");
+      dispatch(loginAction(user.user.user?._id!) as any)
       return
     }
 

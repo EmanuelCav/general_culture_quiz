@@ -24,6 +24,13 @@ const responseSlice = createSlice({
         builder.addCase(userAction.firstTimeAction.fulfilled, (state) => {
             state.loading = false
         })
+
+        builder.addCase(userAction.loginAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(userAction.loginAction.fulfilled, (state) => {
+            state.loading = false
+        })
     },
 })
 

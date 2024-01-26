@@ -46,6 +46,8 @@ export const generalStyles = StyleSheet.create({
 
     containerLoading: {
         position: 'absolute',
+        top: 0,
+        left: 0,
         width: Dimensions.get("window").width,
         height: Dimensions.get("window").height,
         backgroundColor: '#ffffff'

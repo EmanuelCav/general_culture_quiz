@@ -15,10 +15,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
         return res.status(500).json({ message: "Token does not exists" })
     }
 
-    const isValidate = jwt.verify(token, `${jwt_key}`) as IValidation
-
-    console.log(isValidate);
-    
+    const isValidate = jwt.verify(token, `${jwt_key}`) as IValidation    
 
     if(!isValidate) {
         return res.status(500).json({ message: "Token is not valid" })

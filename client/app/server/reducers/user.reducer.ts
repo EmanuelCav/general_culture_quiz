@@ -12,13 +12,13 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        firstTime: (state, action: PayloadAction<IUserInfo>) => {
+        auth: (state, action: PayloadAction<IUserInfo>) => {
             state.isLoggedIn = true
             state.user = action.payload
         }
     }
 })
 
-export const { firstTime } = userSlice.actions
+export const { auth } = userSlice.actions
 
 export default userSlice.reducer

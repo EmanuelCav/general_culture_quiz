@@ -16,6 +16,7 @@ import Statistics from "./app/screens/statistics.screen";
 import Settings from "./app/screens/settings.screen";
 
 import { store } from './app/server/store';
+import Loading from "./app/components/response/loading";
 
 const Stack = createNativeStackNavigator()
 
@@ -35,6 +36,7 @@ export default function App() {
     <NavigationContainer theme={theme}>
       <Provider store={store}>
         <PersistGate persistor={persistor} loading={null}>
+          <Loading />
           <Container>
             <StatusBar backgroundColor='#ffffff' translucent={false} />
             <Stack.Navigator initialRouteName="Home" screenOptions={{

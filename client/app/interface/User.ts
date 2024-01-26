@@ -5,7 +5,20 @@ export interface IUserReducer {
 
 export interface IUserInfo {
     token?: string;
-    user?: any;
+    user?: IUser;
+}
+
+export interface IUser {
+    _id: string;
+    nickname: string;
+    statistics: any[];
+    amountOptions: number;
+    amountQuestions: number;
+    country: any;
+    language: any;
+    helps: number;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface IOptionUser {

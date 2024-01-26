@@ -4,6 +4,8 @@ export interface ICategory extends Document {
     _id: Types.ObjectId;
     category: string;
     icon: string;
+    colorActive: string;
+    colorInactive: string;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 }

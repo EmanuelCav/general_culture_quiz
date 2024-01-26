@@ -18,12 +18,15 @@ export const categories = async (req: Request, res: Response): Promise<Response>
 
 export const createCategory = async (req: Request, res: Response): Promise<Response> => {
 
-    const { category } = req.body
+    const { category, icon, colorActive, colorInactive } = req.body
 
     try {
 
         const newCategory = new Category({
-            category
+            category,
+            icon,
+            colorActive,
+            colorInactive
         })
 
         await newCategory.save()
