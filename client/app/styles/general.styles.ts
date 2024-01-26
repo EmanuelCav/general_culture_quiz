@@ -42,6 +42,13 @@ export const generalStyles = StyleSheet.create({
         backgroundColor: '#ff0000',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+
+    containerLoading: {
+        position: 'absolute',
+        width: Dimensions.get("window").width,
+        height: Dimensions.get("window").height,
+        backgroundColor: '#ffffff'
     }
 
 })

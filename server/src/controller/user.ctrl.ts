@@ -4,6 +4,8 @@ import User from '../models/user';
 import Role from '../models/role';
 import Country from '../models/country';
 import Language from '../models/language';
+import Statistic from '../models/statistic';
+import Category from '../models/category';
 
 import { generateToken, generateCode, hashCode, compareCode } from "../helper/encrypt";
 
@@ -69,6 +71,8 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
             return res.status(400).json({ message: "Language does noe exists" })
         }
 
+        const categories = await Category.find()
+
         const hashedCode = await hashCode(code)
 
         const newUser = new User({
@@ -79,7 +83,28 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
             language: language._id
         })
 
-        await newUser.save()
+        const user = await newUser.save()
+
+        let statistic;
+
+        for (let i = 0; i < categories.length; i++) {
+
+            const newStatistic = new Statistic({
+                user: user._id,
+                category: categories[i]._id
+            })
+
+            statistic = await newStatistic.save()
+
+            await User.findByIdAndUpdate(user._id, {
+                $push: {
+                    statistics: statistic._id
+                }
+            }, {
+                new: true
+            }).select("-code")
+
+        }
 
         return res.status(200).json({ message: "User generated successfully" })
 
@@ -112,9 +137,13 @@ export const firstTime = async (req: Request, res: Response): Promise<Response> 
             return res.status(400).json({ message: "Language does noe exists" })
         }
 
+        const categories = await Category.find()
+
+        const code = await hashCode(generateCode(10))
+
         const newUser = new User({
             nickname: `user${generateCode(6)}`,
-            code: hashCode(generateCode(10)),
+            code,
             role: role._id,
             country: country._id,
             language: language._id
@@ -124,11 +153,28 @@ export const firstTime = async (req: Request, res: Response): Promise<Response> 
 
         const token: string = generateToken(user._id)
 
-        const userRegistered = await User.findById(user._id).select("-code")
+        let statistic;
 
-        if (!userRegistered) {
-            return res.status(400).json({ message: "User does not exists" })
+        for (let i = 0; i < categories.length; i++) {
+
+            const newStatistic = new Statistic({
+                user: user._id,
+                category: categories[i]._id
+            })
+
+            statistic = await newStatistic.save()
+
+            await User.findByIdAndUpdate(user._id, {
+                $push: {
+                    statistics: statistic._id
+                }
+            }, {
+                new: true
+            }).select("-code")
+
         }
+
+        const userRegistered = await User.findById(user._id).select("-code")
 
         return res.status(200).json({
             user: userRegistered,
@@ -188,7 +234,7 @@ export const authLogin = async (req: Request, res: Response): Promise<Response> 
 
         const userLogged = await User.findById(user._id).select("-code")
 
-        if(!userLogged) {
+        if (!userLogged) {
             return res.status(400).json({ message: "User does not exists" })
         }
 
