@@ -18,7 +18,7 @@ const Settings = ({ navigation }: { navigation: StackNavigation }) => {
     <View style={generalStyles.containerGeneral}>
       <Labels />
       <UserSettings />
-      <ButtonAccept text='Aceptar' func={goBack} />
+      <ButtonAccept text='ACEPTAR' func={goBack} />
     </View>
   )
 }

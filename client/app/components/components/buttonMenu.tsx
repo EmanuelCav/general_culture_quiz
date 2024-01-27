@@ -6,7 +6,12 @@ import { generalStyles } from '../../styles/general.styles'
 
 const ButtonMenu = ({ func, text }: ButtonMenuPropsType) => {
   return (
-    <Pressable style={generalStyles.buttonMenu} onPress={func}>
+    <Pressable style={({pressed}) => [
+      {
+        backgroundColor: pressed ? '#ffa420' : '#FF8C00',
+      },
+      generalStyles.buttonMenu
+    ]} onPress={func}>
         <Text style={generalStyles.buttonMenuText}>{text}</Text>
     </Pressable>
   )

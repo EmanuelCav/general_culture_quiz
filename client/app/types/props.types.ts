@@ -1,6 +1,7 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { IOptionUser } from "../interface/User";
+import { SetStateAction } from "react";
 
 type RouteTypes = {
     Home: undefined;
@@ -21,18 +22,18 @@ export type ButtonMenuPropsType = {
 }
 
 export type ButtonOptionPropsType = {
-    func: (number: number) => void;
+    func: (e: any, number: number) => void;
     text: string;
 }
 
 export type AmountQuestionsPropsType = {
-    amountQuestions?: number;
-    setOptionsUser: (optionsUser: IOptionUser) => void;
+    amountQuestions: number;
+    setOptionsUser: (optionsUser: SetStateAction<IOptionUser>) => void;
 }
 
 export type AmountOptionsPropsType = {
-    amountOptions?: number;
-    setOptionsUser: (optionsUser: IOptionUser) => void;
+    amountOptions: number;
+    setOptionsUser: (optionsUser: SetStateAction<IOptionUser>) => void;
 }
 
 export type StatisticDataPropsType = {

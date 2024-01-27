@@ -1,12 +1,15 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, Dimensions } from 'react-native'
 
 import { ICountry } from '../../../../interface/User'
 
+import { homeStyles } from '../../../../styles/home.styles'
+
 const Country = ({ country }: { country: ICountry }) => {
     return (
-        <View>
-            <Image source={{ uri: country?.flag }} />
-            <Text>{country.name}</Text>
+        <View style={homeStyles.containUser}>
+            <Image source={{ uri: country.flag }} alt={country.name}
+                style={{ height: Dimensions.get("window").height / 25, width: Dimensions.get("window").width / 7 }} resizeMode='contain' />
+            <Text style={homeStyles.country}>{country.name}</Text>
         </View>
     )
 }

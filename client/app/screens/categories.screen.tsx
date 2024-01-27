@@ -26,7 +26,7 @@ const Categories = ({ navigation }: { navigation: StackNavigation }) => {
       <TitleCategory />
       <ActionCategory />
       <ShowCategories user={user.user} />
-      <ButtonAccept text='Aceptar' func={goBack} />
+      <ButtonAccept text='ACEPTAR' func={goBack} />
     </View>
   )
 }

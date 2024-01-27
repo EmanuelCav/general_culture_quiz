@@ -37,7 +37,7 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
   return (
     <View style={generalStyles.containerGeneral}>
       <Banner />
-      <User />
+      <User user={user.user.user!} />
       <Menu navigation={navigation} />
     </View>
   )

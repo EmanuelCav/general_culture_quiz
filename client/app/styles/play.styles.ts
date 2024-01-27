@@ -3,7 +3,6 @@ import { Dimensions, StyleSheet } from 'react-native';
 export const playStyles = StyleSheet.create({
 
     containerAmountOptions: {
-        backgroundColor: '#ff00ff',
         justifyContent: 'space-evenly',
         alignItems: 'center',
         flexDirection: 'column',
@@ -13,7 +12,6 @@ export const playStyles = StyleSheet.create({
     
     containerAmountQuestion: {
         height: '30%',
-        backgroundColor: '#ffff00',
         padding: Dimensions.get("window").height / 46,
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -21,19 +19,21 @@ export const playStyles = StyleSheet.create({
     },
 
     titleOption: {
-        fontSize: Dimensions.get("window").height / 42,
-        textAlign: 'center'
+        fontSize: Dimensions.get("window").height / 37,
+        textAlign: 'center',
+        color: '#ffffff',
+        fontWeight: '500'
     },
 
     textAlertAmountQuestion: {
         fontSize: Dimensions.get("window").height / 37,
-        fontWeight: '600'
+        fontWeight: '600',
+        color: '#FF8C00'
     },
 
     containerCategories: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: 'red',
         justifyContent: 'space-evenly',
         alignItems: 'center'
     },

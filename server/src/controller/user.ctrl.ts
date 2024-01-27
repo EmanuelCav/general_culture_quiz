@@ -6,6 +6,7 @@ import Country from '../models/country';
 import Language from '../models/language';
 import Statistic from '../models/statistic';
 import Category from '../models/category';
+import Experience from '../models/experience';
 
 import { generateToken, generateCode, hashCode, compareCode } from "../helper/encrypt";
 
@@ -31,7 +32,17 @@ export const user = async (req: Request, res: Response): Promise<Response> => {
 
     try {
 
-        const showUser = await User.findById(id).select("-code")
+        const showUser = await User.findById(id)
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
 
         return res.status(200).json(showUser)
 
@@ -106,6 +117,19 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
 
         }
 
+        const newExperience = new Experience({
+            user: req.user
+        })
+
+        const experienceSaved = await newExperience.save()
+
+        await User.findByIdAndUpdate(user._id, {
+            points: experienceSaved._id
+        }, {
+            new: true
+        })
+            .select("-code")
+
         return res.status(200).json({ message: "User generated successfully" })
 
     } catch (error) {
@@ -174,7 +198,27 @@ export const firstTime = async (req: Request, res: Response): Promise<Response> 
 
         }
 
-        const userRegistered = await User.findById(user._id).select("-code")
+        const newExperience = new Experience({
+            user: req.user
+        })
+
+        const experienceSaved = await newExperience.save()
+
+        const userRegistered = await User.findByIdAndUpdate(user._id, {
+            points: experienceSaved._id
+        }, {
+            new: true
+        })
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
 
         return res.status(200).json({
             user: userRegistered,
@@ -193,16 +237,17 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 
     try {
 
-        const user = await User.findById(id).
-        select("-code -role")
-        .populate({
-            path: "statistics",
-            populate: {
-                path: "category"
-            }
-        })
-        .populate("country")
-        .populate("language")
+        const user = await User.findById(id)
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
 
         if (!user) {
             return res.status(400).json({ message: "User does not exists" })
@@ -241,7 +286,17 @@ export const authLogin = async (req: Request, res: Response): Promise<Response> 
 
         const token: string = generateToken(user._id)
 
-        const userLogged = await User.findById(user._id).select("-code")
+        const userLogged = await User.findById(user._id)
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
 
         if (!userLogged) {
             return res.status(400).json({ message: "User does not exists" })

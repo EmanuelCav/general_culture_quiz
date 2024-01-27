@@ -19,9 +19,23 @@ export interface IUser {
     amountQuestions?: number;
     country?: ICountry;
     language?: ILanguage;
+    points: IPoints;
     helps?: number;
     createdAt?: string;
     updatedAt?: string;
+}
+
+export interface IPoints {
+    _id: string;
+    day: number;
+    month: number;
+    year: number;
+    total: number;
+    user: string;
+    bestPuntuation: number;
+    lastGame: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface IStatistic {
@@ -50,6 +64,6 @@ export interface ILanguage {
 }
 
 export interface IOptionUser {
-    amountQuestions?: number;
-    amountOptions?: number;
+    amountQuestions: number;
+    amountOptions: number;
 }

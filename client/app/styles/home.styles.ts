@@ -6,18 +6,22 @@ export const homeStyles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        alignItems: 'center',
-        backgroundColor: '#ffff00'
+        alignItems: 'center'
     },
 
     containerUser: {
-        height: '25%',
-        backgroundColor: '#0000ff'
+        width: '100%',
+        height: '20%',
+        paddingHorizontal: Dimensions.get("window").width / 72,
+        justifyContent: 'space-between',
+        alignContent: 'center',
+        flexDirection: 'row',
+        backgroundColor: '#FF8C00',
+        borderRadius: 8
     },
 
     containerLabels: {
         height: '25%',
-        backgroundColor: '#f00',
         justifyContent: 'space-evenly',
         alignItems: 'center',
         flexDirection: 'column'
@@ -31,7 +35,6 @@ export const homeStyles = StyleSheet.create({
 
     containerUserSettings: {
         flex: 1,
-        backgroundColor: '#ff0',
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'column',
@@ -40,8 +43,7 @@ export const homeStyles = StyleSheet.create({
 
     containUserSettings: {
         flex: 1,
-        width: '100%',
-        backgroundColor: '#00ff00'
+        width: '100%'
     },
 
     containerUserStatistics: {
@@ -49,18 +51,15 @@ export const homeStyles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         height: '25%',
-        backgroundColor: 'blue',
         paddingHorizontal: Dimensions.get("window").height / 106
     },
 
     containerCategoryStatistics: {
         flex: 1,
-        backgroundColor: 'yellow',
         padding: Dimensions.get("window").height / 106
     },
 
     containerProfile: {
-        backgroundColor: '#ff00ff',
         width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -83,7 +82,9 @@ export const homeStyles = StyleSheet.create({
     },
 
     textMainStatistics: {
-        fontSize: Dimensions.get("window").height / 47
+        fontSize: Dimensions.get("window").height / 47,
+        color: '#FF8C00',
+        fontWeight: '500'
     },
 
     textMainStatisticsColor: {
@@ -94,8 +95,21 @@ export const homeStyles = StyleSheet.create({
     containCategoryStatistic: {
         padding: Dimensions.get("window").height / 74,
         borderWidth: 1,
-        borderColor: 'orange',
+        borderColor: '#FF8C00',
         borderStyle: 'solid'
+    },
+
+    containUser: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '50%',
+        flexDirection: 'column'
+    },
+
+    country: {
+        fontSize: Dimensions.get("window").height / 46,
+        fontWeight: '500',
+        color: '#ffffff'
     }
 
 })

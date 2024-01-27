@@ -7,14 +7,12 @@ export const generalStyles = StyleSheet.create({
     },
 
     containerBanner: {
-        height: '20%',
-        backgroundColor: '#ff0000'
+        height: '15%'
     },
 
     buttonAccept: {
         padding: Dimensions.get("window").height / 62,
         width: '100%',
-        backgroundColor: '#ffffff',
         justifyContent: 'center',
         alignItems: 'center',
         height: Dimensions.get("window").height / 14,
@@ -24,7 +22,6 @@ export const generalStyles = StyleSheet.create({
     buttonMenu: {
         padding: Dimensions.get("window").height / 62,
         width: '66%',
-        backgroundColor: '#ffffff',
         justifyContent: 'center',
         alignItems: 'center',
         height: Dimensions.get("window").height / 14,
@@ -32,14 +29,15 @@ export const generalStyles = StyleSheet.create({
     },
 
     buttonMenuText: {
-        fontSize: Dimensions.get("window").height / 42
+        fontSize: Dimensions.get("window").height / 42,
+        color: '#ffffff',
+        fontWeight: '500'
     },
 
     containerButtonAccept: {
         padding: Dimensions.get("window").height / 46,
         height: '15%',
         width: '100%',
-        backgroundColor: '#ff0000',
         justifyContent: 'center',
         alignItems: 'center'
     },

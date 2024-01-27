@@ -3,7 +3,7 @@ import { ImageBackground, StyleSheet, Dimensions } from 'react-native'
 
 const Container = ({ children }: { children: ReactNode }) => {
   return (
-    <ImageBackground source={require('./assets/icon.png')} style={styles.container} alt='screen' resizeMode='cover' >
+    <ImageBackground source={require('./assets/background.png')} style={styles.container} alt='screen' resizeMode='cover' >
         {children}
     </ImageBackground>
   )

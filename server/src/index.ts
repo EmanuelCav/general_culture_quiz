@@ -14,7 +14,6 @@ import userRoute from './routes/user.routes';
 import roleRoute from './routes/role.routes';
 import categoryRoute from './routes/category.routes';
 import countryRoute from './routes/country.routes';
-import experienceRoute from './routes/experience.routes';
 import languageRoute from './routes/language.routes';
 import gameRoute from './routes/game.routes';
 
@@ -45,7 +44,6 @@ app.use(userRoute)
 app.use(roleRoute)
 app.use(categoryRoute)
 app.use(countryRoute)
-app.use(experienceRoute)
 app.use(languageRoute)
 app.use(gameRoute)
 
