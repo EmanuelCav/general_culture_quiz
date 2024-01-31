@@ -3,14 +3,13 @@ import { View } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
 
 import { StackNavigation } from '../types/props.types'
+import { IReducer } from '../interface/General';
 
 import Menu from '../components/home/menu'
 import Banner from '../components/adds/banner'
 import User from '../components/home/user'
 
 import { generalStyles } from '../styles/general.styles'
-
-import { IReducer } from '../interface/General';
 
 import { firstTimeAction, loginAction } from '../server/actions/user.actions';
 
@@ -38,7 +37,7 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
     <View style={generalStyles.containerGeneral}>
       <Banner />
       <User user={user.user.user!} />
-      <Menu navigation={navigation} />
+      <Menu navigation={navigation} dispatch={dispatch} user={user} />
     </View>
   )
 }

@@ -31,6 +31,13 @@ const responseSlice = createSlice({
         builder.addCase(userAction.loginAction.fulfilled, (state) => {
             state.loading = false
         })
+
+        builder.addCase(userAction.usersRankingAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(userAction.usersRankingAction.fulfilled, (state) => {
+            state.loading = false
+        })
     },
 })
 

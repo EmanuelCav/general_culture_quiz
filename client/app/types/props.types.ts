@@ -1,7 +1,8 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-
-import { IOptionUser } from "../interface/User";
 import { SetStateAction } from "react";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Dispatch } from "@reduxjs/toolkit";
+
+import { IOptionUser, IUserReducer } from "../interface/User";
 
 type RouteTypes = {
     Home: undefined;
@@ -40,3 +41,10 @@ export type StatisticDataPropsType = {
     text: string;
     data: number | string;
 }
+
+export type MenuPropsType = {
+    navigation: StackNavigation;
+    user: IUserReducer;
+    dispatch: Dispatch;
+}
+

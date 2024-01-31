@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-import { IUserInfo, IUserReducer } from '../../interface/User'
+import { IUser, IUserInfo, IUserReducer } from '../../interface/User'
 
 const initialState: IUserReducer = {
+    users: {},
     user: {},
     isLoggedIn: false,
     profile: {}
@@ -17,10 +18,16 @@ const userSlice = createSlice({
             state.isLoggedIn = true
             state.user = action.payload
             state.profile = action.payload.user!
+        },
+        users: (state, action: PayloadAction<IUser[]>) => {
+            state.users.ranking = action.payload
+        },
+        profile: (state, action: PayloadAction<IUser>) => {
+            state.profile = action.payload
         }
     }
 })
 
-export const { auth } = userSlice.actions
+export const { auth, users, profile } = userSlice.actions
 
 export default userSlice.reducer

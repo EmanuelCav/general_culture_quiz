@@ -90,6 +90,51 @@ export const playStyles = StyleSheet.create({
         fontSize: Dimensions.get("window").height / 53,
         color: '#ffffff',
         fontWeight: '500'
+    },
+
+    containerPosition: {
+        height: '8%'
+    },
+
+    containerRankingTags: {
+        height: '10%'
+    },
+
+    containerUsersRanking: {
+        flex: 1
+    },
+
+    containUserRank: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: Dimensions.get("window").height / 106,
+        justifyContent: 'space-between',
+        borderColor: '#FF8C00',
+        borderWidth: 1,
+        borderStyle: 'solid'
+    },
+
+    conntainInfoUserRank: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    containPoints: {
+        height: '100%',
+        width: '20%',
+        alignItems: 'flex-end',
+        justifyContent: 'center'
+    },
+
+    textInfoPoints: {
+        fontSize: Dimensions.get("window").height / 53,
+        color: '#ffffff'
+    },
+
+    nicknameRank: {
+        fontSize: Dimensions.get("window").height / 46,
+        color: '#FF8C00'
     }
 
 })

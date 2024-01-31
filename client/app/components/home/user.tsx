@@ -11,7 +11,7 @@ const User = ({ user }: { user: IUser }) => {
     return (
         <View style={homeStyles.containerUser}>
             <MainInfoUser user={user} />
-            <CountryUser country={user.country!} />
+            <CountryUser country={user?.country!} />
         </View>
     )
 }

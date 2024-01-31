@@ -16,7 +16,7 @@ export const users = async (req: Request, res: Response): Promise<Response> => {
 
     try {
 
-        const showUsers = await User.find().limit(10).select("-code")
+        const showUsers = await User.find().select("-code")
 
         return res.status(200).json(showUsers)
 

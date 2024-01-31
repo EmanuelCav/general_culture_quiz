@@ -1,12 +1,14 @@
 import { View } from 'react-native'
 
-import { StackNavigation } from '../../types/props.types'
+import { MenuPropsType } from '../../types/props.types'
 
 import { homeStyles } from '../../styles/home.styles'
 
 import ButtonMenu from '../components/buttonMenu'
 
-const Menu = ({ navigation }: { navigation: StackNavigation }) => {
+import { usersRankingAction } from '../../server/actions/user.actions'
+
+const Menu = ({ navigation, dispatch, user }: MenuPropsType) => {
 
     const play = () => {
         navigation.navigate('Play')
@@ -17,7 +19,10 @@ const Menu = ({ navigation }: { navigation: StackNavigation }) => {
     }
 
     const ranking = () => {
-        navigation.navigate('Ranking')
+        dispatch(usersRankingAction({
+            token: user.user.token!,
+            navigation
+        }) as any)
     }
 
     const settings = () => {

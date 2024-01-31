@@ -10,7 +10,7 @@ import access from '../middleware/auth/access';
 
 const router = Router()
 
-router.get('/users', userCtrl.users)
+router.get('/users', auth, userCtrl.users)
 router.get('/users/:id', userCtrl.user)
 
 router.post('/users/createUser', createValid, userCtrl.createUser)

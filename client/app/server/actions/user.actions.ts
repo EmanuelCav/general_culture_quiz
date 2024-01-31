@@ -3,6 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as userApi from '../api/user.api';
 import * as userReducer from '../reducers/user.reducer';
 
+import { UsersActionPropsType, ProfileActionPropsType } from '../../types/action.type';
+
 export const firstTimeAction = createAsyncThunk('users/firsttime', async (_, { dispatch }) => {
 
     try {
@@ -24,6 +26,38 @@ export const loginAction = createAsyncThunk('users/login', async (id: string, { 
         const { data } = await userApi.loginApi(id)
 
         dispatch(userReducer.auth(data))
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+
+export const usersRankingAction = createAsyncThunk('users/ranking', async (usersData: UsersActionPropsType, { dispatch }) => {
+
+    try {
+
+        const { data } = await userApi.usersApi(usersData.token)
+
+        dispatch(userReducer.users(data))
+
+        usersData.navigation.navigate('Ranking')
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+
+export const profileAction = createAsyncThunk('users/profile', async (userData: ProfileActionPropsType, { dispatch }) => {
+
+    try {
+
+        const { data } = await userApi.userApi(userData.id, userData.token)
+
+        dispatch(userReducer.users(data))
+
+        userData.navigation.navigate('Statistics')
 
     } catch (error) {
         console.log(error);

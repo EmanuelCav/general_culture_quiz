@@ -1,6 +1,7 @@
 import { ICateogory } from "./Game";
 
 export interface IUserReducer {
+    users: IUsersRanking;
     isLoggedIn: boolean;
     user: IUserInfo;
     profile: IUser;
@@ -11,6 +12,11 @@ export interface IUserInfo {
     user?: IUser;
 }
 
+export interface IUsersRanking {
+    total?: IUser[];
+    ranking?: IUser[];
+}
+
 export interface IUser {
     _id?: string;
     nickname?: string;
@@ -19,7 +25,7 @@ export interface IUser {
     amountQuestions?: number;
     country?: ICountry;
     language?: ILanguage;
-    points: IPoints;
+    points?: IPoints;
     helps?: number;
     createdAt?: string;
     updatedAt?: string;
