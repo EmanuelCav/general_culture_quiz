@@ -38,6 +38,13 @@ const responseSlice = createSlice({
         builder.addCase(userAction.usersRankingAction.fulfilled, (state) => {
             state.loading = false
         })
+
+        builder.addCase(userAction.profileAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(userAction.profileAction.fulfilled, (state) => {
+            state.loading = false
+        })
     },
 })
 

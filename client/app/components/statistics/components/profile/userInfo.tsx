@@ -8,7 +8,7 @@ const UserInfo = ({ user }: { user: IUser }) => {
     return (
         <View style={homeStyles.containUser}>
             <Text style={homeStyles.nickname}>{user.nickname}</Text>
-            <Text style={homeStyles.experience}>3000xp</Text>
+            <Text style={homeStyles.experience}>{user.points?.total}xp</Text>
         </View>
     )
 }

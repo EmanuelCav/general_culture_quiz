@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as userApi from '../api/user.api';
 import * as userReducer from '../reducers/user.reducer';
+import * as gameReducer from '../reducers/game.reducer';
 
 import { UsersActionPropsType, ProfileActionPropsType } from '../../types/action.type';
 
@@ -55,7 +56,8 @@ export const profileAction = createAsyncThunk('users/profile', async (userData: 
 
         const { data } = await userApi.userApi(userData.id, userData.token)
 
-        dispatch(userReducer.users(data))
+        dispatch(userReducer.profile(data.user))
+        dispatch(gameReducer.games(data.games))
 
         userData.navigation.navigate('Statistics')
 

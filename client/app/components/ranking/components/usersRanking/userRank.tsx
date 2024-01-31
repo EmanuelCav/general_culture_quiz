@@ -1,17 +1,35 @@
 import { Pressable } from 'react-native'
+import { useDispatch } from 'react-redux';
 
-import { IUser } from '../../../../interface/User'
+import { UserRankPropsType } from '../../../../types/props.types';
 
 import InfoUserRank from './components/infoUserRank'
 import Points from './components/points'
 
 import { playStyles } from '../../../../styles/play.styles'
+import { profileAction } from '../../../../server/actions/user.actions';
 
-const UserRank = ({ user, index }: { user: IUser, index: number }) => {
+const UserRank = ({ user, index, navigation, token }: UserRankPropsType) => {
+
+    const dispatch = useDispatch()
+
+    const getData = async () => {
+        dispatch(profileAction({
+            token,
+            id: user._id!,
+            navigation
+        }) as any)
+    }
+
     return (
-        <Pressable style={playStyles.containUserRank}>
-            <InfoUserRank user={user} index={index}/>
-            <Points points={user.points} />
+        <Pressable style={({ pressed }) => [
+            {
+                backgroundColor: pressed ? '#ffa420' : 'transparent',
+            },
+            playStyles.containUserRank
+        ]} onPress={getData}>
+            <InfoUserRank user={user} index={index} />
+            <Points points={user.points!} />
         </Pressable>
     )
 }

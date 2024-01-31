@@ -16,6 +16,7 @@ import ButtonAccept from '../components/components/buttonAccept'
 const Statistics = ({ navigation }: { navigation: StackNavigation }) => {
 
   const user = useSelector((state: IReducer) => selector(state).user)
+  const game = useSelector((state: IReducer) => selector(state).game)
 
   const goBack = () => {
     navigation.goBack()
@@ -23,7 +24,7 @@ const Statistics = ({ navigation }: { navigation: StackNavigation }) => {
 
   return (
     <View style={generalStyles.containerGeneral}>
-      <UserStatistics user={user.profile} />
+      <UserStatistics user={user.profile} games={game.games} />
       <CategoryStatistics user={user.profile} />
       <ButtonAccept text='ACEPTAR' func={goBack} />
     </View>

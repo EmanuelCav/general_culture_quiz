@@ -2,7 +2,8 @@ import { SetStateAction } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Dispatch } from "@reduxjs/toolkit";
 
-import { IOptionUser, IUserReducer } from "../interface/User";
+import { IOptionUser, IUser, IUserReducer } from "../interface/User";
+import { IGame } from "../interface/Game";
 
 type RouteTypes = {
     Home: undefined;
@@ -48,3 +49,24 @@ export type MenuPropsType = {
     dispatch: Dispatch;
 }
 
+export type UserStatisticsPropsType = {
+    games: IGame[];
+    user: IUser;
+}
+
+export type UsersRankingPropsType = {
+    user: IUserReducer;
+    navigation: StackNavigation;
+}
+
+export type UserRankPropsType = {
+    user: IUser; 
+    index: number; 
+    navigation: StackNavigation; 
+    token: string;
+}
+
+export type InfoUserRankPropsType = {
+    user: IUser;
+    index: number;
+}

@@ -51,7 +51,9 @@ export const playStyles = StyleSheet.create({
     
     textTitleCategory: {
         fontSize: Dimensions.get("window").height / 37,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: "#FF8C00",
+        fontWeight: '500'
     },
 
     buttonSelect: {
@@ -59,11 +61,16 @@ export const playStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: Dimensions.get("window").height / 62,
-        borderRadius: 8
+        borderRadius: 8,
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        marginVertical: Dimensions.get("window").height / 123
     },
 
     textButtonSelect: {
-        fontSize: Dimensions.get("window").height / 42
+        fontSize: Dimensions.get("window").height / 50,
+        color: '#ffffff'
     },
 
     containerShowCategories: {
@@ -107,7 +114,7 @@ export const playStyles = StyleSheet.create({
     containUserRank: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: Dimensions.get("window").height / 106,
+        padding: Dimensions.get("window").height / 62,
         justifyContent: 'space-between',
         borderColor: '#FF8C00',
         borderWidth: 1,
@@ -116,13 +123,13 @@ export const playStyles = StyleSheet.create({
 
     conntainInfoUserRank: {
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'space-around',
+        alignItems: 'center',
     },
 
     containPoints: {
         height: '100%',
-        width: '20%',
+        width: '30%',
         alignItems: 'flex-end',
         justifyContent: 'center'
     },

@@ -7,6 +7,7 @@ import Language from '../models/language';
 import Statistic from '../models/statistic';
 import Category from '../models/category';
 import Experience from '../models/experience';
+import Game from '../models/game';
 
 import { generateToken, generateCode, hashCode, compareCode } from "../helper/encrypt";
 
@@ -16,7 +17,18 @@ export const users = async (req: Request, res: Response): Promise<Response> => {
 
     try {
 
-        const showUsers = await User.find().select("-code")
+        const showUsers = await User.find()
+            .select("-code")
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
 
         return res.status(200).json(showUsers)
 
@@ -44,7 +56,16 @@ export const user = async (req: Request, res: Response): Promise<Response> => {
             .populate("language")
             .populate("points")
 
-        return res.status(200).json(showUser)
+        if (!showUser) {
+            return res.status(400).json({ message: "User does not exists" })
+        }
+
+        const games = await Game.find({ user: id })
+
+        return res.status(200).json({
+            user: showUser,
+            games
+        })
 
     } catch (error) {
         throw error

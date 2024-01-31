@@ -1,18 +1,20 @@
 import { View } from 'react-native'
 
-import { IUser, IUserReducer } from '../../interface/User'
+import { IUser } from '../../interface/User'
 
 import UserRank from './components/usersRanking/userRank'
 
 import { playStyles } from '../../styles/play.styles'
 
-const UsersRanking = ({ user }: { user: IUserReducer }) => {
+import { UsersRankingPropsType } from '../../types/props.types'
+
+const UsersRanking = ({ user, navigation }: UsersRankingPropsType) => {
 
   return (
     <View style={playStyles.containerUsersRanking}>
         {
-            user.users.ranking?.map((user: IUser, index: number) => {
-                return <UserRank user={user} index={index} key={user._id} />
+            user.users.ranking?.map((u: IUser, index: number) => {
+                return <UserRank user={u} index={index} navigation={navigation} token={user.user.token!} key={u._id} />
             })
         }
     </View>

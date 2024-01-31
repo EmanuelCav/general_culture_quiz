@@ -25,7 +25,7 @@ const Ranking = ({ navigation }: { navigation: StackNavigation }) => {
     <View style={generalStyles.containerGeneral}>
       <Position />
       <RankingTags />
-      <UsersRanking user={user} />
+      <UsersRanking user={user} navigation={navigation} />
       <ButtonAccept text='ACEPTAR' func={goBack} />
     </View>
   )

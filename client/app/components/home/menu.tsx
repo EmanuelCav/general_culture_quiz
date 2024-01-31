@@ -6,7 +6,7 @@ import { homeStyles } from '../../styles/home.styles'
 
 import ButtonMenu from '../components/buttonMenu'
 
-import { usersRankingAction } from '../../server/actions/user.actions'
+import { profileAction, usersRankingAction } from '../../server/actions/user.actions'
 
 const Menu = ({ navigation, dispatch, user }: MenuPropsType) => {
 
@@ -15,7 +15,11 @@ const Menu = ({ navigation, dispatch, user }: MenuPropsType) => {
     }
 
     const statistics = () => {
-        navigation.navigate('Statistics')
+        dispatch(profileAction({
+            id: user.user.user?._id!,
+            token: user.user.token!,
+            navigation
+        }) as any)
     }
 
     const ranking = () => {
