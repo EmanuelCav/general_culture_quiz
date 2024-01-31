@@ -1,5 +1,7 @@
 import { api } from './api';
 
+import { IOptionUser } from '../../interface/User';
+
 export const firstTimeApi = async () => {
 
     return await api.post('/users/firsttime', null)
@@ -25,6 +27,16 @@ export const usersApi = async (token: string) => {
 export const userApi = async (id: string, token: string) => {
 
     return await api.get(`/users/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+}
+
+export const optionsApi = async (optionData: IOptionUser, token: string) => {
+
+    return await api.put('/users/options', optionData, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

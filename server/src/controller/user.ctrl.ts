@@ -18,7 +18,6 @@ export const users = async (req: Request, res: Response): Promise<Response> => {
     try {
 
         const showUsers = await User.find()
-            .select("-code")
             .select("-code -role")
             .populate({
                 path: "statistics",
@@ -134,7 +133,7 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
                 }
             }, {
                 new: true
-            }).select("-code")
+            }).select("-code -role")
 
         }
 
@@ -149,7 +148,7 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
         }, {
             new: true
         })
-            .select("-code")
+            .select("-code -role")
 
         return res.status(200).json({ message: "User generated successfully" })
 
@@ -215,7 +214,7 @@ export const firstTime = async (req: Request, res: Response): Promise<Response> 
                 }
             }, {
                 new: true
-            }).select("-code")
+            }).select("-code -role")
 
         }
 
@@ -327,6 +326,44 @@ export const authLogin = async (req: Request, res: Response): Promise<Response> 
             user: userLogged,
             token
         })
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const updateOptions = async (req: Request, res: Response): Promise<Response> => {
+
+    const { amountOptions, amountQuestions } = req.body
+
+    try {
+
+        const user = await User.findById(req.user)
+
+        if (!user) {
+            return res.status(400).json({ message: "User does not exists" })
+        }
+
+        const userUpdated = await User.findByIdAndUpdate(req.user, {
+            amountOptions,
+            amountQuestions
+        }, {
+            new: true
+        })
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
+
+
+        return res.status(200).json(userUpdated)
 
     } catch (error) {
         throw error

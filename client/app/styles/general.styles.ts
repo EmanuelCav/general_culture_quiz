@@ -28,9 +28,27 @@ export const generalStyles = StyleSheet.create({
         borderRadius: 8
     },
 
+    buttonNotSelected: {
+        padding: Dimensions.get("window").height / 62,
+        width: '66%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: Dimensions.get("window").height / 14,
+        borderRadius: 8,
+        borderColor: '#FF8C00',
+        borderWidth: 2,
+        borderStyle: 'solid'
+    },
+
     buttonMenuText: {
         fontSize: Dimensions.get("window").height / 42,
         color: '#ffffff',
+        fontWeight: '500'
+    },
+
+    textButtonNotSelected: {
+        fontSize: Dimensions.get("window").height / 42,
+        color: '#FF8C00',
         fontWeight: '500'
     },
 

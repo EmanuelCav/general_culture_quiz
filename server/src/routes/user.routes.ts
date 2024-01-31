@@ -20,4 +20,6 @@ router.post('/users/login', loginValid, userCtrl.authLogin)
 
 router.delete('/users/:id', [auth, access], userCtrl.removeUser)
 
+router.put('/users/options', auth, userCtrl.updateOptions)
+
 export default router

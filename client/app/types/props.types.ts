@@ -26,6 +26,7 @@ export type ButtonMenuPropsType = {
 export type ButtonOptionPropsType = {
     func: (e: any, number: number) => void;
     text: string;
+    amountOptions: number;
 }
 
 export type AmountQuestionsPropsType = {
