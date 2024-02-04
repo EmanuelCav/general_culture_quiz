@@ -4,7 +4,7 @@ import * as userApi from '../api/user.api';
 import * as userReducer from '../reducers/user.reducer';
 import * as gameReducer from '../reducers/game.reducer';
 
-import { UsersActionPropsType, ProfileActionPropsType, OptionsActionPropsType } from '../../types/action.type';
+import { UsersActionPropsType, ProfileActionPropsType, OptionsActionPropsType, CategoryActionPropsType, CategoryAllActionPropsType } from '../../types/action.type';
 
 export const firstTimeAction = createAsyncThunk('users/firsttime', async (_, { dispatch }) => {
 
@@ -76,6 +76,34 @@ export const optionsAction = createAsyncThunk('users/options', async (userData: 
         dispatch(userReducer.user(data))
 
         userData.navigation.goBack()
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+
+export const categoryAction = createAsyncThunk('users/category', async (userData: CategoryActionPropsType, { dispatch }) => {
+
+    try {
+
+        const { data } = await userApi.categoryApi(userData.id, userData.token)
+
+        dispatch(userReducer.user(data))
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+
+export const categoryAllAction = createAsyncThunk('users/categoryall', async (userData: CategoryAllActionPropsType, { dispatch }) => {
+
+    try {
+
+        const { data } = await userApi.categoryAllApi(userData.query, userData.token)
+
+        dispatch(userReducer.user(data))
 
     } catch (error) {
         console.log(error);

@@ -12,7 +12,6 @@ import UserStatistics from '../components/statistics/userStatistics'
 import CategoryStatistics from '../components/statistics/categoryStatistics'
 import ButtonAccept from '../components/components/buttonAccept'
 
-
 const Statistics = ({ navigation }: { navigation: StackNavigation }) => {
 
   const user = useSelector((state: IReducer) => selector(state).user)

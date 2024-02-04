@@ -2,14 +2,16 @@ import { Text, Pressable } from 'react-native'
 
 import { playStyles } from '../../../styles/play.styles'
 
-const ButtonSelect = ({ text }: { text: string }) => {
+import { ButtonSelectPropsType } from '../../../types/props.types'
+
+const ButtonSelect = ({ text, func, query }: ButtonSelectPropsType) => {
   return (
     <Pressable style={({ pressed }) => [
       {
         backgroundColor: pressed ? '#ffa420' : '#FF8C00',
       },
       playStyles.buttonSelect
-    ]} onPress={() => console.log("fdsf")}>
+    ]} onPress={() => func(query)}>
       <Text style={playStyles.textButtonSelect}>{text}</Text>
     </Pressable>
   )

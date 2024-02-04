@@ -17,3 +17,13 @@ export type OptionsActionPropsType = {
     optionData: IOptionUser;
     navigation: StackNavigation;
 }
+
+export type CategoryActionPropsType = {
+    token: string;
+    id: string;
+}
+
+export type CategoryAllActionPropsType = {
+    query: boolean;
+    token: string;
+}

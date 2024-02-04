@@ -43,3 +43,23 @@ export const optionsApi = async (optionData: IOptionUser, token: string) => {
     })
 
 }
+
+export const categoryApi = async (id: string, token: string) => {
+
+    return await api.put(`/statistics/${id}`, null, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+}
+
+export const categoryAllApi = async (query: boolean, token: string) => {
+
+    return await api.put(`/statistics?query=${query}`, null, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+}

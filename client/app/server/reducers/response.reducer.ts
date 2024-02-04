@@ -45,6 +45,20 @@ const responseSlice = createSlice({
         builder.addCase(userAction.profileAction.fulfilled, (state) => {
             state.loading = false
         })
+
+        builder.addCase(userAction.categoryAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(userAction.categoryAction.fulfilled, (state) => {
+            state.loading = false
+        })
+
+        builder.addCase(userAction.categoryAllAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(userAction.categoryAllAction.fulfilled, (state) => {
+            state.loading = false
+        })
     },
 })
 

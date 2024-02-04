@@ -1,17 +1,19 @@
 import { View } from 'react-native'
 
-import { IStatistic, IUserInfo } from '../../interface/User'
+import { IStatistic } from '../../interface/User'
 
 import Statistic from './components/statistic'
 
 import { playStyles } from '../../styles/play.styles'
 
-const ShowCategories = ({ user }: { user: IUserInfo }) => {
+import { ShowCategoriesPropsType } from '../../types/props.types'
+
+const ShowCategories = ({ user, dispatch }: ShowCategoriesPropsType) => {
   return (
     <View style={playStyles.containerShowCategories}>
         {
           user.user?.statistics!.map((statistic: IStatistic) => {
-            return <Statistic statistic={statistic} key={statistic._id} /> 
+            return <Statistic statistic={statistic} dispatch={dispatch} token={user.token!} key={statistic._id} /> 
           })
         }
     </View>

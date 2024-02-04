@@ -95,7 +95,6 @@ export const playStyles = StyleSheet.create({
 
     textCategoryIcon: {
         fontSize: Dimensions.get("window").height / 53,
-        color: '#ffffff',
         fontWeight: '500'
     },
 

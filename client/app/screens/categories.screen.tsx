@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import TitleCategory from '../components/categories/titleCategory'
 import ActionCategory from '../components/categories/actionCategory'
@@ -17,6 +17,8 @@ const Categories = ({ navigation }: { navigation: StackNavigation }) => {
 
   const user = useSelector((state: IReducer) => selector(state).user)
 
+  const dispatch = useDispatch()
+
   const goBack = () => {
     navigation.goBack()
   }
@@ -24,8 +26,8 @@ const Categories = ({ navigation }: { navigation: StackNavigation }) => {
   return (
     <View style={playStyles.containerCategories}>
       <TitleCategory />
-      <ActionCategory />
-      <ShowCategories user={user.user} />
+      <ActionCategory dispatch={dispatch} token={user.user.token!} />
+      <ShowCategories dispatch={dispatch} user={user.user} />
       <ButtonAccept text='ACEPTAR' func={goBack} />
     </View>
   )
