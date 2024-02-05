@@ -3,12 +3,12 @@ import { Text, View } from 'react-native'
 
 import { playingStyles } from '../../styles/playing.styles'
 
-const Options = () => {
+const OptionsGame = () => {
     return (
         <View style={playingStyles.containerOptions}>
-            <Text>Options</Text>
+            <Text>OptionsGame</Text>
         </View>
     )
 }
 
-export default Options
+export default OptionsGame

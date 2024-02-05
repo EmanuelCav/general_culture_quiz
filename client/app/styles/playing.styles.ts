@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 
 export const playingStyles = StyleSheet.create({
     
@@ -7,11 +7,21 @@ export const playingStyles = StyleSheet.create({
     },
 
     containerStatisticsGame: {
-        height: '8%'
+        height: '8%',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flexDirection: 'row',
+        width: '100%'
     },
     
     containerOptions: {
         flex: 1
+    },
+
+    textStatisticGame: {
+        fontSize: Dimensions.get("window").height / 41,
+        color: '#ffffff',
+        fontWeight: '500'
     }
 
 })

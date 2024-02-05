@@ -134,3 +134,24 @@ export type MenuPlayPropsType = {
     navigation: StackNavigation;
     user: IUserInfo;
 }
+
+export type StatisticsGamePropsType = {
+    seconds: number; 
+    minutes: number; 
+    setSeconds: (seconds: number) => void, 
+    setMinutes: (minutes: number) => void, 
+    numberQuestion: number;
+    questions: number;
+}
+
+export type TimePropsType = {
+    seconds: number; 
+    minutes: number; 
+    setSeconds: (seconds: number) => void, 
+    setMinutes: (minutes: number) => void, 
+}
+
+export type AmountQuestionsStatisticPropsType = {
+    numberQuestion: number;
+    questions: number;
+}

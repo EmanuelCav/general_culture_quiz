@@ -1,12 +1,18 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
 import { playingStyles } from '../../styles/playing.styles'
 
-const StatisticsGame = () => {
+import { StatisticsGamePropsType } from '../../types/props.types'
+
+import Time from './components/statisticsGame/time'
+import AmountQuestionsStatistic from './components/statisticsGame/amountQuestionsStatistic'
+
+const StatisticsGame = ({ seconds, minutes, setSeconds, setMinutes, numberQuestion, questions }: StatisticsGamePropsType) => {
     return (
         <View style={playingStyles.containerStatisticsGame}>
-            <Text>StatisticsGame</Text>
+            <Time seconds={seconds} minutes={minutes} setSeconds={setSeconds} setMinutes={setMinutes} />
+            <AmountQuestionsStatistic numberQuestion={numberQuestion} questions={questions} />
         </View>
     )
 }

@@ -16,7 +16,9 @@ const MenuPlay = ({ navigation, user }: MenuPlayPropsType) => {
             return
         }
 
-        // navigation.navigate('Playing')
+        navigation.navigate('Playing', {
+            allQuestions: []
+        })
     }
 
     const categories = () => {
