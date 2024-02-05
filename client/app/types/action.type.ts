@@ -33,3 +33,8 @@ export type AuthLoginActionPropsType = {
     token: string;
     navigation: StackNavigation;
 }
+
+export type GameActionPropsType = {
+    navigation: StackNavigation;
+    token: string;
+}

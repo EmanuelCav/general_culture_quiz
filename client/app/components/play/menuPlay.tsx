@@ -1,19 +1,28 @@
 import { View } from 'react-native'
 
-import { StackNavigation } from '../../types/props.types'
+import { MenuPlayPropsType } from '../../types/props.types'
 
 import { homeStyles } from '../../styles/home.styles'
 
 import ButtonMenu from '../components/buttonMenu'
 
-const MenuPlay = ({ navigation }: { navigation: StackNavigation }) => {
+const MenuPlay = ({ navigation, user }: MenuPlayPropsType) => {
 
     const start = () => {
-        navigation.navigate('Playing')
+        if (user.user?.statistics?.filter(statistic => statistic.isSelect).length === 0) {
+            navigation.navigate('Categories', {
+                isPlay: true
+            })
+            return
+        }
+
+        // navigation.navigate('Playing')
     }
 
     const categories = () => {
-        navigation.navigate('Categories')
+        navigation.navigate('Categories', {
+            isPlay: false
+        })
     }
 
     const options = () => {

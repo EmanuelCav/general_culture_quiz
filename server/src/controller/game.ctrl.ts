@@ -46,9 +46,9 @@ export const generateGame = async (req: Request, res: Response) => {
             categories
         })
 
-        await newGame.save()
+        const gameSaved = await newGame.save()
 
-        return res.status(200).json({ message: "Game generated" })
+        return res.status(200).json(gameSaved)
         
     } catch (error) {
         throw error

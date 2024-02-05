@@ -44,9 +44,9 @@ export default function App() {
             }}>
               <Stack.Screen name="Home" component={Home} />
               <Stack.Screen name="Play" component={Play} />
-              <Stack.Screen name="Categories" component={Categories} />
+              <Stack.Screen name="Categories" component={Categories as any} />
               <Stack.Screen name="Options" component={Options} />
-              <Stack.Screen name="Playing" component={Playing} />
+              <Stack.Screen name="Playing" component={Playing as any} />
               <Stack.Screen name="Ranking" component={Ranking} />
               <Stack.Screen name="Settings" component={Settings} />
               <Stack.Screen name="Statistics" component={Statistics} />

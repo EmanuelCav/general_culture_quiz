@@ -1,5 +1,6 @@
 import { SetStateAction } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RouteProp } from "@react-navigation/native";
 import { Dispatch } from "@reduxjs/toolkit";
 
 import { IOptionUser, IStatistic, IUser, IUserInfo, IUserReducer } from "../interface/User";
@@ -8,15 +9,27 @@ import { IGame } from "../interface/Game";
 type RouteTypes = {
     Home: undefined;
     Play: undefined;
-    Categories: undefined;
+    Categories: {
+        isPlay: boolean
+    };
     Options: undefined;
-    Playing: undefined;
+    Playing: {
+        allQuestions: any[];
+    };
     Ranking: undefined;
     Settings: undefined;
     Statistics: undefined;
 }
 
 export type StackNavigation = NativeStackNavigationProp<RouteTypes>
+
+export type RouteParamCategory = RouteProp<RouteTypes, 'Categories'>
+export type RouteParamPlaying = RouteProp<RouteTypes, 'Playing'>
+
+export type CategoriesPropsType = {
+    navigation: StackNavigation;
+    route: RouteParamCategory;
+}
 
 export type ButtonMenuPropsType = {
     func: () => void;
@@ -115,4 +128,9 @@ export type AuthPropsType = {
 export type ChangeUserPropsType = {
     changeAuth: () => void;
     text: string;
+}
+
+export type MenuPlayPropsType = {
+    navigation: StackNavigation;
+    user: IUserInfo;
 }

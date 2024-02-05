@@ -7,19 +7,24 @@ import ShowCategories from '../components/categories/showCategories'
 import ButtonAccept from '../components/components/buttonAccept';
 
 import { IReducer } from '../interface/General';
-import { StackNavigation } from '../types/props.types';
+import { CategoriesPropsType } from '../types/props.types';
 
 import { selector } from '../helper/selector';
 
 import { playStyles } from '../styles/play.styles';
 
-const Categories = ({ navigation }: { navigation: StackNavigation }) => {
+const Categories = ({ navigation, route }: CategoriesPropsType) => {
 
   const user = useSelector((state: IReducer) => selector(state).user)
 
   const dispatch = useDispatch()
 
   const goBack = () => {
+    if (route.params.isPlay) {
+      // navigation.navigate('Playing')
+      return
+    }
+
     navigation.goBack()
   }
 
@@ -28,7 +33,7 @@ const Categories = ({ navigation }: { navigation: StackNavigation }) => {
       <TitleCategory />
       <ActionCategory dispatch={dispatch} token={user.user.token!} />
       <ShowCategories dispatch={dispatch} user={user.user} />
-      <ButtonAccept text='ACEPTAR' func={goBack} />
+      <ButtonAccept text={route.params.isPlay ? 'COMENZAR' : 'ACEPTAR'} func={goBack} />
     </View>
   )
 }

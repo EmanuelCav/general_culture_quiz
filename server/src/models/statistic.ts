@@ -26,7 +26,7 @@ const statisticSchema = new Schema({
 
     isSelect: {
         type: Boolean,
-        default: true
+        default: false
     }
 
 }, {

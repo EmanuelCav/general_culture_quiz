@@ -1,9 +1,11 @@
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
+
+import { generalStyles } from '../styles/general.styles'
 
 const Playing = () => {
   return (
-    <View>
-      <Text>Playing</Text>
+    <View style={generalStyles.containerGeneral}>
+      
     </View>
   )
 }

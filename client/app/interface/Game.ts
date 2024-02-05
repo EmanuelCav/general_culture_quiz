@@ -1,18 +1,18 @@
 import { IStatistic } from "./User";
 
 export interface IGameReducer {
-    games: any[];
-    game: any;
+    games: IGame[];
+    game: IGame;
 }
 
 export interface IGame {
-    _id: string;
-    questions: any[];
-    corrects: number;
-    user: string;
-    categories: IStatistic[];
-    createdAt: string;
-    updatedAt: string;
+    _id?: string;
+    questions?: any[];
+    corrects?: number;
+    user?: string;
+    categories?: IStatistic[];
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 export interface ICateogory {
