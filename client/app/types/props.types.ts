@@ -23,6 +23,11 @@ export type ButtonMenuPropsType = {
     text: string;
 }
 
+export type ButtonAuthPropsType = {
+    func: () => void;
+    text: string;
+}
+
 export type ButtonSelectPropsType = {
     func: (query: boolean) => void;
     text: string;
@@ -92,4 +97,22 @@ export type ActionCategoryPropsType = {
 export type ShowCategoriesPropsType = {
     dispatch: Dispatch;
     user: IUserInfo;
+}
+
+export type InputPropsType = {
+    value: string;
+    label: string;
+    onChange: (value: string) => void;
+}
+
+export type AuthPropsType = {
+    dispatch: Dispatch;
+    navigation: StackNavigation;
+    token: string;
+    setIsAuthLogin: (isAuthData: boolean) => void;
+}
+
+export type ChangeUserPropsType = {
+    changeAuth: () => void;
+    text: string;
 }

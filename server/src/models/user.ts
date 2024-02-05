@@ -50,6 +50,11 @@ const userSchema = new Schema({
         ref: 'Language'
     },
 
+    isRegistered: {
+        type: Boolean,
+        default: false
+    },
+
     helps: {
         type: Number,
         default: 3

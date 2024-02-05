@@ -59,6 +59,13 @@ const responseSlice = createSlice({
         builder.addCase(userAction.categoryAllAction.fulfilled, (state) => {
             state.loading = false
         })
+
+        builder.addCase(userAction.authLoginAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(userAction.authLoginAction.fulfilled, (state) => {
+            state.loading = false
+        })
     },
 })
 

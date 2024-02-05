@@ -24,13 +24,15 @@ export const homeStyles = StyleSheet.create({
         height: '25%',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: '100%'
     },
 
     containerLabel: {
         height: '50%',
         justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: '100%'
     },
 
     containerUserSettings: {
@@ -110,6 +112,83 @@ export const homeStyles = StyleSheet.create({
         fontSize: Dimensions.get("window").height / 46,
         fontWeight: '500',
         color: '#ffffff'
+    },
+
+    containerAuth: {
+        position: 'absolute',
+        zIndex: 6,
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#ff0000',
+        width: '100%',
+        padding: Dimensions.get("window").height / 74
+    },
+
+    containerTitleAuth: {
+        width: '100%'
+    },
+
+    textTitleAuth: {
+        fontSize: Dimensions.get("window").height / 46,
+        color: '#ffffff'
+    },
+
+    containerInput: {
+        width: '100%'
+    },
+
+    buttonAuth: {
+        padding: Dimensions.get("window").height / 62,
+        width: '100%',
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: Dimensions.get("window").height / 14,
+        marginTop: Dimensions.get("window").height / 61
+    },
+
+    textButtonAuth: {
+        color: '#ffffff',
+        fontWeight: '500',
+        fontSize: Dimensions.get("window").height / 42,
+    },
+
+    labelInput: {
+        fontSize: Dimensions.get("window").height / 46,
+        color: '#ffffff'
+    },
+
+    inputAuth: {
+        padding: Dimensions.get("window").height / 106,
+        borderRadius: 8,
+        width: '100%',
+        fontSize: Dimensions.get("window").height / 46,
+        borderWidth: 1,
+        borderColor: '#FF8C00',
+        borderStyle: 'solid'
+    },
+
+    titleLabel: {
+        color: '#ffffff',
+        fontSize: Dimensions.get("window").height / 37,
+        fontWeight: '500'
+    },
+
+    label: {
+        borderWidth: 1,
+        borderColor: '#FF8C00',
+        borderStyle: 'solid',
+        padding: Dimensions.get("window").height / 74,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    textLabel: {
+        color: '#FF8C00',
+        fontSize: Dimensions.get("window").height / 41
     }
+
 
 })

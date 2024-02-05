@@ -1,4 +1,4 @@
-import { IOptionUser } from "../interface/User";
+import { IAuthLoginData, IOptionUser } from "../interface/User";
 import { StackNavigation } from "./props.types";
 
 export type UsersActionPropsType = {
@@ -26,4 +26,10 @@ export type CategoryActionPropsType = {
 export type CategoryAllActionPropsType = {
     query: boolean;
     token: string;
+}
+
+export type AuthLoginActionPropsType = {
+    userData: IAuthLoginData;
+    token: string;
+    navigation: StackNavigation;
 }

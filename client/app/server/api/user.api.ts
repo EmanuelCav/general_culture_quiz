@@ -1,6 +1,6 @@
 import { api } from './api';
 
-import { IOptionUser } from '../../interface/User';
+import { IAuthLoginData, IOptionUser } from '../../interface/User';
 
 export const firstTimeApi = async () => {
 
@@ -58,6 +58,17 @@ export const categoryAllApi = async (query: boolean, token: string) => {
 
     return await api.put(`/statistics?query=${query}`, null, {
         headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+}
+
+export const authLoginApi = async (userData: IAuthLoginData, token: string) => {
+
+    return await api.post('/users/login', userData, {
+        headers: {
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
     })

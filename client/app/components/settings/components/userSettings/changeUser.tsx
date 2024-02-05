@@ -1,14 +1,18 @@
 import { Pressable, Text, View } from 'react-native'
 
-import { generalStyles } from '../../../../styles/general.styles'
-
 import { homeStyles } from '../../../../styles/home.styles'
 
-const ChangeUser = () => {
+import { ChangeUserPropsType } from '../../../../types/props.types'
+
+const ChangeUser = ({ text, changeAuth }: ChangeUserPropsType) => {
+
     return (
         <View style={homeStyles.containerUserSettings}>
-            <Pressable style={generalStyles.buttonMenu}>
-                <Text style={generalStyles.buttonMenuText}>Cambiar de usuario</Text>
+            <Pressable style={({ pressed }) => [
+                {
+                    backgroundColor: pressed ? '#dddddd' : '#ffffff'
+                }, homeStyles.label]} onPress={changeAuth}>
+                <Text style={homeStyles.textLabel}>{text}</Text>
             </Pressable>
         </View>
     )

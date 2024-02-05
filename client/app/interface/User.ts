@@ -73,3 +73,8 @@ export interface IOptionUser {
     amountQuestions: number;
     amountOptions: number;
 }
+
+export interface IAuthLoginData {
+    nickname: string;
+    code: string;
+}

@@ -5,9 +5,12 @@ import { homeStyles } from '../../../styles/home.styles';
 const Label = ({ text }: { text: string }) => {
     return (
         <View style={homeStyles.containerLabel}>
-            <Text>{text}</Text>
-            <Pressable>
-                <Text>Pais</Text>
+            <Text style={homeStyles.titleLabel}>{text}</Text>
+            <Pressable style={({ pressed }) => [
+                {
+                    backgroundColor: pressed ? '#dddddd' : '#ffffff'
+                }, homeStyles.label]}>
+                <Text style={homeStyles.textLabel}>Pais</Text>
             </Pressable>
         </View>
     )

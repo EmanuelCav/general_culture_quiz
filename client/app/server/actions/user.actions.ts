@@ -4,7 +4,7 @@ import * as userApi from '../api/user.api';
 import * as userReducer from '../reducers/user.reducer';
 import * as gameReducer from '../reducers/game.reducer';
 
-import { UsersActionPropsType, ProfileActionPropsType, OptionsActionPropsType, CategoryActionPropsType, CategoryAllActionPropsType } from '../../types/action.type';
+import { UsersActionPropsType, ProfileActionPropsType, OptionsActionPropsType, CategoryActionPropsType, CategoryAllActionPropsType, AuthLoginActionPropsType } from '../../types/action.type';
 
 export const firstTimeAction = createAsyncThunk('users/firsttime', async (_, { dispatch }) => {
 
@@ -104,6 +104,22 @@ export const categoryAllAction = createAsyncThunk('users/categoryall', async (us
         const { data } = await userApi.categoryAllApi(userData.query, userData.token)
 
         dispatch(userReducer.user(data))
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+
+export const authLoginAction = createAsyncThunk('users/authlogin', async (userData: AuthLoginActionPropsType, { dispatch }) => {
+
+    try {
+
+        const { data } = await userApi.authLoginApi(userData.userData, userData.token)
+
+        dispatch(userReducer.auth(data))
+
+        userData.navigation.navigate('Home')
 
     } catch (error) {
         console.log(error);
