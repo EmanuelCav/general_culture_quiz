@@ -31,6 +31,12 @@ export type CategoriesPropsType = {
     route: RouteParamCategory;
 }
 
+export type ButtonAcceptPropsType = {
+    func: () => void;
+    text: string;
+    isCategory: boolean;
+}
+
 export type ButtonMenuPropsType = {
     func: () => void;
     text: string;
@@ -133,25 +139,85 @@ export type ChangeUserPropsType = {
 export type MenuPlayPropsType = {
     navigation: StackNavigation;
     user: IUserInfo;
+    dispatch: Dispatch;
 }
 
 export type StatisticsGamePropsType = {
-    seconds: number; 
-    minutes: number; 
-    setSeconds: (seconds: number) => void, 
-    setMinutes: (minutes: number) => void, 
+    seconds: number;
+    minutes: number;
+    setSeconds: (seconds: number) => void,
+    setMinutes: (minutes: number) => void,
     numberQuestion: number;
     questions: number;
+    realSeconds: number;
+    realMinutes: number;
+    isCorrect: boolean;
+    isIncorrect: boolean;
+    isFinish: boolean;
+    isPreFinish: boolean;
 }
 
 export type TimePropsType = {
-    seconds: number; 
-    minutes: number; 
-    setSeconds: (seconds: number) => void, 
-    setMinutes: (minutes: number) => void, 
+    seconds: number;
+    minutes: number;
+    setSeconds: (seconds: number) => void;
+    setMinutes: (minutes: number) => void;
+    realSeconds: number;
+    realMinutes: number;
+    isCorrect: boolean;
+    isIncorrect: boolean;
+    isFinish: boolean;
+    isPreFinish: boolean;
 }
 
 export type AmountQuestionsStatisticPropsType = {
     numberQuestion: number;
     questions: number;
+}
+
+export type AnswerPropsType = {
+    answer: boolean; 
+    correctAnswer: string; 
+    continueGame: () => void;
+}
+
+export type FinishPropsType = {
+    seconds: number; 
+    minutes: number; 
+    corrects: number, 
+    questions: number; 
+    showErrors: () => void; 
+    continueHome: () => void; 
+    isGameError: boolean;
+}
+
+export type OptionsPropsTypes = {
+    options: string[]
+    amountOptions: number;
+    nextQuestion: (value: string) => void;
+}
+
+export type StatisticsFinishPropsType = {
+    seconds: number; 
+    minutes: number; 
+    questions: number; 
+    corrects: number;
+}
+
+export type ActionsFinishPropsType = {
+    areErrors: boolean;
+    showErrors: () => void; 
+    continueHome : () => void;
+}
+
+export type SectionOptionsPropsTypes = {
+    options: string[]
+    amountOptions: number;
+    nextQuestion: (value: string) => void;
+}
+
+export type OptionPropsTypes = {
+    option: string;
+    amountOptions: number;
+    nextQuestion: (value: string) => void;
 }

@@ -9,7 +9,7 @@ export const gameApi = async (token: string) => {
 }
 
 export const questionGameApi = async (id: string, token: string) => {
-    return await api.post(`/questions/games/${id}`, null, {
+    return await api.patch(`/questions/games/${id}`, null, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

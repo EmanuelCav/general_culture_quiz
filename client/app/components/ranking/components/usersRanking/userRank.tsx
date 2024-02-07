@@ -7,6 +7,7 @@ import InfoUserRank from './components/infoUserRank'
 import Points from './components/points'
 
 import { playStyles } from '../../../../styles/play.styles'
+
 import { profileAction } from '../../../../server/actions/user.actions';
 
 const UserRank = ({ user, index, navigation, token }: UserRankPropsType) => {
@@ -24,7 +25,7 @@ const UserRank = ({ user, index, navigation, token }: UserRankPropsType) => {
     return (
         <Pressable style={({ pressed }) => [
             {
-                backgroundColor: pressed ? '#ffa420' : 'transparent',
+                backgroundColor: pressed ? '#ffa420' : '#FF8C00'
             },
             playStyles.containUserRank
         ]} onPress={getData}>

@@ -15,6 +15,42 @@ import { IQuestion } from '../interface/Question';
 
 import { folder_cloud } from '../config/config';
 
+export const allQuestions = async (req: Request, res: Response): Promise<Response> => {
+
+    try {
+
+        const questions = await Question.find()
+
+        return res.status(200).json(questions)
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const questionsCategory = async (req: Request, res: Response): Promise<Response> => {
+
+    const { id } = req.params
+
+    try {
+
+        const category = await Category.findById(id)
+
+        if (!category) {
+            return res.status(400).json({ message: "Category does not exists" })
+        }
+
+        const questions = await Question.find({ category: id })
+
+        return res.status(200).json(questions)
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
 export const questionsGame = async (req: Request, res: Response): Promise<Response> => {
 
     const { id } = req.params
@@ -26,9 +62,9 @@ export const questionsGame = async (req: Request, res: Response): Promise<Respon
         if (!game) {
             return res.status(400).json({ message: "Game does not exists" })
         }
-        
+
         const user = await User.findById(req.user).select("-code")
-        
+
         if (!user) {
             return res.status(400).json({ message: "USER does not exists" })
         }
@@ -58,6 +94,19 @@ export const questionsGame = async (req: Request, res: Response): Promise<Respon
         }
 
         const gameGenerated = await Game.findById(id)
+            .populate({
+                path: "questions",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate({
+                path: "questions",
+                populate: {
+                    path: "image",
+                    select: "image"
+                }
+            })
 
         if (!gameGenerated) {
             return res.status(400).json({ message: "Game does not exists" })
@@ -77,7 +126,7 @@ export const questionsGame = async (req: Request, res: Response): Promise<Respon
 export const createQuestion = async (req: Request, res: Response): Promise<Response> => {
 
     const { id } = req.params
-    const { question, answer } = req.body
+    const { question, answer, isAllOptions } = req.body
 
     try {
 
@@ -109,6 +158,7 @@ export const createQuestion = async (req: Request, res: Response): Promise<Respo
             question,
             category: id,
             answer,
+            isAllOptions: isAllOptions && true,
             image: imageSaved && imageSaved._id
         })
 
@@ -128,13 +178,28 @@ export const createQuestion = async (req: Request, res: Response): Promise<Respo
 export const pushOption = async (req: Request, res: Response): Promise<Response> => {
 
     const { id } = req.params
-    const { option } = req.body
 
     try {
 
+        // const options = ["Grecia", "Uruguay", "Ucrania", "Croacia", "Argentina", "Kazajistán", "Suecia", "Honduras", "Hungría", "Argelia"]
+        // const options = ["Monte Everest", "K2", "Kanchenjunga", "Kilimanjaro", "Pico Dufour", "Lhotse I", "Aconcagua", "Mont Blanc", "Teide", "Manaslu"]
+        // let options = ["Taj Mahal", "Coliseo Romano", "Alhambra", "Acrópolis de Atenas", "Burj Khalifa", "Basílica de San Pedro", "Torre Eiffel", "Machu Picchu", "Fushimi Inari", "Kremlin"]
+        let options = [
+            "Grecia",
+            "Uruguay",
+            "Ucrania",
+            "Croacia",
+            "Argentina",
+            "Kazajistán",
+            "Suecia",
+            "Honduras",
+            "Hungría",
+            "Argelia"
+        ]
+
         const question = await Question.findByIdAndUpdate(id, {
-            $push: {
-                options: option
+            $set: {
+                options
             }
         }, {
             new: true
@@ -143,6 +208,58 @@ export const pushOption = async (req: Request, res: Response): Promise<Response>
         return res.status(200).json({
             message: "Option added successfully",
             question
+        })
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const removeQuestion = async (req: Request, res: Response): Promise<Response> => {
+
+    const { id } = req.params
+
+    try {
+
+        const question = await Question.findByIdAndDelete(id)
+
+        if (!question) {
+            return res.status(400).json({ message: "Question does not exists" })
+        }
+
+        return res.status(200).json({ message: "Question removed successfully" })
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const updateQuestion = async (req: Request, res: Response): Promise<Response> => {
+
+    const { question, answer, isAllOptions } = req.body
+    const { id } = req.params
+
+    try {
+
+        const questionFound = await Question.findById(id)
+
+        if (!questionFound) {
+            return res.status(400).json({ message: "Question does not exists" })
+        }
+
+        const questionUpdated = await Question.findByIdAndUpdate(id, {
+            isAllOptions: isAllOptions ? isAllOptions : questionFound.isAllOptions,
+            answer: answer ? answer : questionFound.answer,
+            question: question ? question : questionFound.question,
+        }, {
+            new: true
+        })
+
+        return res.status(200).json({
+            message: "Question updated successfully",
+            question: questionUpdated
         })
 
     } catch (error) {

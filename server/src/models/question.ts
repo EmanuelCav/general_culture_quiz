@@ -22,11 +22,17 @@ const questionSchema = new Schema({
     answer: {
         type: String,
         required: true,
+        trim: true
     },
 
     category: {
         type: Types.ObjectId,
         ref: 'Category'
+    },
+
+    isAllOptions: {
+        type: Boolean,
+        default: false
     }
 
 }, {

@@ -25,7 +25,7 @@ const Statistics = ({ navigation }: { navigation: StackNavigation }) => {
     <View style={generalStyles.containerGeneral}>
       <UserStatistics user={user.profile} games={game.games} />
       <CategoryStatistics user={user.profile} />
-      <ButtonAccept text='ACEPTAR' func={goBack} />
+      <ButtonAccept text='ACEPTAR' func={goBack} isCategory={false} />
     </View>
   )
 }

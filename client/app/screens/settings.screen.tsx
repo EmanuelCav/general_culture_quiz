@@ -34,7 +34,7 @@ const Settings = ({ navigation }: { navigation: StackNavigation }) => {
       }
       <Labels />
       <UserSettings setIsAuthLogin={setIsAuthLogin} />
-      <ButtonAccept text='ACEPTAR' func={goBack} />
+      <ButtonAccept text='ACEPTAR' func={goBack} isCategory={false} />
     </View>
   )
 }

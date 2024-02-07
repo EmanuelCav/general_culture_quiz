@@ -9,7 +9,7 @@ export const playStyles = StyleSheet.create({
         flex: 1,
         padding: Dimensions.get("window").height / 46
     },
-    
+
     containerAmountQuestion: {
         height: '30%',
         padding: Dimensions.get("window").height / 46,
@@ -48,7 +48,7 @@ export const playStyles = StyleSheet.create({
     containCategory: {
         width: '100%',
     },
-    
+
     textTitleCategory: {
         fontSize: Dimensions.get("window").height / 37,
         textAlign: 'center',
@@ -107,7 +107,10 @@ export const playStyles = StyleSheet.create({
     },
 
     containerUsersRanking: {
-        flex: 1
+        flex: 1,
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        borderStyle: 'solid'
     },
 
     containUserRank: {
@@ -115,7 +118,7 @@ export const playStyles = StyleSheet.create({
         alignItems: 'center',
         padding: Dimensions.get("window").height / 62,
         justifyContent: 'space-between',
-        borderColor: '#FF8C00',
+        borderColor: '#ffffff',
         borderWidth: 1,
         borderStyle: 'solid'
     },
@@ -140,7 +143,7 @@ export const playStyles = StyleSheet.create({
 
     nicknameRank: {
         fontSize: Dimensions.get("window").height / 46,
-        color: '#FF8C00'
+        color: '#ffffff'
     }
 
 })

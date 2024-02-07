@@ -6,19 +6,23 @@ import { homeStyles } from '../../styles/home.styles'
 
 import ButtonMenu from '../components/buttonMenu'
 
-const MenuPlay = ({ navigation, user }: MenuPlayPropsType) => {
+import { gameAction } from '../../server/actions/game.actions'
+
+const MenuPlay = ({ navigation, user, dispatch }: MenuPlayPropsType) => {
 
     const start = () => {
         if (user.user?.statistics?.filter(statistic => statistic.isSelect).length === 0) {
             navigation.navigate('Categories', {
                 isPlay: true
             })
+            
             return
         }
 
-        navigation.navigate('Playing', {
-            allQuestions: []
-        })
+        dispatch(gameAction({
+            navigation,
+            token: user.token!
+        }) as any)
     }
 
     const categories = () => {

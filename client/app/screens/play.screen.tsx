@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { generalStyles } from '../styles/general.styles'
 
@@ -15,10 +15,12 @@ const Play = ({ navigation }: { navigation: StackNavigation }) => {
 
   const user = useSelector((state: IReducer) => selector(state).user)
 
+  const dispatch = useDispatch()
+
   return (
     <View style={generalStyles.containerGeneral}>
       <Banner />
-      <MenuPlay navigation={navigation} user={user.user} />
+      <MenuPlay navigation={navigation} user={user.user} dispatch={dispatch} />
     </View>
   )
 }

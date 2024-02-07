@@ -17,6 +17,7 @@ import countryRoute from './routes/country.routes';
 import languageRoute from './routes/language.routes';
 import gameRoute from './routes/game.routes';
 import statisticRoute from './routes/statistic.routes';
+import questionRoute from './routes/question.routes'
 
 const app = express()
 
@@ -48,6 +49,7 @@ app.use(countryRoute)
 app.use(languageRoute)
 app.use(gameRoute)
 app.use(statisticRoute)
+app.use(questionRoute)
 
 app.listen(app.get('port'), () => {
     console.log("Server is running on port " + app.get('port'));

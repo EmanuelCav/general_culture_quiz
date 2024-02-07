@@ -26,7 +26,7 @@ const Ranking = ({ navigation }: { navigation: StackNavigation }) => {
       <Position />
       <RankingTags />
       <UsersRanking user={user} navigation={navigation} />
-      <ButtonAccept text='ACEPTAR' func={goBack} />
+      <ButtonAccept text='ACEPTAR' func={goBack} isCategory={false} />
     </View>
   )
 }

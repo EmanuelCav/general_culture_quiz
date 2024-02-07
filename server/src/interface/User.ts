@@ -10,9 +10,11 @@ export interface IUser extends Document {
     amountOptions: number;
     amountQuestions: number;
     country: Types.ObjectId;
+    language: Types.ObjectId;
+    isRegistered: boolean;
+    helps: number;
     createdAt: NativeDate;
     updatedAt: NativeDate;
-    language: Types.ObjectId;
 }
 
 export interface IRole extends Document {

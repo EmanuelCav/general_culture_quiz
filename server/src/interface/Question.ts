@@ -27,6 +27,7 @@ export interface IQuestion extends Document {
     options: Types.ObjectId[];
     answer: string;
     category: Types.ObjectId;
+    isAllOptions: boolean;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 }

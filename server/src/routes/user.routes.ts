@@ -16,7 +16,7 @@ router.get('/users/:id', auth, userCtrl.user)
 router.post('/users/createUser',  [auth, access], createValid, userCtrl.createUser)
 router.post('/users/firsttime', userCtrl.firstTime)
 router.post('/users/:id/login', userCtrl.login)
-router.post('/users/login', auth, loginValid, userCtrl.authLogin)
+router.post('/users/login', loginValid, userCtrl.authLogin)
 
 router.delete('/users/:id', [auth, access], userCtrl.removeUser)
 

@@ -13,6 +13,8 @@ import { selector } from '../helper/selector';
 
 import { playStyles } from '../styles/play.styles';
 
+import { gameAction } from '../server/actions/game.actions';
+
 const Categories = ({ navigation, route }: CategoriesPropsType) => {
 
   const user = useSelector((state: IReducer) => selector(state).user)
@@ -21,7 +23,11 @@ const Categories = ({ navigation, route }: CategoriesPropsType) => {
 
   const goBack = () => {
     if (route.params.isPlay) {
-      // navigation.navigate('Playing')
+      dispatch(gameAction({
+        navigation,
+        token: user.user.token!
+      }) as any)
+
       return
     }
 
@@ -33,7 +39,7 @@ const Categories = ({ navigation, route }: CategoriesPropsType) => {
       <TitleCategory />
       <ActionCategory dispatch={dispatch} token={user.user.token!} />
       <ShowCategories dispatch={dispatch} user={user.user} />
-      <ButtonAccept text={route.params.isPlay ? 'COMENZAR' : 'ACEPTAR'} func={goBack} />
+      <ButtonAccept text={route.params.isPlay ? 'COMENZAR' : 'ACEPTAR'} func={goBack} isCategory={user.user.user?.statistics?.filter(s => s.isSelect).length === 0} />
     </View>
   )
 }

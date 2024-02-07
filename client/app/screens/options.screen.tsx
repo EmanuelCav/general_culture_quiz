@@ -42,7 +42,7 @@ const Options = ({ navigation }: { navigation: StackNavigation }) => {
     <View style={generalStyles.containerGeneral}>
       <AmountOptions amountOptions={amountOptions} setOptionsUser={setOptionsUser} />
       <AmountQuestions amountQuestions={amountQuestions} setOptionsUser={setOptionsUser} />
-      <ButtonAccept func={updateOptions} text='ACEPTAR' />
+      <ButtonAccept func={updateOptions} text='ACEPTAR' isCategory={false} />
     </View>
   )
 }

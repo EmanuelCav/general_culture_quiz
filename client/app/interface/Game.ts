@@ -7,7 +7,7 @@ export interface IGameReducer {
 
 export interface IGame {
     _id?: string;
-    questions?: any[];
+    questions?: IQuestion[];
     corrects?: number;
     user?: string;
     categories?: IStatistic[];
@@ -21,6 +21,26 @@ export interface ICateogory {
     icon: string;
     colorActive: string;
     colorInactive: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface IQuestion {
+    _id: string;
+    image: IImage;
+    question: string;
+    options: string[];
+    answer: string;
+    category: ICateogory;
+    isAllOptions: boolean;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface IImage {
+    _id: string;
+    image: string;
+    imageId: string;
     createdAt: string;
     updatedAt: string;
 }
