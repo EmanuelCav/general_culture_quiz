@@ -95,22 +95,33 @@ export const playStyles = StyleSheet.create({
 
     textCategoryIcon: {
         fontSize: Dimensions.get("window").height / 53,
-        fontWeight: '500'
+        fontWeight: '500',
+        textAlign: 'center'
     },
 
     containerPosition: {
-        height: '8%'
+        height: '8%',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row'
     },
 
     containerRankingTags: {
-        height: '10%'
+        height: '10%',
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: Dimensions.get("window").height / 92
     },
 
     containerUsersRanking: {
         flex: 1,
         borderColor: '#ffffff',
         borderWidth: 1,
-        borderStyle: 'solid'
+        borderStyle: 'solid',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 
     containUserRank: {
@@ -144,6 +155,27 @@ export const playStyles = StyleSheet.create({
     nicknameRank: {
         fontSize: Dimensions.get("window").height / 46,
         color: '#ffffff'
+    },
+
+    rankingTag: {
+        borderWidth: 1,
+        borderColor: '#FF8C00',
+        borderStyle: 'solid',
+        padding: Dimensions.get("window").height / 106,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+        height: '100%'
+    },
+
+    textRankingTag: {
+        fontSize: Dimensions.get("window").height / 46,
+        fontWeight: '500'
+    },
+
+    positionText: {
+        color: '#ffffff',
+        fontSize: Dimensions.get("window").height / 46
     }
 
 })

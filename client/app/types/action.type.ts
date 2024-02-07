@@ -1,9 +1,13 @@
 import { IAuthLoginData, IOptionUser } from "../interface/User";
+
+import { RankingDateType } from "./key.type";
 import { StackNavigation } from "./props.types";
 
 export type UsersActionPropsType = {
     token: string;
     navigation: StackNavigation;
+    date: RankingDateType;
+    isNavigate: boolean;
 }
 
 export type ProfileActionPropsType = {

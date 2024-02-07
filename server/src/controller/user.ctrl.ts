@@ -15,21 +15,69 @@ import { default_role } from "../config/config";
 
 export const users = async (req: Request, res: Response): Promise<Response> => {
 
+    const { date } = req.params
+
     try {
 
-        const showUsers = await User.find()
-            .select("-code -role")
-            .populate({
-                path: "statistics",
-                populate: {
-                    path: "category"
+        const totalUser = await User.aggregate([
+            {
+                $lookup: {
+                    from: Experience.collection.name,
+                    localField: 'points',
+                    foreignField: '_id',
+                    as: 'points'
                 }
-            })
-            .populate("country")
-            .populate("language")
-            .populate("points")
+            },
+            {
+                $unwind: {
+                    path: "$points"
+                }
+            },
+            {
+                $sort: {
+                    "points.total": -1
+                }
+            },
+            {
+                $project: { password: 0 }
+            }
+        ])
 
-        return res.status(200).json(showUsers)
+        const dateUser = await User.aggregate([
+            {
+                $lookup: {
+                    from: Experience.collection.name,
+                    localField: 'points',
+                    foreignField: '_id',
+                    as: 'points'
+                }
+            },
+            {
+                $unwind: {
+                    path: "$points"
+                }
+            },
+            {
+                $sort: {
+                    [`points.${date}`]: -1
+                }
+            },
+            {
+                $match: {
+                    [`points.${date}`]: {
+                        $gt: 0
+                    }
+                }
+            },
+            {
+                $project: { password: 0 }
+            }
+        ])
+
+        return res.status(200).json({
+            total: totalUser,
+            ranking: dateUser
+        })
 
     } catch (error) {
         throw error

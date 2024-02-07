@@ -38,11 +38,13 @@ export const usersRankingAction = createAsyncThunk('users/ranking', async (users
 
     try {
 
-        const { data } = await userApi.usersApi(usersData.token)
+        const { data } = await userApi.usersApi(usersData.date, usersData.token)
 
         dispatch(userReducer.users(data))
 
-        usersData.navigation.navigate('Ranking')
+        if (usersData.isNavigate) {
+            usersData.navigation.navigate('Ranking')
+        }
 
     } catch (error) {
         console.log(error);

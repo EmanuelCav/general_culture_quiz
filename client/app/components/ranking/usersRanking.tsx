@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 
 import { IUser } from '../../interface/User'
 
@@ -12,11 +12,19 @@ const UsersRanking = ({ user, navigation }: UsersRankingPropsType) => {
 
   return (
     <View style={playStyles.containerUsersRanking}>
-        {
-            user.users.ranking?.map((u: IUser, index: number) => {
+      {
+        user.users.ranking?.length! > 0 ? (
+          <>
+            {
+              user.users.ranking?.map((u: IUser, index: number) => {
                 return <UserRank user={u} index={index} navigation={navigation} token={user.user.token!} key={u._id} />
-            })
-        }
+              })
+            }
+          </>
+        ) : (
+          <Text style={playStyles.positionText}>No hay usuarios en la clasificación</Text>
+        )
+      }
     </View>
   )
 }

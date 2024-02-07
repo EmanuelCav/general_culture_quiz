@@ -5,6 +5,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 
 import { IOptionUser, IStatistic, IUser, IUserInfo, IUserReducer } from "../interface/User";
 import { IGame } from "../interface/Game";
+import { RankingDateType, RankingTextType } from "./key.type";
 
 type RouteTypes = {
     Home: undefined;
@@ -59,6 +60,13 @@ export type ButtonOptionPropsType = {
     amountOptions: number;
 }
 
+export type RankingTagPropsType = {
+    text: RankingTextType;
+    rankingText: RankingTextType;
+    changeRanking: (valueText: RankingTextType, valueDate: RankingDateType) => void;
+    date: RankingDateType;
+}
+
 export type AmountQuestionsPropsType = {
     amountQuestions: number;
     setOptionsUser: (optionsUser: SetStateAction<IOptionUser>) => void;
@@ -88,6 +96,11 @@ export type UserStatisticsPropsType = {
 export type UsersRankingPropsType = {
     user: IUserReducer;
     navigation: StackNavigation;
+}
+
+export type RankingTagsPropsType = {
+    rankingText: RankingTextType;
+    changeRanking: (valueText: RankingTextType, valueDate: RankingDateType) => void;
 }
 
 export type UserRankPropsType = {
@@ -176,18 +189,18 @@ export type AmountQuestionsStatisticPropsType = {
 }
 
 export type AnswerPropsType = {
-    answer: boolean; 
-    correctAnswer: string; 
+    answer: boolean;
+    correctAnswer: string;
     continueGame: () => void;
 }
 
 export type FinishPropsType = {
-    seconds: number; 
-    minutes: number; 
-    corrects: number, 
-    questions: number; 
-    showErrors: () => void; 
-    continueHome: () => void; 
+    seconds: number;
+    minutes: number;
+    corrects: number,
+    questions: number;
+    showErrors: () => void;
+    continueHome: () => void;
     isGameError: boolean;
 }
 
@@ -198,16 +211,16 @@ export type OptionsPropsTypes = {
 }
 
 export type StatisticsFinishPropsType = {
-    seconds: number; 
-    minutes: number; 
-    questions: number; 
+    seconds: number;
+    minutes: number;
+    questions: number;
     corrects: number;
 }
 
 export type ActionsFinishPropsType = {
     areErrors: boolean;
-    showErrors: () => void; 
-    continueHome : () => void;
+    showErrors: () => void;
+    continueHome: () => void;
 }
 
 export type SectionOptionsPropsTypes = {
@@ -220,4 +233,9 @@ export type OptionPropsTypes = {
     option: string;
     amountOptions: number;
     nextQuestion: (value: string) => void;
+}
+
+export type PositionPropsType = {
+    ranking: IUser[];
+    user: IUserInfo;
 }

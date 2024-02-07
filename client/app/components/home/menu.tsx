@@ -24,8 +24,10 @@ const Menu = ({ navigation, dispatch, user }: MenuPropsType) => {
 
     const ranking = () => {
         dispatch(usersRankingAction({
+            date: 'total',
             token: user.user.token!,
-            navigation
+            navigation,
+            isNavigate: true
         }) as any)
     }
 

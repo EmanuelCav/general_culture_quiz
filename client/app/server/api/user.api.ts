@@ -1,6 +1,7 @@
 import { api } from './api';
 
 import { IAuthLoginData, IOptionUser } from '../../interface/User';
+import { RankingDateType } from '../../types/key.type';
 
 export const firstTimeApi = async () => {
 
@@ -14,9 +15,9 @@ export const loginApi = async (id: string) => {
 
 }
 
-export const usersApi = async (token: string) => {
+export const usersApi = async (date: RankingDateType, token: string) => {
 
-    return await api.get('/users', {
+    return await api.get(`/users/${date}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

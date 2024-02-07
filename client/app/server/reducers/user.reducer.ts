@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-import { IUser, IUserInfo, IUserReducer } from '../../interface/User'
+import { IRank, IUser, IUserInfo, IUserReducer } from '../../interface/User'
 
 const initialState: IUserReducer = {
     users: {},
@@ -19,8 +19,9 @@ const userSlice = createSlice({
             state.user = action.payload
             state.profile = action.payload.user!
         },
-        users: (state, action: PayloadAction<IUser[]>) => {
-            state.users.ranking = action.payload
+        users: (state, action: PayloadAction<IRank>) => {
+            state.users.ranking = action.payload.ranking
+            state.users.total = action.payload.total
         },
         profile: (state, action: PayloadAction<IUser>) => {
             state.profile = action.payload

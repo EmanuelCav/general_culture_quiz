@@ -78,3 +78,8 @@ export interface IAuthLoginData {
     nickname: string;
     code: string;
 }
+
+export interface IRank {
+    total: IUser[];
+    ranking: IUser[];
+}

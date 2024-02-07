@@ -1,4 +1,5 @@
 import { IGame } from "../interface/Game";
+import { IUser, IUserInfo } from "../interface/User";
 
 export const amountQuestions = (games: IGame[]): number => {
 
@@ -21,5 +22,19 @@ export const amountCorrects = (games: IGame[]): number => {
     }
 
     return amountCorrects
+
+}
+
+export const rankingUser = (ranking: IUser[], user: IUserInfo): string => {
+
+    const userRank = ranking.find((u) => u._id === user.user?._id)
+
+    if (!userRank) {
+        return "Usted no se encuentra aquí"
+    }
+
+    const posicion = ranking.findIndex(u => u._id === user.user?._id)
+
+    return `Usted se encuentra ${posicion + 1}°`
 
 }
