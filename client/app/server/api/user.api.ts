@@ -74,3 +74,23 @@ export const authLoginApi = async (userData: IAuthLoginData, token: string) => {
     })
 
 }
+
+export const countStatisticApi = async (id: string, token: string) => {
+
+    return await api.put(`/statistics/${id}/count`, null, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+}
+
+export const correctStatisticApi = async (id: string, token: string) => {
+
+    return await api.put(`/statistics/${id}/correct`, null, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+}

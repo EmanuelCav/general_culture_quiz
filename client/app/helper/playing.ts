@@ -1,3 +1,5 @@
+import { IStatistic } from "../interface/User"
+
 export const generateOptions = (options: string[], amountOptions: number): string[] => {
 
     let arr = []
@@ -7,7 +9,7 @@ export const generateOptions = (options: string[], amountOptions: number): strin
     const shuffledOptions: string[] = shuffle(options.slice(1, amountOptions + 1))
 
     for (let i = 0; i < amountOptions; i++) {
-        if(i === correctOption) {
+        if (i === correctOption) {
             arr.push(options[0])
         } else {
             arr.push(shuffledOptions[i])
@@ -15,6 +17,14 @@ export const generateOptions = (options: string[], amountOptions: number): strin
     }
 
     return arr
+
+}
+
+export const getStatisticId = (statistics: IStatistic[], category: string): string => {
+
+    const statistic = statistics.find((s) => s.category.category === category)
+
+    return statistic?._id!
 
 }
 

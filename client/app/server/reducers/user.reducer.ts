@@ -25,12 +25,12 @@ const userSlice = createSlice({
         profile: (state, action: PayloadAction<IUser>) => {
             state.profile = action.payload
         },
-        user: (state, action: PayloadAction<IUser>) => {
+        userInfo: (state, action: PayloadAction<IUser>) => {
             state.user.user = action.payload
         }
     }
 })
 
-export const { auth, users, profile, user } = userSlice.actions
+export const { auth, users, profile, userInfo } = userSlice.actions
 
 export default userSlice.reducer

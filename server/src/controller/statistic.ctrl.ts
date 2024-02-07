@@ -45,7 +45,7 @@ export const changeAllCategory = async (req: Request, res: Response): Promise<Re
 
     const { query } = req.query
 
-    try {    
+    try {
 
         await Statistic.updateMany(
             {
@@ -73,4 +73,80 @@ export const changeAllCategory = async (req: Request, res: Response): Promise<Re
         throw error
     }
 
-} 
+}
+
+export const countCategory = async (req: Request, res: Response): Promise<Response> => {
+
+    const { id } = req.params
+
+    try {
+
+        const statistic = await Statistic.findById(id)
+
+        if (!statistic) {
+            return res.status(400).json({ message: "Statistic does not exists" })
+        }
+
+        await Statistic.findByIdAndUpdate(id, {
+            questions: statistic.questions + 1
+        }, {
+            new: true
+        })
+
+        const user = await User.findById(req.user)
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
+
+        return res.status(200).json(user)
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const correctCategory = async (req: Request, res: Response): Promise<Response> => {
+
+    const { id } = req.params
+
+    try {
+
+        const statistic = await Statistic.findById(id)
+
+        if (!statistic) {
+            return res.status(400).json({ message: "Statistic does not exists" })
+        }
+
+        await Statistic.findByIdAndUpdate(id, {
+            corrects: statistic.corrects + 1
+        }, {
+            new: true
+        })
+
+        const user = await User.findById(req.user)
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
+
+        return res.status(200).json(user)
+
+    } catch (error) {
+        throw error
+    }
+
+}

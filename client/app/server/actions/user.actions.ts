@@ -73,7 +73,7 @@ export const optionsAction = createAsyncThunk('users/options', async (userData: 
 
         const { data } = await userApi.optionsApi(userData.optionData, userData.token)
 
-        dispatch(userReducer.user(data))
+        dispatch(userReducer.userInfo(data))
 
         userData.navigation.goBack()
 
@@ -89,7 +89,7 @@ export const categoryAction = createAsyncThunk('users/category', async (userData
 
         const { data } = await userApi.categoryApi(userData.id, userData.token)
 
-        dispatch(userReducer.user(data))
+        dispatch(userReducer.userInfo(data))
 
     } catch (error) {
         console.log(error);
@@ -103,7 +103,7 @@ export const categoryAllAction = createAsyncThunk('users/categoryall', async (us
 
         const { data } = await userApi.categoryAllApi(userData.query, userData.token)
 
-        dispatch(userReducer.user(data))
+        dispatch(userReducer.userInfo(data))
 
     } catch (error) {
         console.log(error);

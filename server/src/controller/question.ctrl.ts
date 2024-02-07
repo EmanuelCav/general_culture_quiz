@@ -181,21 +181,9 @@ export const pushOption = async (req: Request, res: Response): Promise<Response>
 
     try {
 
-        // const options = ["Grecia", "Uruguay", "Ucrania", "Croacia", "Argentina", "Kazajistán", "Suecia", "Honduras", "Hungría", "Argelia"]
+        const options = ["Italia", "Francia", "España", "Portugal", "Suiza", "Austria", "Croacia", "Grecia", "Suecia", "Bélgica"]
         // const options = ["Monte Everest", "K2", "Kanchenjunga", "Kilimanjaro", "Pico Dufour", "Lhotse I", "Aconcagua", "Mont Blanc", "Teide", "Manaslu"]
         // let options = ["Taj Mahal", "Coliseo Romano", "Alhambra", "Acrópolis de Atenas", "Burj Khalifa", "Basílica de San Pedro", "Torre Eiffel", "Machu Picchu", "Fushimi Inari", "Kremlin"]
-        let options = [
-            "Grecia",
-            "Uruguay",
-            "Ucrania",
-            "Croacia",
-            "Argentina",
-            "Kazajistán",
-            "Suecia",
-            "Honduras",
-            "Hungría",
-            "Argelia"
-        ]
 
         const question = await Question.findByIdAndUpdate(id, {
             $set: {

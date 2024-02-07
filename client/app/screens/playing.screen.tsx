@@ -4,6 +4,9 @@ import { BackHandler, View } from 'react-native'
 
 import { generalStyles } from '../styles/general.styles'
 
+import { userInfo } from '../server/reducers/user.reducer'
+import { correctStatisticApi, countStatisticApi } from '../server/api/user.api'
+
 import Question from '../components/playing/question'
 import StatisticsGame from '../components/playing/statisticsGame'
 import OptionsGame from '../components/playing/optionsGame'
@@ -16,7 +19,7 @@ import { IQuestion } from '../interface/Game'
 import { StackNavigation } from '../types/props.types'
 
 import { selector } from '../helper/selector'
-import { generateOptions } from '../helper/playing'
+import { generateOptions, getStatisticId } from '../helper/playing'
 
 const Playing = ({ navigation }: { navigation: StackNavigation }) => {
 
@@ -111,15 +114,25 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
     navigation.navigate('Home')
   }
 
+  const countQuestion = async () => {
+    const { data } = await countStatisticApi(getStatisticId(user.user.user?.statistics!, game.game.questions![numberQuestion].category.category), user.user.token!)
+    dispatch(userInfo(data))
+  }
+
+  const correctQuestion = async () => {
+    const { data } = await correctStatisticApi(getStatisticId(user.user.user?.statistics!, game.game.questions![numberQuestion].category.category), user.user.token!)
+    dispatch(userInfo(data))
+  }
+
   useEffect(() => {
     if (!isGameError) {
-
+      countQuestion()
     }
   }, [numberQuestion])
 
   useEffect(() => {
     if (isCorrect && !isGameError) {
-
+      correctQuestion()
     }
   }, [corrects])
 
