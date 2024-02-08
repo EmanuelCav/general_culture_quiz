@@ -43,6 +43,13 @@ export const homeStyles = StyleSheet.create({
         width: '100%'
     },
 
+    containerInputMedia: {
+        width: '100%',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flex: 1
+    },
+
     containUserSettings: {
         flex: 1,
         width: '100%'
@@ -188,7 +195,28 @@ export const homeStyles = StyleSheet.create({
     textLabel: {
         color: '#FF8C00',
         fontSize: Dimensions.get("window").height / 41
-    }
+    },
 
+    containerActionsMedia: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+
+    buttonActionMedia: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+        borderColor: '#FF8C00',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        padding: Dimensions.get("window").height / 106
+    },
+
+    textButtonMedia: {
+        fontSize: Dimensions.get("window").height / 46,
+        fontWeight: '500'
+    }
 
 })

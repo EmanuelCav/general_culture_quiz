@@ -13,6 +13,8 @@ export interface IUser extends Document {
     language: Types.ObjectId;
     isRegistered: boolean;
     helps: number;
+    isImage: boolean;
+    isSounds: boolean;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 }

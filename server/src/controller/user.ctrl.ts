@@ -39,7 +39,7 @@ export const users = async (req: Request, res: Response): Promise<Response> => {
                 }
             },
             {
-                $project: { password: 0 }
+                $project: { code: 0 }
             }
         ])
 
@@ -70,7 +70,7 @@ export const users = async (req: Request, res: Response): Promise<Response> => {
                 }
             },
             {
-                $project: { password: 0 }
+                $project: { code: 0 }
             }
         ])
 
@@ -434,6 +434,74 @@ export const removeUser = async (req: Request, res: Response): Promise<Response>
         await User.findByIdAndDelete(id)
 
         return res.status(200).json({ message: "User removed successfully" })
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const changeIsImage = async (req: Request, res: Response): Promise<Response> => {
+
+    try {
+
+        const user = await User.findById(req.user)
+
+        if (!user) {
+            return res.status(400).json({ message: "User does not exists" })
+        }
+
+        const userUpdated = await User.findByIdAndUpdate(req.user, {
+            isImage: !user.isImage
+        }, {
+            new: true
+        })
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
+
+        return res.status(200).json(userUpdated)
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const changeIsSound = async (req: Request, res: Response): Promise<Response> => {
+
+    try {
+
+        const user = await User.findById(req.user)
+
+        if (!user) {
+            return res.status(400).json({ message: "User does not exists" })
+        }
+
+        const userUpdated = await User.findByIdAndUpdate(req.user, {
+            isSounds: !user.isSounds
+        }, {
+            new: true
+        })
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
+
+        return res.status(200).json(userUpdated)
 
     } catch (error) {
         throw error

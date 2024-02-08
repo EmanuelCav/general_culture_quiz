@@ -7,6 +7,9 @@ import ButtonAccept from '../components/components/buttonAccept'
 import UserSettings from '../components/settings/userSettings'
 import Auth from '../components/settings/auth'
 
+import { userInfo } from '../server/reducers/user.reducer'
+import { isImageApi, isSoundsApi } from '../server/api/user.api'
+
 import { generalStyles } from '../styles/general.styles'
 
 import { StackNavigation } from '../types/props.types'
@@ -27,13 +30,23 @@ const Settings = ({ navigation }: { navigation: StackNavigation }) => {
     navigation.goBack()
   }
 
+  const changeSound = async () => {
+    const { data } = await isSoundsApi(user.user.token!)
+    dispatch(userInfo(data))
+  }
+
+  const changeImage = async () => {
+    const { data } = await isImageApi(user.user.token!)
+    dispatch(userInfo(data))
+  }
+
   return (
     <View style={generalStyles.containerGeneral}>
       {
         isAuthLogin && <Auth navigation={navigation} dispatch={dispatch} setIsAuthLogin={setIsAuthLogin} token={user.user.token!} />
       }
-      <Labels />
-      <UserSettings setIsAuthLogin={setIsAuthLogin} />
+      <Labels user={user.user} />
+      <UserSettings setIsAuthLogin={setIsAuthLogin} user={user.user} changeImage={changeImage} changeSound={changeSound} />
       <ButtonAccept text='ACEPTAR' func={goBack} isCategory={false} />
     </View>
   )

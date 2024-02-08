@@ -55,6 +55,16 @@ const userSchema = new Schema({
         default: false
     },
 
+    isImage: {
+        type: Boolean,
+        default: true
+    },
+
+    isSounds: {
+        type: Boolean,
+        default: true
+    },
+
     helps: {
         type: Number,
         default: 3

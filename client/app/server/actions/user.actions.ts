@@ -58,6 +58,9 @@ export const profileAction = createAsyncThunk('users/profile', async (userData: 
 
         const { data } = await userApi.userApi(userData.id, userData.token)
 
+        console.log(data);
+        
+
         dispatch(userReducer.profile(data.user))
         dispatch(gameReducer.games(data.games))
 

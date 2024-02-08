@@ -239,3 +239,23 @@ export type PositionPropsType = {
     ranking: IUser[];
     user: IUserInfo;
 }
+
+export type UserSettingsPropsType = {
+    setIsAuthLogin: (isAuthLogin: boolean) => void;
+    user: IUserInfo;
+    changeImage: () => void;
+    changeSound: () => void;
+}
+
+export type InputMediaPropsType = {
+    text: string;
+    func: () => void;
+    user: IUserInfo;
+    isSound: boolean;
+}
+
+export type ActionsMediaPropsType = {
+    func: () => void;
+    user: IUserInfo;
+    isSound: boolean;
+}

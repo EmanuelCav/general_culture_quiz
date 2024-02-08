@@ -27,6 +27,8 @@ export interface IUser {
     language?: ILanguage;
     points?: IPoints;
     helps?: number;
+    isImage?: boolean;
+    isSounds?: boolean;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -77,9 +79,4 @@ export interface IOptionUser {
 export interface IAuthLoginData {
     nickname: string;
     code: string;
-}
-
-export interface IRank {
-    total: IUser[];
-    ranking: IUser[];
 }

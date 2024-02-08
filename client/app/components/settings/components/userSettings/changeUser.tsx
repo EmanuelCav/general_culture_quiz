@@ -10,7 +10,7 @@ const ChangeUser = ({ text, changeAuth }: ChangeUserPropsType) => {
         <View style={homeStyles.containerUserSettings}>
             <Pressable style={({ pressed }) => [
                 {
-                    backgroundColor: pressed ? '#dddddd' : '#ffffff'
+                    backgroundColor: pressed ? '#ffa420' : '#ffffff'
                 }, homeStyles.label]} onPress={changeAuth}>
                 <Text style={homeStyles.textLabel}>{text}</Text>
             </Pressable>

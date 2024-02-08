@@ -27,7 +27,7 @@ export const usersApi = async (date: RankingDateType, token: string) => {
 
 export const userApi = async (id: string, token: string) => {
 
-    return await api.get(`/users/${id}`, {
+    return await api.get(`/users/profile/${id}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -89,6 +89,26 @@ export const countStatisticApi = async (id: string, token: string) => {
 export const correctStatisticApi = async (id: string, token: string) => {
 
     return await api.put(`/statistics/${id}/correct`, null, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+}
+
+export const isImageApi = async (token: string) => {
+
+    return await api.put(`/users/image`, null, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+}
+
+export const isSoundsApi = async (token: string) => {
+
+    return await api.put(`/users/sounds`, null, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
