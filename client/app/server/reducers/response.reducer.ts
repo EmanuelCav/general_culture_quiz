@@ -74,6 +74,14 @@ const responseSlice = createSlice({
         builder.addCase(gameAction.gameAction.fulfilled, (state) => {
             state.loading = false
         })
+
+        builder.addCase(userAction.registerUserAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(userAction.registerUserAction.fulfilled, (state) => {
+            state.loading = false
+        })
+
     },
 })
 

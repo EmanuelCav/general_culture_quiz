@@ -65,12 +65,11 @@ export const categoryAllApi = async (query: boolean, token: string) => {
 
 }
 
-export const authLoginApi = async (userData: IAuthLoginData, token: string) => {
+export const authLoginApi = async (userData: IAuthLoginData) => {
 
     return await api.post('/users/login', userData, {
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Content-Type': 'application/json'
         }
     })
 
@@ -110,6 +109,17 @@ export const isSoundsApi = async (token: string) => {
 
     return await api.put(`/users/sounds`, null, {
         headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+}
+
+export const registerApi = async (userData: IAuthLoginData, token: string) => {
+
+    return await api.put(`/users/register`, userData, {
+        headers: {
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
     })

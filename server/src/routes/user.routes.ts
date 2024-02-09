@@ -4,6 +4,7 @@ import * as userCtrl from '../controller/user.ctrl';
 
 import loginValid from '../middleware/validation/user/login.valid';
 import createValid from '../middleware/validation/user/create.valid';
+import registerValid from '../middleware/validation/user/register.valid'
 
 import auth from '../middleware/auth/auth';
 import access from '../middleware/auth/access';
@@ -23,5 +24,6 @@ router.delete('/users/:id', [auth, access], userCtrl.removeUser)
 router.put('/users/options', auth, userCtrl.updateOptions)
 router.put('/users/image', auth, userCtrl.changeIsImage)
 router.put('/users/sounds', auth, userCtrl.changeIsSound)
+router.put('/users/register', auth, registerValid, userCtrl.registerUser)
 
 export default router

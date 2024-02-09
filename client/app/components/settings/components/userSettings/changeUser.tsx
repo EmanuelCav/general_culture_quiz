@@ -4,14 +4,14 @@ import { homeStyles } from '../../../../styles/home.styles'
 
 import { ChangeUserPropsType } from '../../../../types/props.types'
 
-const ChangeUser = ({ text, changeAuth }: ChangeUserPropsType) => {
+const ChangeUser = ({ text, changeAuth, value }: ChangeUserPropsType) => {
 
     return (
         <View style={homeStyles.containerUserSettings}>
             <Pressable style={({ pressed }) => [
                 {
                     backgroundColor: pressed ? '#ffa420' : '#ffffff'
-                }, homeStyles.label]} onPress={changeAuth}>
+                }, homeStyles.label]} onPress={() => changeAuth(value)}>
                 <Text style={homeStyles.textLabel}>{text}</Text>
             </Pressable>
         </View>

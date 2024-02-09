@@ -8,7 +8,7 @@ const Label = ({ text }: { text: string }) => {
             <Text style={homeStyles.titleLabel}>{text}</Text>
             <Pressable style={({ pressed }) => [
                 {
-                    backgroundColor: pressed ? '#dddddd' : '#ffffff'
+                    backgroundColor: pressed ? '#ffa420' : '#ffffff'
                 }, homeStyles.label]}>
                 <Text style={homeStyles.textLabel}>Pais</Text>
             </Pressable>

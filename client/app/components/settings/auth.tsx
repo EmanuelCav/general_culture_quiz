@@ -9,9 +9,9 @@ import ButtonAuth from './components/auth/buttonAuth';
 
 import { homeStyles } from '../../styles/home.styles';
 
-import { authLoginAction } from '../../server/actions/user.actions';
+import { authLoginAction, registerUserAction } from '../../server/actions/user.actions';
 
-const Auth = ({ navigation, dispatch, token, setIsAuthLogin }: AuthPropsType ) => {
+const Auth = ({ navigation, dispatch, token, setIsAuthLogin, isRegister }: AuthPropsType) => {
 
     const initialState: IAuthLoginData = {
         nickname: "",
@@ -39,10 +39,19 @@ const Auth = ({ navigation, dispatch, token, setIsAuthLogin }: AuthPropsType ) =
     }
 
     const handleSumbit = () => {
+        if (isRegister) {
+            dispatch(registerUserAction({
+                navigation,
+                userData,
+                token
+            }) as any)
+            
+            return
+        }
+
         dispatch(authLoginAction({
             navigation,
-            userData,
-            token
+            userData
         }) as any)
     }
 
@@ -52,10 +61,12 @@ const Auth = ({ navigation, dispatch, token, setIsAuthLogin }: AuthPropsType ) =
 
     return (
         <View style={homeStyles.containerAuth}>
-            <Input label='Nombre de usuario' value={nickname} onChange={handleChangeNickname} />    
-            <Input label='Código de entrada' value={code} onChange={handleChangePassword} />
-            <ButtonAuth text='ACEPTAR' func={handleSumbit} />
-            <ButtonAuth text='CANCELAR' func={goBack} />
+            <View style={homeStyles.containerFormAuth}>
+                <Input label='Nombre de usuario' value={nickname} onChange={handleChangeNickname} maxLength={16} />
+                <Input label='Código de entrada' value={code} onChange={handleChangePassword} maxLength={32} />
+                <ButtonAuth text='ACEPTAR' func={handleSumbit} />
+                <ButtonAuth text='CANCELAR' func={goBack} />
+            </View>
         </View>
     )
 }

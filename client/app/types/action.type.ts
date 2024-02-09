@@ -34,9 +34,15 @@ export type CategoryAllActionPropsType = {
 
 export type AuthLoginActionPropsType = {
     userData: IAuthLoginData;
-    token: string;
     navigation: StackNavigation;
 }
+
+export type RegisterUserActionPropsType = {
+    userData: IAuthLoginData;
+    navigation: StackNavigation;
+    token: string;
+}
+
 
 export type GameActionPropsType = {
     navigation: StackNavigation;

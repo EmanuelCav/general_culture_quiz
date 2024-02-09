@@ -343,13 +343,13 @@ export const authLogin = async (req: Request, res: Response): Promise<Response> 
         const user = await User.findOne({ nickname })
 
         if (!user) {
-            return res.status(400).json({ message: "Fields do not match" })
+            return res.status(400).json({ message: "Los campos no coinciden" })
         }
 
         const isCodeValid = await compareCode(code, user.code)
 
         if (!isCodeValid) {
-            return res.status(400).json({ message: "Fields do not match" })
+            return res.status(400).json({ message: "Los campos no coinciden" })
         }
 
         const token: string = generateToken(user._id)
@@ -502,6 +502,38 @@ export const changeIsSound = async (req: Request, res: Response): Promise<Respon
             .populate("points")
 
         return res.status(200).json(userUpdated)
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const registerUser = async (req: Request, res: Response): Promise<Response> => {
+
+    const { nickname, code } = req.body
+
+    try {
+
+        const user = await User.findByIdAndUpdate(req.user, {
+            nickname,
+            code: await hashCode(code),
+            isRegistered: true
+        }, {
+            new: true
+        })
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
+
+        return res.status(200).json(user)
 
     } catch (error) {
         throw error

@@ -135,6 +135,7 @@ export type InputPropsType = {
     value: string;
     label: string;
     onChange: (value: string) => void;
+    maxLength: number | undefined;
 }
 
 export type AuthPropsType = {
@@ -142,11 +143,13 @@ export type AuthPropsType = {
     navigation: StackNavigation;
     token: string;
     setIsAuthLogin: (isAuthData: boolean) => void;
+    isRegister: boolean;
 }
 
 export type ChangeUserPropsType = {
-    changeAuth: () => void;
+    changeAuth: (value: boolean) => void;
     text: string;
+    value: boolean;
 }
 
 export type MenuPlayPropsType = {
@@ -245,6 +248,7 @@ export type UserSettingsPropsType = {
     user: IUserInfo;
     changeImage: () => void;
     changeSound: () => void;
+    authAction: (value: boolean) => void;
 }
 
 export type InputMediaPropsType = {

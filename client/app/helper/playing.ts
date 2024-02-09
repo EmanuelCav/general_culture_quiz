@@ -6,7 +6,7 @@ export const generateOptions = (options: string[], amountOptions: number): strin
 
     const correctOption = Math.floor(Math.random() * amountOptions)
 
-    const shuffledOptions: string[] = shuffle(options.slice(1, amountOptions + 1))
+    const shuffledOptions: string[] = shuffle(options).slice(1, amountOptions + 1)
 
     for (let i = 0; i < amountOptions; i++) {
         if (i === correctOption) {

@@ -4,7 +4,7 @@ import * as userApi from '../api/user.api';
 import * as userReducer from '../reducers/user.reducer';
 import * as gameReducer from '../reducers/game.reducer';
 
-import { UsersActionPropsType, ProfileActionPropsType, OptionsActionPropsType, CategoryActionPropsType, CategoryAllActionPropsType, AuthLoginActionPropsType } from '../../types/action.type';
+import { UsersActionPropsType, ProfileActionPropsType, OptionsActionPropsType, CategoryActionPropsType, CategoryAllActionPropsType, AuthLoginActionPropsType, RegisterUserActionPropsType } from '../../types/action.type';
 
 export const firstTimeAction = createAsyncThunk('users/firsttime', async (_, { dispatch }) => {
 
@@ -57,9 +57,6 @@ export const profileAction = createAsyncThunk('users/profile', async (userData: 
     try {
 
         const { data } = await userApi.userApi(userData.id, userData.token)
-
-        console.log(data);
-        
 
         dispatch(userReducer.profile(data.user))
         dispatch(gameReducer.games(data.games))
@@ -120,9 +117,25 @@ export const authLoginAction = createAsyncThunk('users/authlogin', async (userDa
 
     try {
 
-        const { data } = await userApi.authLoginApi(userData.userData, userData.token)
+        const { data } = await userApi.authLoginApi(userData.userData)
 
         dispatch(userReducer.auth(data))
+
+        userData.navigation.navigate('Home')
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+
+export const registerUserAction = createAsyncThunk('users/register', async (userData: RegisterUserActionPropsType, { dispatch }) => {
+
+    try {
+
+        const { data } = await userApi.registerApi(userData.userData, userData.token)
+
+        dispatch(userReducer.userInfo(data))
 
         userData.navigation.navigate('Home')
 

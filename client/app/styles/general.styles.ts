@@ -66,7 +66,8 @@ export const generalStyles = StyleSheet.create({
         left: 0,
         width: Dimensions.get("window").width,
         height: Dimensions.get("window").height,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        zIndex: 20
     }
 
 })

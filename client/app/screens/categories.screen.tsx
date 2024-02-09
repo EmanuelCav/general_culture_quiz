@@ -39,7 +39,7 @@ const Categories = ({ navigation, route }: CategoriesPropsType) => {
       <TitleCategory />
       <ActionCategory dispatch={dispatch} token={user.user.token!} />
       <ShowCategories dispatch={dispatch} user={user.user} />
-      <ButtonAccept text={route.params.isPlay ? 'COMENZAR' : 'ACEPTAR'} func={goBack} isCategory={user.user.user?.statistics?.filter(s => s.isSelect).length === 0} />
+      <ButtonAccept text={route.params.isPlay ? 'COMENZAR' : 'ACEPTAR'} func={goBack} isCategory={route.params.isPlay ? user.user.user?.statistics?.filter(s => s.isSelect).length === 0 : false} />
     </View>
   )
 }

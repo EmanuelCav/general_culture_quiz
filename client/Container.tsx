@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get("window").width,
         height: Dimensions.get("window").height,
         flex: 1,
-        backgroundColor: '#90d5f6',
+        backgroundColor: '#ffcdae',
         paddingHorizontal: Dimensions.get("window").width / 52,
         paddingVertical: Dimensions.get("window").height / 106
     }

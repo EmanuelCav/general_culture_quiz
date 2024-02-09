@@ -38,7 +38,7 @@ export default function App() {
         <PersistGate persistor={persistor} loading={null}>
           <Loading />
           <Container>
-            <StatusBar backgroundColor='#ffffff' translucent={false} />
+            <StatusBar backgroundColor='#ffffff' style="light" translucent={false} />
             <Stack.Navigator initialRouteName="Home" screenOptions={{
               headerShown: false
             }}>

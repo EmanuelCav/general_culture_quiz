@@ -23,6 +23,7 @@ const Settings = ({ navigation }: { navigation: StackNavigation }) => {
   const user = useSelector((state: IReducer) => selector(state).user)
 
   const [isAuthLogin, setIsAuthLogin] = useState<boolean>(false)
+  const [isRegister, setIsRegister] = useState<boolean>(false)
 
   const dispatch = useDispatch()
 
@@ -40,13 +41,17 @@ const Settings = ({ navigation }: { navigation: StackNavigation }) => {
     dispatch(userInfo(data))
   }
 
+  const authAction = (value: boolean) => {
+    setIsRegister(value)
+  }
+
   return (
     <View style={generalStyles.containerGeneral}>
       {
-        isAuthLogin && <Auth navigation={navigation} dispatch={dispatch} setIsAuthLogin={setIsAuthLogin} token={user.user.token!} />
+        isAuthLogin && <Auth navigation={navigation} dispatch={dispatch} setIsAuthLogin={setIsAuthLogin} token={user.user.token!} isRegister={isRegister} />
       }
       <Labels user={user.user} />
-      <UserSettings setIsAuthLogin={setIsAuthLogin} user={user.user} changeImage={changeImage} changeSound={changeSound} />
+      <UserSettings setIsAuthLogin={setIsAuthLogin} user={user.user} changeImage={changeImage} changeSound={changeSound} authAction={authAction} />
       <ButtonAccept text='ACEPTAR' func={goBack} isCategory={false} />
     </View>
   )

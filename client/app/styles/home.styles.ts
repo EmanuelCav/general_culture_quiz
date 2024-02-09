@@ -127,9 +127,15 @@ export const homeStyles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#ff0000',
         width: '100%',
-        padding: Dimensions.get("window").height / 74
+        padding: Dimensions.get("window").height / 74,
+        backgroundColor: 'rgba(255, 140, 0, 0.5)'
+    },
+
+    containerFormAuth: {
+        padding: Dimensions.get("window").height / 106,
+        backgroundColor: '#ffffff',
+        width: '100%'
     },
 
     containerTitleAuth: {
@@ -142,7 +148,8 @@ export const homeStyles = StyleSheet.create({
     },
 
     containerInput: {
-        width: '100%'
+        width: '100%',
+        marginTop: Dimensions.get("window").height / 92
     },
 
     buttonAuth: {
@@ -162,18 +169,19 @@ export const homeStyles = StyleSheet.create({
     },
 
     labelInput: {
-        fontSize: Dimensions.get("window").height / 46,
-        color: '#ffffff'
+        fontSize: Dimensions.get("window").height / 41,
+        color: '#FF8C00'
     },
 
     inputAuth: {
         padding: Dimensions.get("window").height / 106,
         borderRadius: 8,
         width: '100%',
-        fontSize: Dimensions.get("window").height / 46,
+        fontSize: Dimensions.get("window").height / 41,
         borderWidth: 1,
         borderColor: '#FF8C00',
-        borderStyle: 'solid'
+        borderStyle: 'solid',
+        marginTop: Dimensions.get("window").height / 185
     },
 
     titleLabel: {
