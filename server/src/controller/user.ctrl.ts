@@ -111,6 +111,65 @@ export const users = async (req: Request, res: Response): Promise<Response> => {
 
 }
 
+export const countryRank = async (req: Request, res: Response): Promise<Response> => {
+
+    const { date } = req.params
+
+    try {
+
+        const countries = await User.aggregate([
+            {
+                $lookup: {
+                    from: Country.collection.name,
+                    localField: 'country',
+                    foreignField: '_id',
+                    as: 'country'
+                }
+            },
+            {
+                $lookup: {
+                    from: Experience.collection.name,
+                    localField: 'points',
+                    foreignField: '_id',
+                    as: 'points'
+                }
+            },
+            {
+                $unwind: {
+                    path: "$points"
+                }
+            },
+            {
+                $unwind: {
+                    path: "$country"
+                }
+            },
+            {
+                $group: {
+                    _id: "$country.name",
+                    flag: { $first: "$country.flag" },
+                    points: { $sum: `$points.${date}` }
+                }
+            },
+            {
+                $match: {
+                    "points": {
+                        $gt: 0
+                    }
+                }
+            },
+        ]).sort({
+            "points": -1
+        })
+
+        return res.status(200).json(countries)
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
 export const user = async (req: Request, res: Response): Promise<Response> => {
 
     const { id } = req.params

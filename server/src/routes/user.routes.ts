@@ -13,6 +13,7 @@ const router = Router()
 
 router.get('/users/:date', auth, userCtrl.users)
 router.get('/users/profile/:id', auth, userCtrl.user)
+router.get('/users/country/:date', auth, userCtrl.countryRank)
 
 router.post('/users/createUser', [auth, access], createValid, userCtrl.createUser)
 router.post('/users/firsttime', userCtrl.firstTime)

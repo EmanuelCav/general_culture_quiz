@@ -1,5 +1,5 @@
 import { IGame } from "../interface/Game";
-import { IUser, IUserInfo } from "../interface/User";
+import { ICountryRank, IUser, IUserInfo } from "../interface/User";
 
 export const amountQuestions = (games: IGame[]): number => {
 
@@ -25,7 +25,7 @@ export const amountCorrects = (games: IGame[]): number => {
 
 }
 
-export const rankingUser = (ranking: IUser[], user: IUserInfo): string => {
+export const rankingUser = (ranking: IUser[] | any[], user: IUserInfo): string => {
 
     const userRank = ranking.find((u) => u._id === user.user?._id)
 
@@ -36,5 +36,19 @@ export const rankingUser = (ranking: IUser[], user: IUserInfo): string => {
     const posicion = ranking.findIndex(u => u._id === user.user?._id)
 
     return `Usted se encuentra ${posicion + 1}°`
+
+}
+
+export const rankingCountry = (ranking: ICountryRank[] | any[], user: IUserInfo): string => {
+
+    const countryRank = ranking.find((u) => u._id === user.user?.country?.name)
+
+    if (!countryRank) {
+        return "Su país no se encuentra aquí"
+    }
+
+    const posicion = ranking.findIndex(u => u._id === user.user?.country?.name)
+
+    return `Su país se encuentra ${posicion + 1}°`
 
 }

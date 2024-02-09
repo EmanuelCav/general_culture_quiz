@@ -136,3 +136,13 @@ export const updateExperienceApi = async (pointsData: IPointsData, token: string
     })
 
 }
+
+export const countryRankingApi = async (date: string, token: string) => {
+
+    return await api.get(`/users/country/${date}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+}

@@ -17,7 +17,7 @@ const UsersRanking = ({ user, navigation }: UsersRankingPropsType) => {
           <ScrollView style={{ width: '100%' }}>
             {
               user.users.ranking?.map((u: IUser, index: number) => {
-                return <UserRank user={u} index={index} navigation={navigation} token={user.user.token!} key={u._id} />
+                return <UserRank user={u} userLoggedIn={user.user.user!} index={index} navigation={navigation} token={user.user.token!} key={u._id} />
               })
             }
           </ScrollView>

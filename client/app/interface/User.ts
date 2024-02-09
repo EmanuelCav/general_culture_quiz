@@ -15,6 +15,7 @@ export interface IUserInfo {
 export interface IUsersRanking {
     total?: IUser[];
     ranking?: IUser[];
+    countries?: ICountryRank[];
 }
 
 export interface IUser {
@@ -83,4 +84,10 @@ export interface IAuthLoginData {
 
 export interface IPointsData {
     points: number
+}
+
+export interface ICountryRank {
+    _id: string;
+    flag: string;
+    points: number;
 }

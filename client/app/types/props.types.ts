@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteProp } from "@react-navigation/native";
 import { Dispatch } from "@reduxjs/toolkit";
 
-import { IOptionUser, IStatistic, IUser, IUserInfo, IUserReducer } from "../interface/User";
+import { ICountryRank, IOptionUser, IStatistic, IUser, IUserInfo, IUserReducer } from "../interface/User";
 import { IGame } from "../interface/Game";
 import { RankingDateType, RankingTextType } from "./key.type";
 
@@ -93,6 +93,11 @@ export type UserStatisticsPropsType = {
     user: IUser;
 }
 
+export type CountryRankingPropsType = {
+    userLoggedIn: IUser;
+    countries: ICountryRank[];
+}
+
 export type UsersRankingPropsType = {
     user: IUserReducer;
     navigation: StackNavigation;
@@ -108,6 +113,7 @@ export type UserRankPropsType = {
     index: number;
     navigation: StackNavigation;
     token: string;
+    userLoggedIn: IUser;
 }
 
 export type InfoUserRankPropsType = {
@@ -245,8 +251,10 @@ export type OptionPropsTypes = {
 }
 
 export type PositionPropsType = {
-    ranking: IUser[];
+    ranking: IUser[] | ICountryRank[];
     user: IUserInfo;
+    changeIcon: () => void;
+    isUser: boolean;
 }
 
 export type UserSettingsPropsType = {
@@ -273,4 +281,15 @@ export type ActionsMediaPropsType = {
 export type MainStatisticsPropsType = {
     user: IUser;
     games: IGame[];
+}
+
+export type CountryInfoPropsType = {
+    index: number;
+    country: ICountryRank;
+}
+
+export type CountryRankPropsType = {
+    index: number;
+    country: ICountryRank;
+    userLoggedIn: IUser;
 }

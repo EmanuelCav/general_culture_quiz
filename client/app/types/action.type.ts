@@ -52,3 +52,8 @@ export type GameActionPropsType = {
     navigation: StackNavigation;
     token: string;
 }
+
+export type RankingCountryActionPropsType = {
+    date: string;
+    token: string;
+}

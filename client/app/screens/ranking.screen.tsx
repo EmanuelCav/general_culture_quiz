@@ -14,8 +14,9 @@ import ButtonAccept from '../components/components/buttonAccept';
 import UsersRanking from '../components/ranking/usersRanking';
 import RankingTags from '../components/ranking/rankingTags';
 import Position from '../components/ranking/position';
+import CountryRanking from '../components/ranking/countryRanking';
 
-import { usersRankingAction } from '../server/actions/user.actions';
+import { rankingCountryAction, usersRankingAction } from '../server/actions/user.actions';
 
 const Ranking = ({ navigation }: { navigation: StackNavigation }) => {
 
@@ -23,6 +24,7 @@ const Ranking = ({ navigation }: { navigation: StackNavigation }) => {
 
   const dispatch = useDispatch()
 
+  const [isUser, setIsUser] = useState<boolean>(true)
   const [rankingText, setRankingText] = useState<RankingTextType>('Total')
   const [rankingDate, setRankingDate] = useState<RankingDateType>('total')
 
@@ -31,24 +33,42 @@ const Ranking = ({ navigation }: { navigation: StackNavigation }) => {
     setRankingDate(valueDate)
   }
 
+  const changeIcon = () => {
+    setIsUser(!isUser)
+  }
+
   const goBack = () => {
     navigation.goBack()
   }
 
   useEffect(() => {
-    dispatch(usersRankingAction({
+    if (isUser) {
+      dispatch(usersRankingAction({
+        date: rankingDate,
+        navigation,
+        token: user.user.token!,
+        isNavigate: false
+      }) as any)
+
+      return
+    }
+
+    dispatch(rankingCountryAction({
       date: rankingDate,
-      navigation,
-      token: user.user.token!,
-      isNavigate: false
+      token: user.user.token!
     }) as any)
-  }, [rankingDate])
+
+  }, [rankingDate, isUser])
 
   return (
     <View style={generalStyles.containerGeneral}>
-      <Position ranking={user.users.ranking!} user={user.user} />
+      <Position ranking={isUser ? user.users.ranking! : user.users.countries!} user={user.user} changeIcon={changeIcon} isUser={isUser} />
       <RankingTags changeRanking={changeRanking} rankingText={rankingText} />
-      <UsersRanking user={user} navigation={navigation} />
+      {
+        isUser ?
+          <UsersRanking user={user} navigation={navigation} />
+          : <CountryRanking countries={user.users.countries!} userLoggedIn={user.user.user!} />
+      }
       <ButtonAccept text='ACEPTAR' func={goBack} isCategory={false} />
     </View>
   )

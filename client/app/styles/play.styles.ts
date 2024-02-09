@@ -103,7 +103,8 @@ export const playStyles = StyleSheet.create({
         height: '8%',
         justifyContent: 'space-between',
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        paddingHorizontal: Dimensions.get("window").width / 36
     },
 
     containerRankingTags: {

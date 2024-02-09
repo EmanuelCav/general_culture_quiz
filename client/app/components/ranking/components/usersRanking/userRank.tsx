@@ -10,7 +10,7 @@ import { playStyles } from '../../../../styles/play.styles'
 
 import { profileAction } from '../../../../server/actions/user.actions';
 
-const UserRank = ({ user, index, navigation, token }: UserRankPropsType) => {
+const UserRank = ({ user, index, navigation, token, userLoggedIn }: UserRankPropsType) => {
 
     const dispatch = useDispatch()
 
@@ -25,7 +25,7 @@ const UserRank = ({ user, index, navigation, token }: UserRankPropsType) => {
     return (
         <Pressable style={({ pressed }) => [
             {
-                backgroundColor: pressed ? '#ffa420' : '#FF8C00'
+                backgroundColor: pressed ? '#ffa420' : `${userLoggedIn._id === user._id ? '#ffa420' : '#FF8C00'}`
             },
             playStyles.containUserRank
         ]} onPress={getData}>
