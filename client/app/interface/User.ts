@@ -80,3 +80,7 @@ export interface IAuthLoginData {
     nickname: string;
     code: string;
 }
+
+export interface IPointsData {
+    points: number
+}

@@ -29,8 +29,21 @@ export const users = async (req: Request, res: Response): Promise<Response> => {
                 }
             },
             {
+                $lookup: {
+                    from: Country.collection.name,
+                    localField: 'country',
+                    foreignField: '_id',
+                    as: 'country'
+                }
+            },
+            {
                 $unwind: {
                     path: "$points"
+                }
+            },
+            {
+                $unwind: {
+                    path: "$country"
                 }
             },
             {
@@ -39,7 +52,7 @@ export const users = async (req: Request, res: Response): Promise<Response> => {
                 }
             },
             {
-                $project: { code: 0 }
+                $project: { code: 0, isRegistered: 0, isImage: 0, helps: 0, role: 0, isSounds: 0, language: 0 }
             }
         ])
 
@@ -53,8 +66,21 @@ export const users = async (req: Request, res: Response): Promise<Response> => {
                 }
             },
             {
+                $lookup: {
+                    from: Country.collection.name,
+                    localField: 'country',
+                    foreignField: '_id',
+                    as: 'country'
+                }
+            },
+            {
                 $unwind: {
                     path: "$points"
+                }
+            },
+            {
+                $unwind: {
+                    path: "$country"
                 }
             },
             {
@@ -70,7 +96,7 @@ export const users = async (req: Request, res: Response): Promise<Response> => {
                 }
             },
             {
-                $project: { code: 0 }
+                $project: { code: 0, isRegistered: 0, isImage: 0, helps: 0, role: 0, isSounds: 0, language: 0 }
             }
         ])
 
@@ -267,7 +293,7 @@ export const firstTime = async (req: Request, res: Response): Promise<Response> 
         }
 
         const newExperience = new Experience({
-            user: req.user
+            user: user._id
         })
 
         const experienceSaved = await newExperience.save()
@@ -522,6 +548,51 @@ export const registerUser = async (req: Request, res: Response): Promise<Respons
         }, {
             new: true
         })
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
+
+        return res.status(200).json(user)
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const updateExperience = async (req: Request, res: Response): Promise<Response> => {
+
+    const { points } = req.body
+
+    try {
+
+        const experience = await Experience.findOne({
+            user: req.user
+        })
+
+        if (!experience) {
+            return res.status(400).json({ message: "Experiece does not exists" })
+        }
+
+        await Experience.findByIdAndUpdate(experience._id, {
+            bestPuntuation: points > experience.bestPuntuation ? points : experience.bestPuntuation,
+            day: experience.day + points,
+            month: experience.month + points,
+            year: experience.year + points,
+            total: experience.total + points,
+            lastGame: new Date(new Date().setHours(new Date().getHours() - 3)).toISOString().split("T")[0]
+        }, {
+            new: true
+        })
+
+        const user = await User.findById(req.user)
             .select("-code -role")
             .populate({
                 path: "statistics",

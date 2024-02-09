@@ -4,16 +4,18 @@ import { homeStyles } from '../../../styles/home.styles'
 
 import StatisticData from './statistic/statisticData'
 
-import { IGame } from '../../../interface/Game'
+import { MainStatisticsPropsType } from '../../../types/props.types'
 
 import { amountCorrects, amountQuestions } from '../../../helper/statistic'
 
-const MainStatistics = ({ games }: { games: IGame[] }) => {
+const MainStatistics = ({ games, user }: MainStatisticsPropsType) => {
     return (
         <View style={homeStyles.containMainStatistics}>
             <StatisticData text='Partidas Jugadas:' data={games.length} />
+            <StatisticData text='Puntos:' data={`${user.points?.total!}xp`} />
+            <StatisticData text='Mejor puntuación:' data={`${user.points?.bestPuntuation}xp`} />
             <StatisticData text='Cantidad de preguntas:' data={amountQuestions(games)} />
-            <StatisticData text='Respuestas correctas:' data={`${amountCorrects(games)} (${games.length > 0 ? ((100 * amountCorrects(games)) / amountQuestions(games)) : (0)}%)`} />
+            <StatisticData text='Respuestas correctas:' data={`${amountCorrects(games)} (${games.length > 0 ? ((100 * amountCorrects(games)) / amountQuestions(games)).toFixed(2) : (0)}%)`} />
             <StatisticData text='Categoria favotira:' data={'Geografia'} />
         </View>
     )

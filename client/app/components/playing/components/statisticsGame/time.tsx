@@ -5,7 +5,7 @@ import { TimePropsType } from '../../../../types/props.types'
 
 import { playingStyles } from '../../../../styles/playing.styles'
 
-const Time = ({ seconds, minutes, setSeconds, setMinutes, realMinutes, realSeconds, isCorrect, isIncorrect, isFinish, isPreFinish }: TimePropsType) => {
+const Time = ({ seconds, minutes, setSeconds, setMinutes, setTotalSeconds, totalSeconds, realMinutes, realSeconds, isCorrect, isIncorrect, isFinish, isPreFinish }: TimePropsType) => {
 
     useEffect(() => {
 
@@ -22,6 +22,7 @@ const Time = ({ seconds, minutes, setSeconds, setMinutes, realMinutes, realSecon
         setTimeout(() => {
             if (!isFinish && !isPreFinish) {
                 if (!isCorrect && !isIncorrect) {
+                    setTotalSeconds(totalSeconds + 1)
                     setSeconds(seconds + 1)
                 }
             }

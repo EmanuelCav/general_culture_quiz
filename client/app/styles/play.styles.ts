@@ -121,7 +121,8 @@ export const playStyles = StyleSheet.create({
         borderWidth: 1,
         borderStyle: 'solid',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: '100%'
     },
 
     containUserRank: {
@@ -131,7 +132,8 @@ export const playStyles = StyleSheet.create({
         justifyContent: 'space-between',
         borderColor: '#ffffff',
         borderWidth: 1,
-        borderStyle: 'solid'
+        borderStyle: 'solid',
+        width: '100%'
     },
 
     conntainInfoUserRank: {

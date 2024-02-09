@@ -4,7 +4,7 @@ import * as userApi from '../api/user.api';
 import * as userReducer from '../reducers/user.reducer';
 import * as gameReducer from '../reducers/game.reducer';
 
-import { UsersActionPropsType, ProfileActionPropsType, OptionsActionPropsType, CategoryActionPropsType, CategoryAllActionPropsType, AuthLoginActionPropsType, RegisterUserActionPropsType } from '../../types/action.type';
+import { UsersActionPropsType, ProfileActionPropsType, OptionsActionPropsType, CategoryActionPropsType, CategoryAllActionPropsType, AuthLoginActionPropsType, RegisterUserActionPropsType, ExperienceActionPropsType } from '../../types/action.type';
 
 export const firstTimeAction = createAsyncThunk('users/firsttime', async (_, { dispatch }) => {
 
@@ -138,6 +138,20 @@ export const registerUserAction = createAsyncThunk('users/register', async (user
         dispatch(userReducer.userInfo(data))
 
         userData.navigation.navigate('Home')
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+
+export const experienceAction = createAsyncThunk('users/experience', async (userData: ExperienceActionPropsType, { dispatch }) => {
+
+    try {
+
+        const { data } = await userApi.updateExperienceApi(userData.pointsData, userData.token)
+
+        dispatch(userReducer.userInfo(data))
 
     } catch (error) {
         console.log(error);

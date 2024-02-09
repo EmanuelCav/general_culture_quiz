@@ -1,6 +1,6 @@
 import { api } from './api';
 
-import { IAuthLoginData, IOptionUser } from '../../interface/User';
+import { IAuthLoginData, IOptionUser, IPointsData } from '../../interface/User';
 import { RankingDateType } from '../../types/key.type';
 
 export const firstTimeApi = async () => {
@@ -118,6 +118,17 @@ export const isSoundsApi = async (token: string) => {
 export const registerApi = async (userData: IAuthLoginData, token: string) => {
 
     return await api.put(`/users/register`, userData, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+}
+
+export const updateExperienceApi = async (pointsData: IPointsData, token: string) => {
+
+    return await api.put('/users/experience', pointsData, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`

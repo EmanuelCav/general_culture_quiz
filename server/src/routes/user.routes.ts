@@ -25,5 +25,6 @@ router.put('/users/options', auth, userCtrl.updateOptions)
 router.put('/users/image', auth, userCtrl.changeIsImage)
 router.put('/users/sounds', auth, userCtrl.changeIsSound)
 router.put('/users/register', auth, registerValid, userCtrl.registerUser)
+router.put('/users/experience', auth, userCtrl.updateExperience)
 
 export default router

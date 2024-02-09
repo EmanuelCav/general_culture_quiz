@@ -1,4 +1,4 @@
-import { IAuthLoginData, IOptionUser } from "../interface/User";
+import { IAuthLoginData, IOptionUser, IPointsData } from "../interface/User";
 
 import { RankingDateType } from "./key.type";
 import { StackNavigation } from "./props.types";
@@ -43,6 +43,10 @@ export type RegisterUserActionPropsType = {
     token: string;
 }
 
+export type ExperienceActionPropsType = {
+    pointsData: IPointsData;
+    token: string;
+}
 
 export type GameActionPropsType = {
     navigation: StackNavigation;

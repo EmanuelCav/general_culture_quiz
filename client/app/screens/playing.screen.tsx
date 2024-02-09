@@ -16,10 +16,12 @@ import Finish from '../components/playing/finish'
 
 import { IReducer } from '../interface/General'
 import { IQuestion } from '../interface/Game'
+import { IPointsData } from '../interface/User'
 import { StackNavigation } from '../types/props.types'
 
 import { selector } from '../helper/selector'
 import { generateOptions, getStatisticId } from '../helper/playing'
+import { experienceAction } from '../server/actions/user.actions'
 
 const Playing = ({ navigation }: { navigation: StackNavigation }) => {
 
@@ -28,10 +30,19 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
 
   const dispatch = useDispatch()
 
+  const initialState: IPointsData = {
+    points: 0
+  }
+
+  const [pointsData, setPointsData] = useState<IPointsData>(initialState)
+
+  const { points } = pointsData
+
   const [seconds, setSeconds] = useState<number>(0)
   const [minutes, setMinutes] = useState<number>(0)
   const [realSeconds, setRealSeconds] = useState<number>(0)
   const [realMinutes, setRealMinutes] = useState<number>(0)
+  const [totalSeconds, setTotalSeconds] = useState<number>(0)
 
   const [numberQuestion, setNumberQuestion] = useState<number>(0)
   const [corrects, setCorrects] = useState<number>(0)
@@ -95,6 +106,14 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
   }
 
   const preFinish = () => {
+
+    if (!isGameError) {
+      setPointsData({
+        points: Math.ceil((user.user.user?.amountOptions! * user.user.user?.amountQuestions! *
+          user.user.user?.statistics?.filter(s => s.isSelect).length! * corrects) / (totalSeconds))
+      })
+    }
+
     setIsFinish(true)
   }
 
@@ -112,6 +131,13 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
 
   const continueHome = () => {
     navigation.navigate('Home')
+  }
+
+  const experienceUser = () => {
+    dispatch(experienceAction({
+      pointsData,
+      token: user.user.token!
+    }) as any)
   }
 
   const countQuestion = async () => {
@@ -141,12 +167,19 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
     return () => backHandler.remove()
   }, [])
 
+  useEffect(() => {
+    if (points !== 0) {
+      experienceUser()
+    }
+  }, [points])
+
+
   return (
     <View style={generalStyles.containerGeneral}>
       <Question question={!isGameError ? game.game.questions![numberQuestion] : gameErrors[numberQuestion]} />
       {
         !isGameError &&
-        <StatisticsGame minutes={minutes} seconds={seconds} setSeconds={setSeconds} setMinutes={setMinutes}
+        <StatisticsGame minutes={minutes} seconds={seconds} setSeconds={setSeconds} setMinutes={setMinutes} setTotalSeconds={setTotalSeconds} totalSeconds={totalSeconds}
           questions={game.game.questions!.length} numberQuestion={numberQuestion + 1} realSeconds={realSeconds} realMinutes={realMinutes}
           isCorrect={isCorrect} isIncorrect={isIncorrect} isFinish={isFinish} isPreFinish={isPreFinish}
         />
@@ -162,7 +195,7 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
       }
       {
         isFinish && <Finish seconds={realSeconds} minutes={realMinutes} corrects={corrects} questions={!isGameError ? game.game.questions!.length : gameErrors.length}
-          showErrors={showErrors} continueHome={continueHome} isGameError={isGameError} />
+          showErrors={showErrors} continueHome={continueHome} isGameError={isGameError} points={points} />
       }
     </View>
   )

@@ -59,7 +59,7 @@ export const homeStyles = StyleSheet.create({
         justifyContent: 'space-evenly',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        height: '25%',
+        height: '30%',
         paddingHorizontal: Dimensions.get("window").height / 106
     },
 
@@ -109,6 +109,13 @@ export const homeStyles = StyleSheet.create({
     },
 
     containUser: {
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        width: '50%',
+        flexDirection: 'column'
+    },
+
+    containCountryUser: {
         justifyContent: 'center',
         alignItems: 'center',
         width: '50%',
@@ -225,6 +232,13 @@ export const homeStyles = StyleSheet.create({
     textButtonMedia: {
         fontSize: Dimensions.get("window").height / 46,
         fontWeight: '500'
+    },
+
+    containerHelps: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
     }
 
 })

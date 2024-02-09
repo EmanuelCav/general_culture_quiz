@@ -7,7 +7,7 @@ import { FinishPropsType } from '../../types/props.types'
 import StatisticsFinish from './components/finish/statisticsFinish'
 import ActionsFinish from './components/finish/actionsFinish'
 
-const Finish = ({ seconds, minutes, corrects, questions, showErrors, continueHome, isGameError }: FinishPropsType) => {
+const Finish = ({ seconds, minutes, corrects, questions, showErrors, continueHome, isGameError, points }: FinishPropsType) => {
     return (
         <View style={playingStyles.containerPreFinish}>
             <View style={playingStyles.containFinish}>
@@ -17,7 +17,7 @@ const Finish = ({ seconds, minutes, corrects, questions, showErrors, continueHom
                             <Text style={playingStyles.textPreFinish}>¡Repaso realizado!</Text>
                         </View>
                         :
-                        <StatisticsFinish seconds={seconds} minutes={minutes} questions={questions} corrects={corrects} />
+                        <StatisticsFinish seconds={seconds} minutes={minutes} questions={questions} corrects={corrects} points={points} />
                 }
                 <ActionsFinish areErrors={corrects < questions} showErrors={showErrors} continueHome={continueHome} />
             </View>

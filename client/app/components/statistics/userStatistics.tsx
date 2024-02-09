@@ -12,7 +12,7 @@ const UserStatistics = ({ user, games }: UserStatisticsPropsType) => {
     return (
         <View style={homeStyles.containerUserStatistics}>
             <Profile user={user} />
-            <MainStatistics games={games} />
+            <MainStatistics games={games} user={user} />
         </View>
     )
 }

@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 
 import { IUser } from '../../interface/User'
 
@@ -14,13 +14,13 @@ const UsersRanking = ({ user, navigation }: UsersRankingPropsType) => {
     <View style={playStyles.containerUsersRanking}>
       {
         user.users.ranking?.length! > 0 ? (
-          <>
+          <ScrollView style={{ width: '100%' }}>
             {
               user.users.ranking?.map((u: IUser, index: number) => {
                 return <UserRank user={u} index={index} navigation={navigation} token={user.user.token!} key={u._id} />
               })
             }
-          </>
+          </ScrollView>
         ) : (
           <Text style={playStyles.positionText}>No hay usuarios en la clasificación</Text>
         )

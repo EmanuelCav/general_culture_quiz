@@ -161,8 +161,10 @@ export type MenuPlayPropsType = {
 export type StatisticsGamePropsType = {
     seconds: number;
     minutes: number;
-    setSeconds: (seconds: number) => void,
-    setMinutes: (minutes: number) => void,
+    setSeconds: (seconds: number) => void;
+    setMinutes: (minutes: number) => void;
+    setTotalSeconds: (totalSeconds: number) => void;
+    totalSeconds: number;
     numberQuestion: number;
     questions: number;
     realSeconds: number;
@@ -178,6 +180,8 @@ export type TimePropsType = {
     minutes: number;
     setSeconds: (seconds: number) => void;
     setMinutes: (minutes: number) => void;
+    setTotalSeconds: (totalSeconds: number) => void;
+    totalSeconds: number;
     realSeconds: number;
     realMinutes: number;
     isCorrect: boolean;
@@ -205,6 +209,7 @@ export type FinishPropsType = {
     showErrors: () => void;
     continueHome: () => void;
     isGameError: boolean;
+    points: number
 }
 
 export type OptionsPropsTypes = {
@@ -218,6 +223,7 @@ export type StatisticsFinishPropsType = {
     minutes: number;
     questions: number;
     corrects: number;
+    points: number;
 }
 
 export type ActionsFinishPropsType = {
@@ -262,4 +268,9 @@ export type ActionsMediaPropsType = {
     func: () => void;
     user: IUserInfo;
     isSound: boolean;
+}
+
+export type MainStatisticsPropsType = {
+    user: IUser;
+    games: IGame[];
 }
