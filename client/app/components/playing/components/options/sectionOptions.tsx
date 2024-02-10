@@ -4,14 +4,17 @@ import { playingStyles } from '../../../../styles/playing.styles'
 
 import Option from './option'
 
-import { SectionOptionsPropsTypes } from '../../../../types/props.types'
+import { OptionsPropsTypes } from '../../../../types/props.types'
 
-const SectionOptions = ({ options, amountOptions, nextQuestion }: SectionOptionsPropsTypes) => {
+import { helpsOptions } from '../../../../helper/playing'
+
+const SectionOptions = ({ options, amountOptions, nextQuestion, isHelped, question, optionsHelped }: OptionsPropsTypes) => {
     return (
         <View style={playingStyles.containerSectionOptions}>
             {
                 options.map((option: string, index: number) => {
-                    return <Option option={option} nextQuestion={nextQuestion} key={index} amountOptions={amountOptions} />
+                    return <Option option={option} disabled={isHelped ? optionsHelped.includes(option) : false}
+                        nextQuestion={nextQuestion} key={index} amountOptions={amountOptions} />
                 })
             }
         </View>

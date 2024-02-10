@@ -5,7 +5,8 @@ import { BackHandler, View } from 'react-native'
 import { generalStyles } from '../styles/general.styles'
 
 import { userInfo } from '../server/reducers/user.reducer'
-import { correctStatisticApi, countStatisticApi } from '../server/api/user.api'
+import { correctStatisticApi, countStatisticApi, helpsApi } from '../server/api/user.api'
+import { experienceAction } from '../server/actions/user.actions'
 
 import Question from '../components/playing/question'
 import StatisticsGame from '../components/playing/statisticsGame'
@@ -18,10 +19,10 @@ import { IReducer } from '../interface/General'
 import { IQuestion } from '../interface/Game'
 import { IPointsData } from '../interface/User'
 import { StackNavigation } from '../types/props.types'
+import { HelpType } from '../types/key.type'
 
 import { selector } from '../helper/selector'
-import { generateOptions, getStatisticId } from '../helper/playing'
-import { experienceAction } from '../server/actions/user.actions'
+import { generateOptions, getStatisticId, helpsOptions } from '../helper/playing'
 
 const Playing = ({ navigation }: { navigation: StackNavigation }) => {
 
@@ -52,11 +53,16 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
   const [isPreFinish, setIsPreFinish] = useState<boolean>(false)
   const [isFinish, setIsFinish] = useState<boolean>(false)
   const [isGameError, setIsGameError] = useState<boolean>(false)
+  const [isHelped, setIsHelped] = useState<boolean>(false)
+  const [isAdd, setIsAdd] = useState<boolean>(false)
+
+  const [helpType, setHelpType] = useState<HelpType>('help')
 
   const [errors, setErrors] = useState<IQuestion[]>([])
   const [gameErrors, setGameErrors] = useState<IQuestion[]>([])
 
   const [options, setOptions] = useState<string[]>(generateOptions(game.game.questions![numberQuestion].options, user.user.user?.amountOptions!))
+  const [optionsHelped, setOptionsHelped] = useState<string[]>(helpsOptions(options, game.game.questions![numberQuestion], user.user.user?.amountOptions!))
 
   const nextQuestion = (value: string) => {
 
@@ -97,6 +103,7 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
   const continueGame = () => {
     setIsCorrect(false)
     setIsIncorrect(false)
+    setIsHelped(false)
     setRealSeconds(0)
     setRealMinutes(0)
 
@@ -126,7 +133,9 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
     setNumberQuestion(0)
     setCorrects(0)
     setGameErrors(errors)
+    setIsHelped(false)
     setErrors([])
+    setOptionsHelped([])
   }
 
   const continueHome = () => {
@@ -150,10 +159,29 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
     dispatch(userInfo(data))
   }
 
+  const changeHelp = async (type: HelpType) => {
+    setIsHelped(true)
+    setHelpType(type)
+
+    if (type === 'add') {
+      setIsAdd(true)
+    }
+  }
+
+  const handleHelp = async (type: HelpType) => {
+    const { data } = await helpsApi(type, user.user.token!)
+    dispatch(userInfo(data))
+  }
+
   useEffect(() => {
     if (!isGameError) {
       countQuestion()
+      setOptionsHelped(helpsOptions(options, game.game.questions![numberQuestion], user.user.user?.amountOptions!))
+
+      return
     }
+
+    setOptionsHelped(helpsOptions(options, gameErrors[numberQuestion], user.user.user?.amountOptions!))
   }, [numberQuestion])
 
   useEffect(() => {
@@ -173,29 +201,31 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
     }
   }, [points])
 
+  useEffect(() => {
+    if (isHelped) {
+      handleHelp(helpType)
+    }
+  }, [isHelped])
 
   return (
     <View style={generalStyles.containerGeneral}>
       <Question question={!isGameError ? game.game.questions![numberQuestion] : gameErrors[numberQuestion]} />
-      {
-        !isGameError &&
-        <StatisticsGame minutes={minutes} seconds={seconds} setSeconds={setSeconds} setMinutes={setMinutes} setTotalSeconds={setTotalSeconds} totalSeconds={totalSeconds}
-          questions={game.game.questions!.length} numberQuestion={numberQuestion + 1} realSeconds={realSeconds} realMinutes={realMinutes}
-          isCorrect={isCorrect} isIncorrect={isIncorrect} isFinish={isFinish} isPreFinish={isPreFinish}
-        />
-      }
+      <StatisticsGame minutes={minutes} seconds={seconds} setSeconds={setSeconds} setMinutes={setMinutes} setTotalSeconds={setTotalSeconds} totalSeconds={totalSeconds}
+        questions={game.game.questions!.length} numberQuestion={numberQuestion + 1} realSeconds={realSeconds} realMinutes={realMinutes} isGameError={isGameError}
+        isCorrect={isCorrect} isIncorrect={isIncorrect} isFinish={isFinish} isPreFinish={isPreFinish} helps={user.user.user?.helps!} isHelped={isHelped} changeHelp={changeHelp}
+      />
       {
         (isCorrect || isIncorrect) ?
           <Answer answer={isCorrect} correctAnswer={!isGameError ? game.game.questions![numberQuestion].answer : gameErrors[numberQuestion].answer} continueGame={continueGame} />
-          :
-          <OptionsGame options={options} nextQuestion={nextQuestion} amountOptions={user.user.user?.amountOptions!} />
+          : <OptionsGame options={options} nextQuestion={nextQuestion} amountOptions={user.user.user?.amountOptions!} isHelped={isHelped}
+            question={!isGameError ? game.game.questions![numberQuestion] : gameErrors[numberQuestion]} optionsHelped={optionsHelped} />
       }
       {
         isPreFinish && <PreFinish preFinish={preFinish} />
       }
       {
         isFinish && <Finish seconds={realSeconds} minutes={realMinutes} corrects={corrects} questions={!isGameError ? game.game.questions!.length : gameErrors.length}
-          showErrors={showErrors} continueHome={continueHome} isGameError={isGameError} points={points} />
+          showErrors={showErrors} continueHome={continueHome} isGameError={isGameError} points={points} changeHelp={changeHelp} isAdd={isAdd} />
       }
     </View>
   )

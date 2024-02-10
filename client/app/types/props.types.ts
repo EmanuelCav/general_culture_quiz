@@ -4,8 +4,8 @@ import { RouteProp } from "@react-navigation/native";
 import { Dispatch } from "@reduxjs/toolkit";
 
 import { ICountryRank, IOptionUser, IStatistic, IUser, IUserInfo, IUserReducer } from "../interface/User";
-import { IGame } from "../interface/Game";
-import { RankingDateType, RankingTextType } from "./key.type";
+import { IGame, IQuestion } from "../interface/Game";
+import { HelpType, RankingDateType, RankingTextType } from "./key.type";
 
 type RouteTypes = {
     Home: undefined;
@@ -179,6 +179,10 @@ export type StatisticsGamePropsType = {
     isIncorrect: boolean;
     isFinish: boolean;
     isPreFinish: boolean;
+    helps: number;
+    isHelped: boolean;
+    changeHelp: (type: HelpType) => void;
+    isGameError: boolean;
 }
 
 export type TimePropsType = {
@@ -215,13 +219,18 @@ export type FinishPropsType = {
     showErrors: () => void;
     continueHome: () => void;
     isGameError: boolean;
-    points: number
+    points: number;
+    changeHelp: (type: HelpType) => void;
+    isAdd: boolean;
 }
 
 export type OptionsPropsTypes = {
-    options: string[]
+    options: string[];
     amountOptions: number;
     nextQuestion: (value: string) => void;
+    isHelped: boolean;
+    question: IQuestion;
+    optionsHelped: string[];
 }
 
 export type StatisticsFinishPropsType = {
@@ -238,16 +247,11 @@ export type ActionsFinishPropsType = {
     continueHome: () => void;
 }
 
-export type SectionOptionsPropsTypes = {
-    options: string[]
-    amountOptions: number;
-    nextQuestion: (value: string) => void;
-}
-
 export type OptionPropsTypes = {
     option: string;
     amountOptions: number;
     nextQuestion: (value: string) => void;
+    disabled: boolean;
 }
 
 export type PositionPropsType = {
@@ -292,4 +296,10 @@ export type CountryRankPropsType = {
     index: number;
     country: ICountryRank;
     userLoggedIn: IUser;
+}
+
+export type HelpPropsType = {
+    helps: number;
+    isAnswered: boolean;
+    changeHelp: (type: HelpType) => void;
 }

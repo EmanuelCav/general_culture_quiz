@@ -1,4 +1,4 @@
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import { useEffect } from 'react'
 
 import { TimePropsType } from '../../../../types/props.types'
@@ -31,11 +31,13 @@ const Time = ({ seconds, minutes, setSeconds, setMinutes, setTotalSeconds, total
     }, [seconds, realSeconds])
 
     return (
-        <Text style={playingStyles.textStatisticGame}>
-            {(realMinutes > 0 ? realMinutes : minutes) < 10 ? `0${(realMinutes > 0) ? realMinutes : (minutes === 60) ? 0 : minutes}` : (realMinutes > 0) ? realMinutes : (minutes === 60) ? 0 : minutes}
-            :
-            {(realSeconds > 0 ? realSeconds : seconds) < 10 ? `0${(realSeconds > 0) ? realSeconds : (seconds === 60) ? 0 : seconds}` : (realSeconds > 0) ? realSeconds : (seconds === 60) ? 0 : seconds}
-        </Text>
+        <View style={{ width: '42%' }}>
+            <Text style={playingStyles.textStatisticGame}>
+                {(realMinutes > 0 ? realMinutes : minutes) < 10 ? `0${(realMinutes > 0) ? realMinutes : (minutes === 60) ? 0 : minutes}` : (realMinutes > 0) ? realMinutes : (minutes === 60) ? 0 : minutes}
+                :
+                {(realSeconds > 0 ? realSeconds : seconds) < 10 ? `0${(realSeconds > 0) ? realSeconds : (seconds === 60) ? 0 : seconds}` : (realSeconds > 0) ? realSeconds : (seconds === 60) ? 0 : seconds}
+            </Text>
+        </View>
     )
 }
 

@@ -25,7 +25,8 @@ export const playingStyles = StyleSheet.create({
     textStatisticGame: {
         fontSize: Dimensions.get("window").height / 41,
         color: '#ffffff',
-        fontWeight: '500'
+        fontWeight: '500',
+        textAlign: 'center'
     },
 
     containerAnswer: {
@@ -168,5 +169,21 @@ export const playingStyles = StyleSheet.create({
         color: '#ffffff',
         fontWeight: '500'
     },
+
+    containerHelpsAdd: {
+        width: '35%',
+        borderRadius: 8,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        padding: Dimensions.get("window").height / 106,
+        marginTop: Dimensions.get("window").height / 92
+    },
+
+    containHelpText: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 
 })

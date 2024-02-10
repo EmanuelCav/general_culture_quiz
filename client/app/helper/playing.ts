@@ -1,3 +1,4 @@
+import { IQuestion } from "../interface/Game"
 import { IStatistic } from "../interface/User"
 
 export const generateOptions = (options: string[], amountOptions: number): string[] => {
@@ -25,6 +26,14 @@ export const getStatisticId = (statistics: IStatistic[], category: string): stri
     const statistic = statistics.find((s) => s.category.category === category)
 
     return statistic?._id!
+
+}
+
+export const helpsOptions = (options: string[], question: IQuestion, amountOptions: number): string[] => {
+
+    const optionsFiltered = shuffle(options.filter(o => o !== question.answer)).slice(0, amountOptions / 2)
+
+    return optionsFiltered
 
 }
 

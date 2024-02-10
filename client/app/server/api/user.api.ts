@@ -1,7 +1,7 @@
 import { api } from './api';
 
 import { IAuthLoginData, IOptionUser, IPointsData } from '../../interface/User';
-import { RankingDateType } from '../../types/key.type';
+import { HelpType, RankingDateType } from '../../types/key.type';
 
 export const firstTimeApi = async () => {
 
@@ -140,6 +140,16 @@ export const updateExperienceApi = async (pointsData: IPointsData, token: string
 export const countryRankingApi = async (date: string, token: string) => {
 
     return await api.get(`/users/country/${date}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+}
+
+export const helpsApi = async (type: HelpType, token: string) => {
+
+    return await api.put(`/users/helps/${type}`, null, {
         headers: {
             Authorization: `Bearer ${token}`
         }

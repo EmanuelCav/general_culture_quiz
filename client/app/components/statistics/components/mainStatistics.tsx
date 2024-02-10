@@ -16,7 +16,6 @@ const MainStatistics = ({ games, user }: MainStatisticsPropsType) => {
             <StatisticData text='Mejor puntuación:' data={`${user.points?.bestPuntuation}xp`} />
             <StatisticData text='Cantidad de preguntas:' data={amountQuestions(games)} />
             <StatisticData text='Respuestas correctas:' data={`${amountCorrects(games)} (${games.length > 0 ? ((100 * amountCorrects(games)) / amountQuestions(games)).toFixed(2) : (0)}%)`} />
-            <StatisticData text='Categoria favotira:' data={'Geografia'} />
         </View>
     )
 }

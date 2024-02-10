@@ -179,6 +179,19 @@ export const playStyles = StyleSheet.create({
     positionText: {
         color: '#ffffff',
         fontSize: Dimensions.get("window").height / 46
+    },
+
+    buttonHelp: {
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        flexDirection: 'row',
+        padding: Dimensions.get("window").height / 123,
+        borderRadius: 8
+    },
+
+    helpText: {
+        fontSize: Dimensions.get("window").height / 41,
+        color: '#FF8C00'
     }
 
 })
