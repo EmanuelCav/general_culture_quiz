@@ -6,12 +6,14 @@ import Labels from '../components/settings/labels'
 import ButtonAccept from '../components/components/buttonAccept'
 import UserSettings from '../components/settings/userSettings'
 import Auth from '../components/settings/auth'
+import CountryScreen from '../components/settings/countryScreen'
 
 import { userInfo } from '../server/reducers/user.reducer'
-import { isImageApi, isSoundsApi } from '../server/api/user.api'
+import { countriesApi, countryApi, isImageApi, isSoundsApi } from '../server/api/user.api'
 
 import { generalStyles } from '../styles/general.styles'
 
+import { ICountry } from '../interface/User'
 import { StackNavigation } from '../types/props.types'
 
 import { IReducer } from '../interface/General'
@@ -24,6 +26,9 @@ const Settings = ({ navigation }: { navigation: StackNavigation }) => {
 
   const [isAuthLogin, setIsAuthLogin] = useState<boolean>(false)
   const [isRegister, setIsRegister] = useState<boolean>(false)
+  const [isCountry, setIsCountry] = useState<boolean>(false)
+
+  const [countries, setCountries] = useState<ICountry[]>([])
 
   const dispatch = useDispatch()
 
@@ -41,6 +46,20 @@ const Settings = ({ navigation }: { navigation: StackNavigation }) => {
     dispatch(userInfo(data))
   }
 
+  const changeCountry = async () => {
+    if (!isCountry) {
+      const { data } = await countriesApi(user.user.token!)
+      setCountries(data)
+    }
+
+    setIsCountry(!isCountry)
+  }
+
+  const updateCountry = async (id: string) => {
+    const { data } = await countryApi(id, user.user.token!)
+    dispatch(userInfo(data))
+  }
+
   const authAction = (value: boolean) => {
     setIsRegister(value)
   }
@@ -50,7 +69,10 @@ const Settings = ({ navigation }: { navigation: StackNavigation }) => {
       {
         isAuthLogin && <Auth navigation={navigation} dispatch={dispatch} setIsAuthLogin={setIsAuthLogin} token={user.user.token!} isRegister={isRegister} />
       }
-      <Labels user={user.user} />
+      {
+        isCountry && <CountryScreen countries={countries} changeCountry={changeCountry} user={user.user} updateCountry={updateCountry} />
+      }
+      <Labels user={user.user} changeCountry={changeCountry} />
       <UserSettings setIsAuthLogin={setIsAuthLogin} user={user.user} changeImage={changeImage} changeSound={changeSound} authAction={authAction} />
       <ButtonAccept text='ACEPTAR' func={goBack} isCategory={false} />
     </View>

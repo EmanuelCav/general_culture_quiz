@@ -706,3 +706,39 @@ export const updateHelps = async (req: Request, res: Response): Promise<Response
     }
 
 }
+
+export const updateCountry = async (req: Request, res: Response): Promise<Response> => {
+
+    const { id } = req.params
+
+    try {
+
+        const country = await Country.findById(id)
+
+        if(!country) {
+            return res.status(400).json({ message: "Country does not exists" })
+        }
+
+        const userUpdated = await User.findByIdAndUpdate(req.user, {
+            country: id
+        }, {
+            new: true
+        })
+            .select("-code -role")
+            .populate({
+                path: "statistics",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate("country")
+            .populate("language")
+            .populate("points")
+
+        return res.status(200).json(userUpdated)
+
+    } catch (error) {
+        throw error
+    }
+
+}

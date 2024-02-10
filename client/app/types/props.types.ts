@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteProp } from "@react-navigation/native";
 import { Dispatch } from "@reduxjs/toolkit";
 
-import { ICountryRank, IOptionUser, IStatistic, IUser, IUserInfo, IUserReducer } from "../interface/User";
+import { ICountry, ICountryRank, IOptionUser, IStatistic, IUser, IUserInfo, IUserReducer } from "../interface/User";
 import { IGame, IQuestion } from "../interface/Game";
 import { HelpType, RankingDateType, RankingTextType } from "./key.type";
 
@@ -302,4 +302,28 @@ export type HelpPropsType = {
     helps: number;
     isAnswered: boolean;
     changeHelp: (type: HelpType) => void;
+}
+
+export type LabelsPropsType = {
+    changeCountry: () => void;
+    user: IUserInfo;
+}
+
+export type LabelPropsType = {
+    func: () => void;
+    label: string;
+    text: string;
+}
+
+export type CountryScreenPropsType = {
+    countries: ICountry[];
+    changeCountry: () => void;
+    user: IUserInfo;
+    updateCountry: (id: string) => void;
+}
+
+export type ViewCountryPropsType = {
+    country: ICountry;
+    user: IUserInfo;
+    updateCountry: (id: string) => void;
 }

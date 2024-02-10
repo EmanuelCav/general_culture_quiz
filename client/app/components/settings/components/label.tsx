@@ -2,15 +2,17 @@ import { View, Text, Pressable } from 'react-native';
 
 import { homeStyles } from '../../../styles/home.styles';
 
-const Label = ({ text }: { text: string }) => {
+import { LabelPropsType } from '../../../types/props.types';
+
+const Label = ({ text, func, label }: LabelPropsType) => {
     return (
         <View style={homeStyles.containerLabel}>
-            <Text style={homeStyles.titleLabel}>{text}</Text>
+            <Text style={homeStyles.titleLabel}>{label}</Text>
             <Pressable style={({ pressed }) => [
                 {
                     backgroundColor: pressed ? '#ffa420' : '#ffffff'
-                }, homeStyles.label]}>
-                <Text style={homeStyles.textLabel}>Pais</Text>
+                }, homeStyles.label]} onPress={func}>
+                <Text style={homeStyles.textLabel}>{text}</Text>
             </Pressable>
         </View>
     )

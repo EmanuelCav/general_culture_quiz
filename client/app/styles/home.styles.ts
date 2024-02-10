@@ -239,6 +239,27 @@ export const homeStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row'
+    },
+
+    containCountryScreen: {
+        width: '100%',
+        padding: Dimensions.get("window").height / 148,
+        flex: 1,
+        backgroundColor: '#ffffff',
+        borderWidth: 2,
+        borderColor: '#FF8C00',
+        borderStyle: 'solid'
+    },
+
+    containerCountry: {
+        borderWidth: 1,
+        borderColor: '#ffffff',
+        borderStyle: 'solid',
+        width: '100%',
+        padding: Dimensions.get("window").height / 106,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        flexDirection: 'row',
     }
 
 })

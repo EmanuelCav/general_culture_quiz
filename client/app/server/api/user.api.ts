@@ -156,3 +156,23 @@ export const helpsApi = async (type: HelpType, token: string) => {
     })
 
 }
+
+export const countriesApi = async (token: string) => {
+
+    return await api.get('/countries', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+}
+
+export const countryApi = async (id: string, token: string) => {
+
+    return await api.put(`/users/country/${id}`, null, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+}

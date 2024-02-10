@@ -4,13 +4,13 @@ import { homeStyles } from '../../styles/home.styles';
 
 import Label from './components/label';
 
-import { IUserInfo } from '../../interface/User';
+import { LabelsPropsType } from '../../types/props.types';
 
-const Labels = ({ user }: { user: IUserInfo }) => {
+const Labels = ({ user, changeCountry }: LabelsPropsType) => {
     return (
         <View style={homeStyles.containerLabels}>
-            <Label text='Selecciona un país' />
-            <Label text='Selecciona un idioma' />
+            <Label label='Selecciona un país' func={changeCountry} text={user.user?.country?.name!} />
+            <Label label='Selecciona un idioma' func={() => console.log("ddfs")} text='Próximamente' />
         </View>
     )
 }

@@ -28,5 +28,6 @@ router.put('/users/sounds', auth, userCtrl.changeIsSound)
 router.put('/users/register', auth, registerValid, userCtrl.registerUser)
 router.put('/users/experience', auth, userCtrl.updateExperience)
 router.put('/users/helps/:type', auth, userCtrl.updateHelps)
+router.put('/users/country/:id', auth, userCtrl.updateCountry)
 
 export default router

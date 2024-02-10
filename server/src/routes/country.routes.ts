@@ -9,8 +9,12 @@ import access from '../middleware/auth/access';
 
 const router = Router()
 
-router.get('/countries', countryCtrl.countries)
+router.get('/countries', auth, countryCtrl.countries)
 
 router.post('/countries', [auth, access], countryValid, countryCtrl.createCountry)
+
+router.delete('/countries/:id', [auth, access], countryCtrl.removeCountry)
+
+router.put('/countries/:id', [auth, access], countryCtrl.updateCountry)
 
 export default router
