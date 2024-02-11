@@ -145,6 +145,12 @@ export const homeStyles = StyleSheet.create({
         width: '100%'
     },
 
+    textMessage: {
+        color: '#ffffff',
+        fontSize: Dimensions.get("window").height / 46,
+        textAlign: 'center'
+    },
+
     containerTitleAuth: {
         width: '100%'
     },

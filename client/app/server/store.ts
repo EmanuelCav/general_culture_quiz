@@ -2,11 +2,12 @@ import { Tuple, configureStore } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import { thunk } from 'redux-thunk';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NODE_ENV, EXPO_STORE_KEY } from '@env'
 
 import reducers from './reducers/reducer';
 
 const persistedReducer = persistReducer({
-    key: "general_culture_k",
+    key: `${EXPO_STORE_KEY}`,
     version: 1,
     storage: AsyncStorage
 }, reducers)
@@ -14,6 +15,6 @@ const persistedReducer = persistReducer({
 export const store = configureStore({
     reducer: persistedReducer,
     middleware: () => new Tuple(thunk),
-    devTools: process.env.NODE_ENV !== 'production'
+    devTools: NODE_ENV !== 'production'
 })
 

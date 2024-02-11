@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { BackHandler, View } from 'react-native'
+import { InterstitialAd, AdEventType, TestIds } from 'react-native-google-mobile-ads';
+import { EXPO_INTERSTICIAL } from '@env';
 
 import { generalStyles } from '../styles/general.styles'
 
@@ -23,6 +25,12 @@ import { HelpType } from '../types/key.type'
 
 import { selector } from '../helper/selector'
 import { generateOptions, getStatisticId, helpsOptions } from '../helper/playing'
+
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : `${EXPO_INTERSTICIAL}`;
+
+const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
+  keywords: ['fashion', 'clothing'],
+});
 
 const Playing = ({ navigation }: { navigation: StackNavigation }) => {
 
@@ -139,6 +147,7 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
   }
 
   const continueHome = () => {
+    interstitial.show()
     navigation.navigate('Home')
   }
 
@@ -172,6 +181,16 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
     const { data } = await helpsApi(type, user.user.token!)
     dispatch(userInfo(data))
   }
+
+  useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+      console.log("Loading add");
+    });
+
+    interstitial.load();
+
+    return unsubscribe;
+  }, []);
 
   useEffect(() => {
     if (!isGameError) {

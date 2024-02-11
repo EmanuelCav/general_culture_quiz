@@ -5,12 +5,16 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "jsx": "react-native",
     "lib": ["es6"],
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
-    "target": "ES2017"
+    "target": "ES2017",
+    "outDir": "build",
+    "jsx": "react-jsx",
+    "typeRoots": ["/types"],
   },
   "exclude": ["node_modules"],
+  "include": ["app"],
+  "files": ["types/env.d.ts"]
 }

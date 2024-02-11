@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { IAuthLoginData } from '../../interface/User';
 import { AuthPropsType } from '../../types/props.types';
@@ -43,7 +43,8 @@ const Auth = ({ navigation, dispatch, token, setIsAuthLogin, isRegister }: AuthP
             dispatch(registerUserAction({
                 navigation,
                 userData,
-                token
+                token,
+                setMessage
             }) as any)
             
             return
@@ -51,7 +52,8 @@ const Auth = ({ navigation, dispatch, token, setIsAuthLogin, isRegister }: AuthP
 
         dispatch(authLoginAction({
             navigation,
-            userData
+            userData,
+            setMessage
         }) as any)
     }
 
@@ -62,6 +64,7 @@ const Auth = ({ navigation, dispatch, token, setIsAuthLogin, isRegister }: AuthP
     return (
         <View style={homeStyles.containerAuth}>
             <View style={homeStyles.containerFormAuth}>
+                <Text style={homeStyles.textMessage}>{message.length > 0 && message}</Text>
                 <Input label='Nombre de usuario' value={nickname} onChange={handleChangeNickname} maxLength={16} />
                 <Input label='Código de entrada' value={code} onChange={handleChangePassword} maxLength={32} />
                 <ButtonAuth text='ACEPTAR' func={handleSumbit} />

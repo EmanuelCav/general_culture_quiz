@@ -7,7 +7,10 @@ export const generalStyles = StyleSheet.create({
     },
 
     containerBanner: {
-        height: '15%'
+        height: '15%',
+        width: '100%',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
     },
 
     buttonAccept: {
@@ -67,7 +70,9 @@ export const generalStyles = StyleSheet.create({
         width: Dimensions.get("window").width,
         height: Dimensions.get("window").height,
         backgroundColor: '#ffffff',
-        zIndex: 20
+        zIndex: 20,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 
 })

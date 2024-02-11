@@ -35,12 +35,14 @@ export type CategoryAllActionPropsType = {
 export type AuthLoginActionPropsType = {
     userData: IAuthLoginData;
     navigation: StackNavigation;
+    setMessage: (message: string) => void;
 }
 
 export type RegisterUserActionPropsType = {
     userData: IAuthLoginData;
     navigation: StackNavigation;
     token: string;
+    setMessage: (message: string) => void;
 }
 
 export type ExperienceActionPropsType = {

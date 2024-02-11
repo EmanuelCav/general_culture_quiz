@@ -123,8 +123,8 @@ export const authLoginAction = createAsyncThunk('users/authlogin', async (userDa
 
         userData.navigation.navigate('Home')
 
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        userData.setMessage(error.response.data.message)
     }
 
 })
@@ -139,8 +139,8 @@ export const registerUserAction = createAsyncThunk('users/register', async (user
 
         userData.navigation.navigate('Home')
 
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        userData.setMessage(error.response.data.message)
     }
 
 })
