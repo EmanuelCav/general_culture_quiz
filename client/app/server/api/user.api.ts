@@ -176,3 +176,13 @@ export const countryApi = async (id: string, token: string) => {
     })
 
 }
+
+export const dateApi = async (token: string) => {
+
+    return await api.put('/users/getdate', null, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+}

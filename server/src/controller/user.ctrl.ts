@@ -742,3 +742,44 @@ export const updateCountry = async (req: Request, res: Response): Promise<Respon
     }
 
 }
+
+export const getDate = async (req: Request, res: Response): Promise<Response> => {
+
+    try {
+
+        const time = new Date(new Date().setHours(new Date().getHours() - 3)).toISOString().split("T")[0].split("-")
+
+        if (time[1] === "01" && time[2] === "01") {
+
+            await Experience.updateMany({
+                day: 0,
+                month: 0,
+                year: 0
+            })
+
+            return res.status(200).json({ message: "Year points updated" })
+
+        }
+
+        if (time[2] === "01") {
+
+            await Experience.updateMany({
+                day: 0,
+                month: 0
+            })
+
+            return res.status(200).json({ message: "Month points updated" })
+
+        }
+
+        await await Experience.updateMany({
+            day: 0
+        })
+
+        return res.status(200).json({ message: "Day points updated" })
+
+    } catch (error) {
+        throw error
+    }
+
+}

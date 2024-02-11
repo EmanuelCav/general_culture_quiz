@@ -69,7 +69,7 @@ export const generalStyles = StyleSheet.create({
         left: 0,
         width: Dimensions.get("window").width,
         height: Dimensions.get("window").height,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#FF8C00',
         zIndex: 20,
         justifyContent: 'center',
         alignItems: 'center'

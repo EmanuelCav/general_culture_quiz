@@ -41,6 +41,7 @@ export type ButtonAcceptPropsType = {
 export type ButtonMenuPropsType = {
     func: () => void;
     text: string;
+    isConnection: boolean;
 }
 
 export type ButtonAuthPropsType = {
@@ -86,6 +87,9 @@ export type MenuPropsType = {
     navigation: StackNavigation;
     user: IUserReducer;
     dispatch: Dispatch;
+    isConnection: boolean;
+    setIsChangeView: (isChangeView: boolean) => void;
+    isChangeView: boolean;
 }
 
 export type UserStatisticsPropsType = {
@@ -162,6 +166,9 @@ export type MenuPlayPropsType = {
     navigation: StackNavigation;
     user: IUserInfo;
     dispatch: Dispatch;
+    isConnection: boolean;
+    setIsChangeView: (isChangeView: boolean) => void;
+    isChangeView: boolean;
 }
 
 export type StatisticsGamePropsType = {
@@ -229,7 +236,6 @@ export type OptionsPropsTypes = {
     amountOptions: number;
     nextQuestion: (value: string) => void;
     isHelped: boolean;
-    question: IQuestion;
     optionsHelped: string[];
 }
 

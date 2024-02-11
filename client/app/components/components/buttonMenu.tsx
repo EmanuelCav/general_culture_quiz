@@ -4,15 +4,16 @@ import { ButtonMenuPropsType } from '../../types/props.types'
 
 import { generalStyles } from '../../styles/general.styles'
 
-const ButtonMenu = ({ func, text }: ButtonMenuPropsType) => {
+const ButtonMenu = ({ func, text, isConnection }: ButtonMenuPropsType) => {
   return (
-    <Pressable style={({pressed}) => [
+    <Pressable style={({ pressed }) => [
       {
         backgroundColor: pressed ? '#ffa420' : '#FF8C00',
+        opacity: isConnection ? 1 : .5
       },
       generalStyles.buttonMenu
-    ]} onPress={func}>
-        <Text style={generalStyles.buttonMenuText}>{text}</Text>
+    ]} onPress={func} disabled={!isConnection}>
+      <Text style={generalStyles.buttonMenuText}>{text}</Text>
     </Pressable>
   )
 }

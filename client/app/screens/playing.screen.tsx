@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { BackHandler, View } from 'react-native'
-import { InterstitialAd, AdEventType, TestIds } from 'react-native-google-mobile-ads';
-import { EXPO_INTERSTICIAL } from '@env';
+// import { InterstitialAd, AdEventType, TestIds } from 'react-native-google-mobile-ads';
+// import { EXPO_INTERSTICIAL } from '@env';
+import { fetch } from "@react-native-community/netinfo";
 
 import { generalStyles } from '../styles/general.styles'
 
@@ -26,11 +27,11 @@ import { HelpType } from '../types/key.type'
 import { selector } from '../helper/selector'
 import { generateOptions, getStatisticId, helpsOptions } from '../helper/playing'
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : `${EXPO_INTERSTICIAL}`;
+// const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : `${EXPO_INTERSTICIAL}`;
 
-const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-  keywords: ['fashion', 'clothing'],
-});
+// const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
+//   keywords: ['fashion', 'clothing'],
+// });
 
 const Playing = ({ navigation }: { navigation: StackNavigation }) => {
 
@@ -63,6 +64,7 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
   const [isGameError, setIsGameError] = useState<boolean>(false)
   const [isHelped, setIsHelped] = useState<boolean>(false)
   const [isAdd, setIsAdd] = useState<boolean>(false)
+  const [isConnection, setIsConnection] = useState<boolean>(true)
 
   const [helpType, setHelpType] = useState<HelpType>('help')
 
@@ -147,7 +149,10 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
   }
 
   const continueHome = () => {
-    interstitial.show()
+    if (isConnection) {
+      // interstitial.show()
+    }
+
     navigation.navigate('Home')
   }
 
@@ -159,13 +164,25 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
   }
 
   const countQuestion = async () => {
-    const { data } = await countStatisticApi(getStatisticId(user.user.user?.statistics!, game.game.questions![numberQuestion].category.category), user.user.token!)
-    dispatch(userInfo(data))
+
+    try {
+      const { data } = await countStatisticApi(getStatisticId(user.user.user?.statistics!, game.game.questions![numberQuestion].category.category), user.user.token!)
+      dispatch(userInfo(data))
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const correctQuestion = async () => {
-    const { data } = await correctStatisticApi(getStatisticId(user.user.user?.statistics!, game.game.questions![numberQuestion].category.category), user.user.token!)
-    dispatch(userInfo(data))
+
+    try {
+
+      const { data } = await correctStatisticApi(getStatisticId(user.user.user?.statistics!, game.game.questions![numberQuestion].category.category), user.user.token!)
+      dispatch(userInfo(data))
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const changeHelp = async (type: HelpType) => {
@@ -178,23 +195,36 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
   }
 
   const handleHelp = async (type: HelpType) => {
-    const { data } = await helpsApi(type, user.user.token!)
-    dispatch(userInfo(data))
+
+    try {
+
+      const { data } = await helpsApi(type, user.user.token!)
+      dispatch(userInfo(data))
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
-    const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
-      console.log("Loading add");
-    });
+    fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
+  }, [isConnection, numberQuestion])
 
-    interstitial.load();
+  // useEffect(() => {
+  //   const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+  //     console.log("Loading add");
+  //   });
 
-    return unsubscribe;
-  }, []);
+  //   interstitial.load();
+
+  //   return unsubscribe;
+  // }, []);
 
   useEffect(() => {
     if (!isGameError) {
-      countQuestion()
+      if(isConnection) {
+        countQuestion()
+      }
       setOptionsHelped(helpsOptions(options, game.game.questions![numberQuestion], user.user.user?.amountOptions!))
 
       return
@@ -204,7 +234,7 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
   }, [numberQuestion])
 
   useEffect(() => {
-    if (isCorrect && !isGameError) {
+    if (isCorrect && !isGameError && isConnection) {
       correctQuestion()
     }
   }, [corrects])
@@ -215,7 +245,7 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
   }, [])
 
   useEffect(() => {
-    if (points !== 0) {
+    if (points !== 0 && isConnection) {
       experienceUser()
     }
   }, [points])
@@ -236,8 +266,7 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
       {
         (isCorrect || isIncorrect) ?
           <Answer answer={isCorrect} correctAnswer={!isGameError ? game.game.questions![numberQuestion].answer : gameErrors[numberQuestion].answer} continueGame={continueGame} />
-          : <OptionsGame options={options} nextQuestion={nextQuestion} amountOptions={user.user.user?.amountOptions!} isHelped={isHelped}
-            question={!isGameError ? game.game.questions![numberQuestion] : gameErrors[numberQuestion]} optionsHelped={optionsHelped} />
+          : <OptionsGame options={options} nextQuestion={nextQuestion} amountOptions={user.user.user?.amountOptions!} isHelped={isHelped} optionsHelped={optionsHelped} />
       }
       {
         isPreFinish && <PreFinish preFinish={preFinish} />

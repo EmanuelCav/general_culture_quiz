@@ -2,9 +2,9 @@ import { Pressable, Text } from 'react-native'
 
 import { playingStyles } from '../../../../styles/playing.styles'
 
-import { ButtonMenuPropsType } from '../../../../types/props.types'
+import { ButtonAuthPropsType } from '../../../../types/props.types'
 
-const ButtonFinish = ({ text, func }: ButtonMenuPropsType) => {
+const ButtonFinish = ({ text, func }: ButtonAuthPropsType) => {
     return (
         <Pressable style={({ pressed }) => [
             {

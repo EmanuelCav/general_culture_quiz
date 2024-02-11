@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { ImageBackground, StyleSheet, Dimensions } from 'react-native'
 
 const Container = ({ children }: { children: ReactNode }) => {

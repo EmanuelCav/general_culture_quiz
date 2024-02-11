@@ -146,7 +146,7 @@ export const homeStyles = StyleSheet.create({
     },
 
     textMessage: {
-        color: '#ffffff',
+        color: '#FF8C00',
         fontSize: Dimensions.get("window").height / 46,
         textAlign: 'center'
     },

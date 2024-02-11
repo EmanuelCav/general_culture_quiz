@@ -6,9 +6,7 @@ import Option from './option'
 
 import { OptionsPropsTypes } from '../../../../types/props.types'
 
-import { helpsOptions } from '../../../../helper/playing'
-
-const SectionOptions = ({ options, amountOptions, nextQuestion, isHelped, question, optionsHelped }: OptionsPropsTypes) => {
+const SectionOptions = ({ options, amountOptions, nextQuestion, isHelped, optionsHelped }: OptionsPropsTypes) => {
     return (
         <View style={playingStyles.containerSectionOptions}>
             {

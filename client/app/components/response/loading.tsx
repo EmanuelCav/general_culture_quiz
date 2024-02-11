@@ -1,4 +1,4 @@
-import { Text, View } from "react-native"
+import { Dimensions, Image, View } from "react-native"
 import { useSelector } from 'react-redux';
 
 import { generalStyles } from "../../styles/general.styles"
@@ -16,7 +16,10 @@ const Loading = () => {
             {
                 response.loading &&
                 <View style={generalStyles.containerLoading}>
-                    <Text>Loading</Text>
+                    <Image source={require('../../../assets/loading.gif')} alt="loading..." style={{
+                        width: Dimensions.get("window").width / 2,
+                        height: Dimensions.get("window").height / 2
+                    }} resizeMode="center" />
                 </View>
             }
         </>

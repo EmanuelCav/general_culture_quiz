@@ -1,3 +1,5 @@
+import React from 'react'
+import { AppRegistry } from 'react-native'
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from 'expo-status-bar';
@@ -42,14 +44,30 @@ export default function App() {
             <Stack.Navigator initialRouteName="Home" screenOptions={{
               headerShown: false
             }}>
-              <Stack.Screen name="Home" component={Home} />
-              <Stack.Screen name="Play" component={Play} />
-              <Stack.Screen name="Categories" component={Categories as any} />
-              <Stack.Screen name="Options" component={Options} />
-              <Stack.Screen name="Playing" component={Playing as any} />
-              <Stack.Screen name="Ranking" component={Ranking} />
-              <Stack.Screen name="Settings" component={Settings} />
-              <Stack.Screen name="Statistics" component={Statistics} />
+              <Stack.Screen name="Home" component={Home} options={{
+                animation: 'fade'
+              }} />
+              <Stack.Screen name="Play" component={Play} options={{
+                animation: 'fade'
+              }} />
+              <Stack.Screen name="Categories" component={Categories as any} options={{
+                animation: 'fade'
+              }} />
+              <Stack.Screen name="Options" component={Options} options={{
+                animation: 'fade'
+              }} />
+              <Stack.Screen name="Playing" component={Playing as any} options={{
+                animation: 'fade'
+              }} />
+              <Stack.Screen name="Ranking" component={Ranking} options={{
+                animation: 'fade'
+              }} />
+              <Stack.Screen name="Settings" component={Settings} options={{
+                animation: 'fade'
+              }} />
+              <Stack.Screen name="Statistics" component={Statistics} options={{
+                animation: 'fade'
+              }} />
             </Stack.Navigator>
           </Container>
         </PersistGate>

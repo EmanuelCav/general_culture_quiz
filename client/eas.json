@@ -12,8 +12,8 @@
     },
     "production": {
       "env": {
-        "EXPO_LOCAL_HOST": "http://localhost:5000",
-        "EXPO_HOST": "http://localhost:5000",
+        "EXPO_LOCAL_HOST": "http://10.0.2.2:5000",
+        "EXPO_HOST": "http://10.0.2.2:5000",
         "EXPO_STORE_KEY": "general_culture_k",
         "EXPO_BANNER": "ca-app-pub-8789796567862358/1431175128",
         "EXPO_INTERSTICIAL": "ca-app-pub-8789796567862358/6727733836",
@@ -22,8 +22,8 @@
     },
     "test": {
       "env": {
-        "EXPO_LOCAL_HOST": "http://localhost:5000",
-        "EXPO_HOST": "http://localhost:5000",
+        "EXPO_LOCAL_HOST": "http://10.0.2.2:5000",
+        "EXPO_HOST": "http://10.0.2.2:5000",
         "EXPO_STORE_KEY": "general_culture_k",
         "EXPO_BANNER": "ca-app-pub-8789796567862358/1431175128",
         "EXPO_INTERSTICIAL": "ca-app-pub-8789796567862358/6727733836",

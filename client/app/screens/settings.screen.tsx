@@ -37,27 +37,56 @@ const Settings = ({ navigation }: { navigation: StackNavigation }) => {
   }
 
   const changeSound = async () => {
-    const { data } = await isSoundsApi(user.user.token!)
-    dispatch(userInfo(data))
+
+    try {
+
+      const { data } = await isSoundsApi(user.user.token!)
+      dispatch(userInfo(data))
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const changeImage = async () => {
-    const { data } = await isImageApi(user.user.token!)
-    dispatch(userInfo(data))
+
+    try {
+
+      const { data } = await isImageApi(user.user.token!)
+      dispatch(userInfo(data))
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const changeCountry = async () => {
-    if (!isCountry) {
-      const { data } = await countriesApi(user.user.token!)
-      setCountries(data)
+
+    try {
+
+      if (!isCountry) {
+        const { data } = await countriesApi(user.user.token!)
+        setCountries(data)
+      }
+
+      setIsCountry(!isCountry)
+
+    } catch (error) {
+      console.log(error);
     }
 
-    setIsCountry(!isCountry)
   }
 
   const updateCountry = async (id: string) => {
-    const { data } = await countryApi(id, user.user.token!)
-    dispatch(userInfo(data))
+
+    try {
+
+      const { data } = await countryApi(id, user.user.token!)
+      dispatch(userInfo(data))
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const authAction = (value: boolean) => {
