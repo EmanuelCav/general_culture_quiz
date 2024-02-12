@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import Statistic from '../models/statistic'
 import User from '../models/user'
+import Game from '../models/game'
 
 export const selectCategory = async (req: Request, res: Response): Promise<Response> => {
 
@@ -115,7 +116,7 @@ export const countCategory = async (req: Request, res: Response): Promise<Respon
 
 export const correctCategory = async (req: Request, res: Response): Promise<Response> => {
 
-    const { id } = req.params
+    const { id, gid } = req.params
 
     try {
 
@@ -125,8 +126,20 @@ export const correctCategory = async (req: Request, res: Response): Promise<Resp
             return res.status(400).json({ message: "Statistic does not exists" })
         }
 
+        const game = await Game.findById(gid)
+
+        if(!game) {
+            return res.status(400).json({ message: "Game does not exists" })
+        }
+
         await Statistic.findByIdAndUpdate(id, {
             corrects: statistic.corrects + 1
+        }, {
+            new: true
+        })
+
+        await Game.findByIdAndUpdate(gid, {
+            corrects: game.corrects + 1
         }, {
             new: true
         })

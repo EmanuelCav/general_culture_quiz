@@ -134,7 +134,8 @@ export const playStyles = StyleSheet.create({
         borderColor: '#ffffff',
         borderWidth: 1,
         borderStyle: 'solid',
-        width: '100%'
+        width: '100%',
+        flex: 1
     },
 
     conntainInfoUserRank: {

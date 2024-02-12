@@ -15,7 +15,7 @@ const ShowCategories = ({ user, dispatch }: ShowCategoriesPropsType) => {
           user.user?.statistics!.map((statistic: IStatistic) => {
             return <Statistic statistic={statistic} dispatch={dispatch} token={user.token!} key={statistic._id} /> 
           })
-          .slice(0, 1)
+          // .slice(0, 1)
         }
     </View>
   )

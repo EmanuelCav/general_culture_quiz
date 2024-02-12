@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { View } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetch } from "@react-native-community/netinfo";
+// import { fetch } from "@react-native-community/netinfo";
 
 import { StackNavigation } from '../types/props.types'
 import { IReducer } from '../interface/General';
@@ -53,12 +53,12 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
   }
 
-  useEffect(() => {
-    fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
-  }, [isConnection, isChangeView])
+  // useEffect(() => {
+  //   fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
+  // }, [isConnection, isChangeView])
 
   useEffect(() => {
-    if (isConnection) {
+    if (isConnection && user.isLoggedIn) {
       getUsers()
     }
   }, [])
@@ -67,6 +67,7 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
     if (isConnection) {
       if (user.isLoggedIn) {
+
         dispatch(loginAction(user.user.user?._id!) as any)
 
         if (isNewDate(new Date(new Date().setHours(new Date().getHours() - 3)).toISOString().split("T")[0], user)) {
@@ -84,9 +85,14 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
   return (
     <View style={generalStyles.containerGeneral}>
-      {/* <Banner /> */}
-      <User user={user.user.user!} />
-      <Menu navigation={navigation} dispatch={dispatch} user={user} isConnection={isConnection} setIsChangeView={setIsChangeView} isChangeView={isChangeView} />
+      {
+        user.isLoggedIn &&
+        <>
+          <Banner />
+          <User user={user.user.user!} />
+          <Menu navigation={navigation} dispatch={dispatch} user={user} isConnection={isConnection} setIsChangeView={setIsChangeView} isChangeView={isChangeView} />
+        </>
+      }
     </View>
   )
 }

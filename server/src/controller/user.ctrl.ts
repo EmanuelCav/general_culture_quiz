@@ -294,7 +294,7 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
 
 export const firstTime = async (req: Request, res: Response): Promise<Response> => {
 
-    try {
+    try {        
 
         const role = await Role.findOne({ role: `${default_role}` })
 
@@ -314,7 +314,7 @@ export const firstTime = async (req: Request, res: Response): Promise<Response> 
             return res.status(400).json({ message: "Language does noe exists" })
         }
 
-        const categories = await Category.find()
+        const categories = await Category.find().sort("createdAt")
 
         const code = await hashCode(generateCode(10))
 

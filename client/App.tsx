@@ -1,5 +1,4 @@
 import React from 'react'
-import { AppRegistry } from 'react-native'
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from 'expo-status-bar';
@@ -16,31 +15,31 @@ import Options from "./app/screens/options.screen";
 import Categories from "./app/screens/categories.screen";
 import Statistics from "./app/screens/statistics.screen";
 import Settings from "./app/screens/settings.screen";
+import Loading from "./app/components/response/loading";
 
 import { store } from './app/server/store';
-import Loading from "./app/components/response/loading";
 
 const Stack = createNativeStackNavigator()
 
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'transparent'
+  },
+};
+
+const persistor = persistStore(store)
+
 export default function App() {
-
-  const theme = {
-    ...DefaultTheme,
-    colors: {
-      ...DefaultTheme.colors,
-      background: 'transparent'
-    },
-  };
-
-  const persistor = persistStore(store)
 
   return (
     <NavigationContainer theme={theme}>
       <Provider store={store}>
         <PersistGate persistor={persistor} loading={null}>
-          <Loading />
           <Container>
-            <StatusBar backgroundColor='#ffffff' style="light" translucent={false} />
+            <Loading />
+            <StatusBar backgroundColor='#FF8C00' style="light" translucent={false} />
             <Stack.Navigator initialRouteName="Home" screenOptions={{
               headerShown: false
             }}>

@@ -72,7 +72,11 @@ export const homeStyles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderBottomColor: '#FF8C00',
+        borderStyle: 'solid',
+        paddingVertical: Dimensions.get("window").height / 148
     },
 
     nickname: {
@@ -105,7 +109,8 @@ export const homeStyles = StyleSheet.create({
         padding: Dimensions.get("window").height / 74,
         borderWidth: 1,
         borderColor: '#FF8C00',
-        borderStyle: 'solid'
+        borderStyle: 'solid',
+        marginVertical: Dimensions.get("window").height / 106
     },
 
     containUser: {

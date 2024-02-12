@@ -15,11 +15,13 @@ const Loading = () => {
         <>
             {
                 response.loading &&
-                <View style={generalStyles.containerLoading}>
-                    <Image source={require('../../../assets/loading.gif')} alt="loading..." style={{
-                        width: Dimensions.get("window").width / 2,
-                        height: Dimensions.get("window").height / 2
-                    }} resizeMode="center" />
+                <View style={generalStyles.contaierMainLoading}>
+                    <View style={generalStyles.containerLoading}>
+                        <Image source={require('../../../assets/loading.gif')} alt="loading..." style={{
+                            width: Dimensions.get("window").width / 2,
+                            height: Dimensions.get("window").height / 2
+                        }} resizeMode="center" />
+                    </View>
                 </View>
             }
         </>

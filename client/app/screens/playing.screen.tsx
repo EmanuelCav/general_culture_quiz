@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { BackHandler, View } from 'react-native'
-// import { InterstitialAd, AdEventType, TestIds } from 'react-native-google-mobile-ads';
-// import { EXPO_INTERSTICIAL } from '@env';
-import { fetch } from "@react-native-community/netinfo";
+import { InterstitialAd, AdEventType, RewardedAd, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
+import { EXPO_INTERSTICIAL, EXPO_RECOMPESADO } from '@env';
+// import { fetch } from "@react-native-community/netinfo";
 
 import { generalStyles } from '../styles/general.styles'
 
@@ -27,11 +27,17 @@ import { HelpType } from '../types/key.type'
 import { selector } from '../helper/selector'
 import { generateOptions, getStatisticId, helpsOptions } from '../helper/playing'
 
-// const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : `${EXPO_INTERSTICIAL}`;
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : `${EXPO_INTERSTICIAL}`;
 
-// const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-//   keywords: ['fashion', 'clothing'],
-// });
+const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
+  keywords: ['fashion', 'clothing'],
+});
+
+const adUnitIdReward = __DEV__ ? TestIds.REWARDED : `${EXPO_RECOMPESADO}`;
+
+const rewarded = RewardedAd.createForAdRequest(adUnitIdReward, {
+  keywords: ['fashion', 'clothing'],
+});
 
 const Playing = ({ navigation }: { navigation: StackNavigation }) => {
 
@@ -150,7 +156,7 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
 
   const continueHome = () => {
     if (isConnection) {
-      // interstitial.show()
+      interstitial.show()
     }
 
     navigation.navigate('Home')
@@ -177,7 +183,7 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
 
     try {
 
-      const { data } = await correctStatisticApi(getStatisticId(user.user.user?.statistics!, game.game.questions![numberQuestion].category.category), user.user.token!)
+      const { data } = await correctStatisticApi(getStatisticId(user.user.user?.statistics!, game.game.questions![numberQuestion].category.category), game.game._id!, user.user.token!)
       dispatch(userInfo(data))
 
     } catch (error) {
@@ -190,6 +196,7 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
     setHelpType(type)
 
     if (type === 'add') {
+      rewarded.show()
       setIsAdd(true)
     }
   }
@@ -206,23 +213,42 @@ const Playing = ({ navigation }: { navigation: StackNavigation }) => {
     }
   }
 
-  useEffect(() => {
-    fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
-  }, [isConnection, numberQuestion])
-
   // useEffect(() => {
-  //   const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
-  //     console.log("Loading add");
-  //   });
+  //   fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
+  // }, [isConnection, numberQuestion])
 
-  //   interstitial.load();
+  useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+      console.log("Loading add");
+    });
 
-  //   return unsubscribe;
-  // }, []);
+    interstitial.load();
+
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
+      console.log("Loading add");
+    });
+    const unsubscribeEarned = rewarded.addAdEventListener(
+      RewardedAdEventType.EARNED_REWARD,
+      reward => {
+        console.log('User earned reward of ', reward);
+      },
+    );
+
+    rewarded.load();
+
+    return () => {
+      unsubscribeLoaded();
+      unsubscribeEarned();
+    };
+  }, []);
 
   useEffect(() => {
     if (!isGameError) {
-      if(isConnection) {
+      if (isConnection) {
         countQuestion()
       }
       setOptionsHelped(helpsOptions(options, game.game.questions![numberQuestion], user.user.user?.amountOptions!))

@@ -5,13 +5,13 @@ import { HelpType, RankingDateType } from '../../types/key.type';
 
 export const firstTimeApi = async () => {
 
-    return await api.post('/users/firsttime', null)
+    return await api.post('/users/firsttime')
 
 }
 
 export const loginApi = async (id: string) => {
 
-    return await api.post(`/users/${id}/login`, null)
+    return await api.post(`/users/${id}/login`)
 
 }
 
@@ -85,9 +85,9 @@ export const countStatisticApi = async (id: string, token: string) => {
 
 }
 
-export const correctStatisticApi = async (id: string, token: string) => {
+export const correctStatisticApi = async (id: string, gid: string, token: string) => {
 
-    return await api.put(`/statistics/${id}/correct`, null, {
+    return await api.put(`/statistics/${id}/games/${gid}/correct`, null, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

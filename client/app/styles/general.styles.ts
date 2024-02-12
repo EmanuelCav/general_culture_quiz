@@ -9,7 +9,7 @@ export const generalStyles = StyleSheet.create({
     containerBanner: {
         height: '15%',
         width: '100%',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center'
     },
 
@@ -63,14 +63,19 @@ export const generalStyles = StyleSheet.create({
         alignItems: 'center'
     },
 
-    containerLoading: {
-        position: 'absolute',
+    contaierMainLoading: {
+        backgroundColor: '#FF8C00',
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
         top: 0,
         left: 0,
-        width: Dimensions.get("window").width,
-        height: Dimensions.get("window").height,
-        backgroundColor: '#FF8C00',
-        zIndex: 20,
+        position: 'absolute',
+        zIndex: 44
+    },
+
+    containerLoading: {
+        width: '100%',
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     }
