@@ -53,6 +53,7 @@ export type ExperienceActionPropsType = {
 export type GameActionPropsType = {
     navigation: StackNavigation;
     token: string;
+    isConnection: boolean;
 }
 
 export type RankingCountryActionPropsType = {

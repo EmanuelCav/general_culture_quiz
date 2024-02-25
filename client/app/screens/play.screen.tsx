@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { View } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-// import { fetch } from "@react-native-community/netinfo";
+import { fetch } from "@react-native-community/netinfo";
 
 import { generalStyles } from '../styles/general.styles'
 
@@ -22,13 +22,13 @@ const Play = ({ navigation }: { navigation: StackNavigation }) => {
   const [isConnection, setIsConnection] = useState<boolean>(true)
   const [isChangeView, setIsChangeView] = useState<boolean>(true)
 
-  // useEffect(() => {
-  //   fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
-  // }, [isConnection, isChangeView])
+  useEffect(() => {
+    fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
+  }, [isConnection, isChangeView])
 
   return (
     <View style={generalStyles.containerGeneral}>
-      <Banner />
+      {/* <Banner /> */}
       <MenuPlay navigation={navigation} user={user.user} dispatch={dispatch} isConnection={isConnection} setIsChangeView={setIsChangeView} isChangeView={isChangeView} />
     </View>
   )

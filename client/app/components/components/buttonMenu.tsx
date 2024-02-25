@@ -8,7 +8,7 @@ const ButtonMenu = ({ func, text, isConnection }: ButtonMenuPropsType) => {
   return (
     <Pressable style={({ pressed }) => [
       {
-        backgroundColor: pressed ? '#ffa420' : '#FF8C00',
+        backgroundColor: pressed ? '#ffa420' : `${isConnection ? '#FF8C00' : '#828282'}`,
         opacity: isConnection ? 1 : .5
       },
       generalStyles.buttonMenu

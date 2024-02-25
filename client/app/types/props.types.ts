@@ -11,11 +11,12 @@ type RouteTypes = {
     Home: undefined;
     Play: undefined;
     Categories: {
-        isPlay: boolean
+        isPlay: boolean;
     };
     Options: undefined;
     Playing: {
-        allQuestions: any[];
+        allQuestions: IQuestion[];
+        isConnection: boolean;
     };
     Ranking: undefined;
     Settings: undefined;
@@ -30,6 +31,11 @@ export type RouteParamPlaying = RouteProp<RouteTypes, 'Playing'>
 export type CategoriesPropsType = {
     navigation: StackNavigation;
     route: RouteParamCategory;
+}
+
+export type PlayingPropsType = {
+    navigation: StackNavigation;
+    route: RouteParamPlaying;
 }
 
 export type ButtonAcceptPropsType = {
@@ -190,6 +196,7 @@ export type StatisticsGamePropsType = {
     isHelped: boolean;
     changeHelp: (type: HelpType) => void;
     isGameError: boolean;
+    isConnection: boolean;
 }
 
 export type TimePropsType = {
@@ -229,6 +236,7 @@ export type FinishPropsType = {
     points: number;
     changeHelp: (type: HelpType) => void;
     isAdd: boolean;
+    isConnection: boolean;
 }
 
 export type OptionsPropsTypes = {

@@ -1,24 +1,23 @@
-import { IGame } from "../interface/Game";
-import { ICountryRank, IUser, IUserInfo } from "../interface/User";
+import { ICountryRank, IStatistic, IUser, IUserInfo } from "../interface/User";
 
-export const amountQuestions = (games: IGame[]): number => {
+export const amountQuestions = (statistics: IStatistic[]): number => {
 
     let amountQuestions: number = 0
 
-    for (let i = 0; i < games.length; i++) {
-        amountQuestions += games[i].questions!.length
+    for (let i = 0; i < statistics.length; i++) {
+        amountQuestions += statistics[i].questions
     }
 
     return amountQuestions
 
 }
 
-export const amountCorrects = (games: IGame[]): number => {
+export const amountCorrects = (statistics: IStatistic[]): number => {
 
     let amountCorrects: number = 0
 
-    for (let i = 0; i < games.length; i++) {
-        amountCorrects += games[i].corrects!
+    for (let i = 0; i < statistics.length; i++) {
+        amountCorrects += statistics[i].corrects
     }
 
     return amountCorrects

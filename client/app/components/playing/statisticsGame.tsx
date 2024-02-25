@@ -1,4 +1,3 @@
-import React from 'react'
 import { View } from 'react-native'
 
 import { playingStyles } from '../../styles/playing.styles'
@@ -10,19 +9,25 @@ import AmountQuestionsStatistic from './components/statisticsGame/amountQuestion
 import Help from './components/statisticsGame/help'
 
 const StatisticsGame = ({ seconds, minutes, setSeconds, setMinutes, setTotalSeconds, totalSeconds, numberQuestion, questions, realSeconds, realMinutes,
-    isCorrect, isIncorrect, isFinish, isPreFinish, helps, isHelped, changeHelp, isGameError }: StatisticsGamePropsType) => {
+    isCorrect, isIncorrect, isFinish, isPreFinish, helps, isHelped, changeHelp, isGameError, isConnection }: StatisticsGamePropsType) => {
     return (
         <>
             {
                 isGameError ? (
                     <View style={playingStyles.containerStatisticsGame}>
-                        <Help helps={helps} isAnswered={isCorrect || isIncorrect || isHelped || helps === 0} changeHelp={changeHelp} />
+                        {
+                            isConnection &&
+                            <Help helps={helps} isAnswered={isCorrect || isIncorrect || isHelped || helps === 0} changeHelp={changeHelp} />
+                        }
                     </View>
                 ) : (
                     <View style={playingStyles.containerStatisticsGame}>
                         <Time seconds={seconds} minutes={minutes} setSeconds={setSeconds} setMinutes={setMinutes} setTotalSeconds={setTotalSeconds} totalSeconds={totalSeconds} realSeconds={realSeconds} realMinutes={realMinutes}
                             isCorrect={isCorrect} isIncorrect={isIncorrect} isFinish={isFinish} isPreFinish={isPreFinish} />
-                        <Help helps={helps} isAnswered={isCorrect || isIncorrect || isHelped || helps === 0} changeHelp={changeHelp} />
+                        {
+                            isConnection &&
+                            <Help helps={helps} isAnswered={isCorrect || isIncorrect || isHelped || helps === 0} changeHelp={changeHelp} />
+                        }
                         <AmountQuestionsStatistic numberQuestion={numberQuestion} questions={questions} />
                     </View>
                 )

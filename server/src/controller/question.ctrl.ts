@@ -79,7 +79,14 @@ export const questionsGame = async (req: Request, res: Response): Promise<Respon
 
         const questions = await Question.find({ category: categories })
 
-        const shuffleQuestions: IQuestion[] = shuffle(questions)
+        let shuffleQuestions: IQuestion[];
+
+        if(user.isImage) {
+            shuffleQuestions = shuffle(questions)
+        } else {
+            shuffleQuestions = shuffle(questions).filter((sq: IQuestion) => !sq.image)
+        }
+
 
         for (let i = 0; i < 5; i++) {
 
@@ -168,6 +175,53 @@ export const createQuestion = async (req: Request, res: Response): Promise<Respo
             message: "Question created successfully",
             question: questionSaved
         })
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const generateQuestion = async (req: Request, res: Response) => {
+
+    const { gid, qid } = req.params
+
+    try {
+
+        const game = await Game.findById(gid)
+
+        if (!game) {
+            return res.status(400).json({ message: "Game does not exists" })
+        }
+
+        const question = await Question.findById(qid)
+
+        if (!question) {
+            return res.status(400).json({ message: "Question does not exists" })
+        }
+
+        const gameUpdated = await Game.findByIdAndUpdate(gid, {
+            $push: {
+                questions: qid
+            }
+        }, {
+            new: true
+        })
+            .populate({
+                path: "questions",
+                populate: {
+                    path: "category"
+                }
+            })
+            .populate({
+                path: "questions",
+                populate: {
+                    path: "image",
+                    select: "image"
+                }
+            })
+
+        return res.status(200).json(gameUpdated)
 
     } catch (error) {
         throw error

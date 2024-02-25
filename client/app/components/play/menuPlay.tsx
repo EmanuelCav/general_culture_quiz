@@ -23,7 +23,8 @@ const MenuPlay = ({ navigation, user, dispatch, isConnection, setIsChangeView, i
 
         dispatch(gameAction({
             navigation,
-            token: user.token!
+            token: user.token!,
+            isConnection
         }) as any)
     }
 

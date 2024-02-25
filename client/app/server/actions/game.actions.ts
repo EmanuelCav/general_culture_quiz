@@ -12,10 +12,11 @@ export const gameAction = createAsyncThunk('games/generate', async (gameData: Ga
         const gameResponse = await gameApi.gameApi(gameData.token)
         const questionResponse = await gameApi.questionGameApi(gameResponse.data._id, gameData.token)
 
-        dispatch(gameReducer.game(questionResponse.data.game))
+        dispatch(gameReducer.showGame(questionResponse.data.game))
 
         gameData.navigation.navigate('Playing', {
-            allQuestions: questionResponse.data.questions
+            allQuestions: questionResponse.data.questions,
+            isConnection: gameData.isConnection
         })
 
     } catch (error) {

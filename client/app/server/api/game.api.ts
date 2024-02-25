@@ -15,3 +15,11 @@ export const questionGameApi = async (id: string, token: string) => {
         }
     })
 }
+
+export const generateQuestionApi = async (qid: string, gid: string, token: string) => {
+    return await api.patch(`/questions/${qid}/games/${gid}`, null, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+}

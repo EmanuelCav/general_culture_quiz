@@ -15,12 +15,12 @@ const gameSlice = createSlice({
         games: (state, action: PayloadAction<IGame[]>) => {
             state.games = action.payload
         },
-        game: (state, action: PayloadAction<IGame>) => {
+        showGame: (state, action: PayloadAction<IGame>) => {
             state.game = action.payload
         },
     }
 })
 
-export const { games, game } = gameSlice.actions
+export const { games, showGame } = gameSlice.actions
 
 export default gameSlice.reducer

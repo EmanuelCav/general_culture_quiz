@@ -19,8 +19,8 @@ const ActionCategory = ({ dispatch, token }: ActionCategoryPropsType) => {
 
   return (
     <View style={playStyles.containActionCategory}>
-      <ButtonSelect text='Seleccionar todo' func={() => changeAllCategory(true)} query={true} />
-      <ButtonSelect text='Quitar todo' func={() => changeAllCategory(false)} query={false} />
+      <ButtonSelect text='Seleccionar todo' func={changeAllCategory} query={true} />
+      <ButtonSelect text='Quitar todo' func={changeAllCategory} query={false} />
     </View>
   )
 }

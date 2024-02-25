@@ -21,6 +21,7 @@ router.delete('/questions/:id', [auth, access], questionCtrl.removeQuestion)
 router.put('/questions/:id', [auth, access], questionCtrl.updateQuestion)
 
 router.patch('/questions/games/:id', auth, questionCtrl.questionsGame)
+router.patch('/questions/:qid/games/:gid', auth, questionCtrl.generateQuestion)
 router.patch('/questions/:id/options', [auth, access], questionCtrl.pushOption)
 
 export default router

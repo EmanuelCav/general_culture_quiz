@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { View } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
-// import { fetch } from "@react-native-community/netinfo";
+import { fetch } from "@react-native-community/netinfo";
 
 import { StackNavigation } from '../types/props.types'
 import { IReducer } from '../interface/General';
@@ -53,9 +53,9 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
   }
 
-  // useEffect(() => {
-  //   fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
-  // }, [isConnection, isChangeView])
+  useEffect(() => {
+    fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
+  }, [isConnection, isChangeView])
 
   useEffect(() => {
     if (isConnection && user.isLoggedIn) {
@@ -88,7 +88,7 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
       {
         user.isLoggedIn &&
         <>
-          <Banner />
+          {/* <Banner /> */}
           <User user={user.user.user!} />
           <Menu navigation={navigation} dispatch={dispatch} user={user} isConnection={isConnection} setIsChangeView={setIsChangeView} isChangeView={isChangeView} />
         </>
