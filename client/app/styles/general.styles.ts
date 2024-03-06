@@ -19,7 +19,15 @@ export const generalStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: Dimensions.get("window").height / 14,
-        borderRadius: 8
+        borderRadius: 8,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     buttonMenu: {
@@ -28,7 +36,15 @@ export const generalStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: Dimensions.get("window").height / 14,
-        borderRadius: 8
+        borderRadius: 8,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     buttonNotSelected: {
@@ -40,13 +56,29 @@ export const generalStyles = StyleSheet.create({
         borderRadius: 8,
         borderColor: '#FF8C00',
         borderWidth: 2,
-        borderStyle: 'solid'
+        borderStyle: 'solid',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     buttonMenuText: {
         fontSize: Dimensions.get("window").height / 42,
         color: '#ffffff',
-        fontWeight: '500'
+        fontWeight: '500',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     textButtonNotSelected: {

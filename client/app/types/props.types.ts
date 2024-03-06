@@ -91,7 +91,7 @@ export type StatisticDataPropsType = {
 
 export type MenuPropsType = {
     navigation: StackNavigation;
-    user: IUserReducer;
+    user: IUserReducer | null;
     dispatch: Dispatch;
     isConnection: boolean;
     setIsChangeView: (isChangeView: boolean) => void;
@@ -340,4 +340,9 @@ export type ViewCountryPropsType = {
     country: ICountry;
     user: IUserInfo;
     updateCountry: (id: string) => void;
+}
+
+export type MainInfoUserPropsType = {
+    isGuest: boolean;
+    user: IUser;
 }

@@ -48,6 +48,9 @@ export const generateGame = async (req: Request, res: Response) => {
 
         const gameSaved = await newGame.save()
 
+        console.log(gameSaved);
+        
+
         return res.status(200).json(gameSaved)
         
     } catch (error) {

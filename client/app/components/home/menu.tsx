@@ -20,8 +20,8 @@ const Menu = ({ navigation, dispatch, user, isConnection, setIsChangeView, isCha
         setIsChangeView(!isChangeView)
 
         dispatch(profileAction({
-            id: user.user.user?._id!,
-            token: user.user.token!,
+            id: user?.user.user?._id!,
+            token: user?.user.token!,
             navigation
         }) as any)
     }
@@ -31,7 +31,7 @@ const Menu = ({ navigation, dispatch, user, isConnection, setIsChangeView, isCha
 
         dispatch(usersRankingAction({
             date: 'total',
-            token: user.user.token!,
+            token: user?.user.token!,
             navigation,
             isNavigate: true
         }) as any)

@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { BackHandler, View } from 'react-native'
 import Sound from 'react-native-sound'
-// import { InterstitialAd, AdEventType, RewardedAd, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
-// import { EXPO_INTERSTICIAL, EXPO_RECOMPESADO } from '@env';
+import { InterstitialAd, AdEventType, RewardedAd, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
+import { EXPO_INTERSTICIAL, EXPO_RECOMPESADO } from '@env';
+import { AVPlaybackSource, Audio } from 'expo-av';
 
 import { generalStyles } from '../styles/general.styles'
 
-import { userInfo } from '../server/reducers/user.reducer'
+import { auth, userInfo } from '../server/reducers/user.reducer'
 import { showGame } from '../server/reducers/game.reducer'
 import { correctStatisticApi, countStatisticApi, helpsApi } from '../server/api/user.api'
 import { experienceAction } from '../server/actions/user.actions'
@@ -29,17 +30,17 @@ import { HelpType } from '../types/key.type'
 import { selector } from '../helper/selector'
 import { generateOptions, getStatisticId, helpsOptions } from '../helper/playing'
 
-// const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : `${EXPO_INTERSTICIAL}`;
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : `${EXPO_INTERSTICIAL}`;
 
-// const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-//   keywords: ['fashion', 'clothing'],
-// });
+const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
+  keywords: ['fashion', 'clothing'],
+});
 
-// const adUnitIdReward = __DEV__ ? TestIds.REWARDED : `${EXPO_RECOMPESADO}`;
+const adUnitIdReward = __DEV__ ? TestIds.REWARDED : `${EXPO_RECOMPESADO}`;
 
-// const rewarded = RewardedAd.createForAdRequest(adUnitIdReward, {
-//   keywords: ['fashion', 'clothing'],
-// });
+const rewarded = RewardedAd.createForAdRequest(adUnitIdReward, {
+  keywords: ['fashion', 'clothing'],
+});
 
 const Playing = ({ navigation, route }: PlayingPropsType) => {
 
@@ -81,24 +82,24 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
   const [options, setOptions] = useState<string[]>(generateOptions(game.game.questions![numberQuestion].options, user.user.user?.amountOptions!))
   const [optionsHelped, setOptionsHelped] = useState<string[]>(helpsOptions(options, game.game.questions![numberQuestion], user.user.user?.amountOptions!))
 
-  const nextQuestion = (value: string) => {
+  const [listen, setListen] = useState<Audio.Sound>()
+
+  const playAudio = async (root: AVPlaybackSource) => {
+
+    const { sound } = await Audio.Sound.createAsync(root)
+
+    setListen(sound)
+
+    await sound.playAsync()
+
+  }
+
+  const nextQuestion = async (value: string) => {
 
     if (value === (!isGameError ? game.game.questions![numberQuestion].answer : gameErrors[numberQuestion].answer)) {
-
-      // const successSound = new Sound(require('../../assets/success.mp3'), Sound.MAIN_BUNDLE, (error) => {
-      //   if (error) {
-      //     console.log(error)
-      //   }
-      // })
-
-      // if (user.user.user?.isSounds) {
-      //   successSound.play((success) => {
-      //     if (!success) {
-      //       console.log('Sound did not play')
-      //     }
-      //   })
-      // }
-
+      if (user.user.user?.isSounds) {
+        await playAudio(require('../../assets/success.mp3'))
+      }
       setIsCorrect(true)
       setCorrects(corrects + 1)
     } else {
@@ -107,22 +108,10 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
       } else {
         setErrors([...errors, gameErrors[numberQuestion]])
       }
-
-      // const errorSound = new Sound(require('../../assets/error.mp3'), Sound.MAIN_BUNDLE, (error) => {
-      //   if (error) {
-      //     console.log(error)
-      //   }
-      // })
-
-      // if (user.user.user?.isSounds) {
-      //   errorSound.play((success) => {
-      //     if (!success) {
-      //       console.log('Sound did not play')
-      //     }
-      //   })
-      // }
-
-      setIsIncorrect(true)
+      if (user.user.user?.isSounds) {
+        await playAudio(require('../../assets/error.mp3'))
+        setIsIncorrect(true)
+      }
     }
 
     if (!isGameError) {
@@ -186,7 +175,7 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
 
   const continueHome = () => {
     if (route.params.isConnection) {
-      // interstitial.show()
+      interstitial.show()
     }
 
     navigation.navigate('Home')
@@ -226,7 +215,7 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
     setHelpType(type)
 
     if (type === 'add') {
-      // rewarded.show()
+      rewarded.show()
       setIsAdd(true)
     }
   }
@@ -256,41 +245,49 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
 
   }
 
-  // useEffect(() => {
-  //   const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
-  //     console.log("Loading add");
-  //   });
+  useEffect(() => {
+    if(user.user.user?.isSounds) {
+      return listen ? () => {
+        listen.unloadAsync();
+      } : undefined;
+    }
+  }, [listen]);
 
-  //   interstitial.load();
+  useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+      console.log("Loading add");
+    });
 
-  //   return unsubscribe;
-  // }, []);
+    interstitial.load();
 
-  // useEffect(() => {
-  //   const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
-  //     console.log("Loading add");
-  //   });
-  //   const unsubscribeEarned = rewarded.addAdEventListener(
-  //     RewardedAdEventType.EARNED_REWARD,
-  //     reward => {
-  //       console.log('User earned reward of ', reward);
-  //     },
-  //   );
+    return unsubscribe;
+  }, []);
 
-  //   rewarded.load();
+  useEffect(() => {
+    const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
+      console.log("Loading add");
+    });
+    const unsubscribeEarned = rewarded.addAdEventListener(
+      RewardedAdEventType.EARNED_REWARD,
+      reward => {
+        console.log('User earned reward of ', reward);
+      },
+    );
 
-  //   return () => {
-  //     unsubscribeLoaded();
-  //     unsubscribeEarned();
-  //   };
-  // }, []);
+    rewarded.load();
+
+    return () => {
+      unsubscribeLoaded();
+      unsubscribeEarned();
+    };
+  }, []);
 
   useEffect(() => {
     if (!isGameError) {
       if (route.params.isConnection) {
         countQuestion()
 
-        if (numberQuestion < user.user.user?.amountQuestions!) {
+        if (numberQuestion < (user.user.user?.amountQuestions! - 5)) {
           generateQuestion()
         }
 
@@ -321,7 +318,7 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
   }, [points])
 
   useEffect(() => {
-    if (isHelped) {
+    if (isHelped && route.params.isConnection) {
       handleHelp(helpType)
     }
   }, [isHelped])

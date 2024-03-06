@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { View } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetch } from "@react-native-community/netinfo";
+// import { fetch } from "@react-native-community/netinfo";
 
 import { StackNavigation } from '../types/props.types'
 import { IReducer } from '../interface/General';
@@ -9,6 +9,7 @@ import { IReducer } from '../interface/General';
 import Menu from '../components/home/menu'
 import Banner from '../components/adds/banner'
 import User from '../components/home/user'
+import Guess from '../components/home/Guest';
 
 import { generalStyles } from '../styles/general.styles'
 
@@ -53,13 +54,17 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
   }
 
-  useEffect(() => {
-    fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
-  }, [isConnection, isChangeView])
+  // useEffect(() => {
+  //   fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
+  // }, [isConnection, isChangeView])
 
   useEffect(() => {
     if (isConnection && user.isLoggedIn) {
       getUsers()
+
+      if (isNewDate(new Date(new Date().setHours(new Date().getHours() - 3)).toISOString().split("T")[0], user)) {
+        getNewDate()
+      }
     }
   }, [])
 
@@ -69,10 +74,6 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
       if (user.isLoggedIn) {
 
         dispatch(loginAction(user.user.user?._id!) as any)
-
-        if (isNewDate(new Date(new Date().setHours(new Date().getHours() - 3)).toISOString().split("T")[0], user)) {
-          getNewDate()
-        }
 
         return
       }
@@ -86,12 +87,23 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
   return (
     <View style={generalStyles.containerGeneral}>
       {
-        user.isLoggedIn &&
-        <>
-          {/* <Banner /> */}
-          <User user={user.user.user!} />
-          <Menu navigation={navigation} dispatch={dispatch} user={user} isConnection={isConnection} setIsChangeView={setIsChangeView} isChangeView={isChangeView} />
-        </>
+        isConnection ? (
+          <>
+            {
+              user.isLoggedIn &&
+              <>
+                <Banner />
+                <User user={user.user.user!} />
+                <Menu navigation={navigation} dispatch={dispatch} user={user} isConnection={isConnection} setIsChangeView={setIsChangeView} isChangeView={isChangeView} />
+              </>
+            }
+          </>
+        ) : (
+          <>
+            <Guess />
+            <Menu navigation={navigation} dispatch={dispatch} user={null} isConnection={isConnection} setIsChangeView={setIsChangeView} isChangeView={isChangeView} />
+          </>
+        )
       }
     </View>
   )

@@ -65,7 +65,15 @@ export const playStyles = StyleSheet.create({
         borderColor: '#ffffff',
         borderWidth: 1,
         borderStyle: 'solid',
-        marginVertical: Dimensions.get("window").height / 123
+        marginVertical: Dimensions.get("window").height / 123,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     textButtonSelect: {
@@ -169,7 +177,15 @@ export const playStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        height: '100%'
+        height: '100%',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     textRankingTag: {
@@ -187,7 +203,15 @@ export const playStyles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         padding: Dimensions.get("window").height / 123,
-        borderRadius: 8
+        borderRadius: 8,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     helpText: {

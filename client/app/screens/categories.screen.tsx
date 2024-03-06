@@ -1,5 +1,7 @@
 import { View } from 'react-native'
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+// import { fetch } from "@react-native-community/netinfo";
 
 import TitleCategory from '../components/categories/titleCategory'
 import ActionCategory from '../components/categories/actionCategory'
@@ -21,11 +23,14 @@ const Categories = ({ navigation, route }: CategoriesPropsType) => {
 
   const dispatch = useDispatch()
 
+  const [isConnection, setIsConnection] = useState<boolean>(true)
+
   const goBack = () => {
     if (route.params.isPlay) {
       dispatch(gameAction({
         navigation,
-        token: user.user.token!
+        token: user.user.token!,
+        isConnection
       }) as any)
 
       return
@@ -33,6 +38,10 @@ const Categories = ({ navigation, route }: CategoriesPropsType) => {
 
     navigation.goBack()
   }
+
+  // useEffect(() => {
+  //   fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
+  // }, [isConnection, isChangeView])
 
   return (
     <View style={playStyles.containerCategories}>

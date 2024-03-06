@@ -17,7 +17,15 @@ export const homeStyles = StyleSheet.create({
         alignContent: 'center',
         flexDirection: 'row',
         backgroundColor: '#FF8C00',
-        borderRadius: 8
+        borderRadius: 8,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     containerLabels: {

@@ -3,7 +3,21 @@ import { Dimensions, StyleSheet } from 'react-native'
 export const playingStyles = StyleSheet.create({
 
     containerQuestion: {
-        height: '50%'
+        height: '50%',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+        borderWidth: 3,
+        borderColor: '#ffffff',
+        padding: Dimensions.get("window").height / 106,
+        backgroundColor: '#FF8C00',
+        borderStyle: 'solid',
+        borderRadius: 8
     },
 
     containerStatisticsGame: {
@@ -101,7 +115,15 @@ export const playingStyles = StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 2,
         width: '100%',
-        marginTop: Dimensions.get("window").height / 92
+        marginTop: Dimensions.get("window").height / 92,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     textButtonFinish: {
@@ -137,7 +159,15 @@ export const playingStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        marginVertical: Dimensions.get("window").height / 61.66
+        marginVertical: Dimensions.get("window").height / 61.66,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     textOption: {
