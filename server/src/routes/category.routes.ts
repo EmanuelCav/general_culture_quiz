@@ -13,4 +13,6 @@ router.get('/categories', categoryCtrl.categories)
 
 router.post('/categories', [auth, access], categoryValid, categoryCtrl.createCategory)
 
+router.delete('/categories/:id', [auth, access], categoryCtrl.removeCategory)
+
 export default router

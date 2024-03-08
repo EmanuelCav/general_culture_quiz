@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import Statistic from '../models/statistic'
+import Category from '../models/category'
 import User from '../models/user'
 import Game from '../models/game'
 
@@ -157,6 +158,32 @@ export const correctCategory = async (req: Request, res: Response): Promise<Resp
             .populate("points")
 
         return res.status(200).json(user)
+
+    } catch (error) {
+        throw error
+    }
+
+}
+
+export const addStatistic = async (req: Request, res: Response): Promise<Response> => {
+
+    const { id } = req.params
+
+    try {
+
+        const category = await Category.findById(id)
+
+        if (!category) {
+            return res.status(400).json({ message: "Category does not exists" })
+        }
+
+        await User.updateMany({}, {
+            $push: {
+                statistics: id
+            }
+        })
+
+        return res.status(200).json({ message: "Statistics updated successfully" })
 
     } catch (error) {
         throw error

@@ -42,11 +42,15 @@ export const playStyles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        height: '12%'
     },
 
     containCategory: {
         width: '100%',
+        height: '12%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 
     textTitleCategory: {

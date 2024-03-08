@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { BackHandler, View } from 'react-native'
-import Sound from 'react-native-sound'
 import { InterstitialAd, AdEventType, RewardedAd, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
 import { EXPO_INTERSTICIAL, EXPO_RECOMPESADO } from '@env';
 import { AVPlaybackSource, Audio } from 'expo-av';
@@ -94,12 +93,9 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
 
   }
 
-  const nextQuestion = async (value: string) => {
+  const nextQuestion = (value: string) => {
 
     if (value === (!isGameError ? game.game.questions![numberQuestion].answer : gameErrors[numberQuestion].answer)) {
-      if (user.user.user?.isSounds) {
-        await playAudio(require('../../assets/success.mp3'))
-      }
       setIsCorrect(true)
       setCorrects(corrects + 1)
     } else {
@@ -108,10 +104,7 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
       } else {
         setErrors([...errors, gameErrors[numberQuestion]])
       }
-      if (user.user.user?.isSounds) {
-        await playAudio(require('../../assets/error.mp3'))
-        setIsIncorrect(true)
-      }
+      setIsIncorrect(true)
     }
 
     if (!isGameError) {
@@ -246,7 +239,7 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
   }
 
   useEffect(() => {
-    if(user.user.user?.isSounds) {
+    if (user.user.user?.isSounds) {
       return listen ? () => {
         listen.unloadAsync();
       } : undefined;
@@ -299,6 +292,19 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
 
     setOptionsHelped(helpsOptions(options, gameErrors[numberQuestion], user.user.user?.amountOptions!))
   }, [numberQuestion])
+
+  useEffect(() => {
+    (async () => {
+      if (user.user.user?.isSounds && isCorrect) {
+        await playAudio(require('../../assets/success.mp3'))
+        return
+      }
+
+      if (user.user.user?.isSounds && isIncorrect) {
+        await playAudio(require('../../assets/error.mp3'))
+      }
+    })()
+  }, [isCorrect, isIncorrect])
 
   useEffect(() => {
     if (isCorrect && !isGameError && route.params.isConnection) {
