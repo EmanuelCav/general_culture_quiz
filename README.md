@@ -17,4 +17,4 @@ You can start the game based on your preferences, from choosing the number of op
 
 ## Diagram ##
 
-<img src="https://res.cloudinary.com/projects-emanuek/image/upload/v1710038623/portfolio/Culture_csvudn.jpg" />
+<img src="https://res.cloudinary.com/projects-emanuek/image/upload/v1710080178/portfolio/culture_igg5km.jpg" />
