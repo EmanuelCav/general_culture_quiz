@@ -78,8 +78,8 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
   const [errors, setErrors] = useState<IQuestion[]>([])
   const [gameErrors, setGameErrors] = useState<IQuestion[]>([])
 
-  const [options, setOptions] = useState<string[]>(generateOptions(game.game.questions![numberQuestion].options, user.user.user?.amountOptions!))
-  const [optionsHelped, setOptionsHelped] = useState<string[]>(helpsOptions(options, game.game.questions![numberQuestion], user.user.user?.amountOptions!))
+  const [options, setOptions] = useState<string[]>(generateOptions(route.params.isConnection ? game.game.questions![numberQuestion].options : route.params.allQuestions[numberQuestion].options, route.params.isConnection ? user.user.user?.amountOptions! : 4))
+  const [optionsHelped, setOptionsHelped] = useState<string[]>(helpsOptions(options, route.params.isConnection ? game.game.questions![numberQuestion] : route.params.allQuestions[numberQuestion], route.params.isConnection ? user.user.user?.amountOptions! : 4))
 
   const [listen, setListen] = useState<Audio.Sound>()
 
@@ -95,12 +95,12 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
 
   const nextQuestion = (value: string) => {
 
-    if (value === (!isGameError ? game.game.questions![numberQuestion].answer : gameErrors[numberQuestion].answer)) {
+    if (value === (!isGameError ? route.params.isConnection ? game.game.questions![numberQuestion].answer : route.params.allQuestions[numberQuestion].answer : gameErrors[numberQuestion].answer)) {
       setIsCorrect(true)
       setCorrects(corrects + 1)
     } else {
       if (!isGameError) {
-        setErrors([...errors, game.game.questions![numberQuestion]])
+        setErrors([...errors, route.params.isConnection ? game.game.questions![numberQuestion] : route.params.allQuestions[numberQuestion]])
       } else {
         setErrors([...errors, gameErrors[numberQuestion]])
       }
@@ -108,21 +108,27 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
     }
 
     if (!isGameError) {
-      if (numberQuestion < game.game.questions!.length - 1) {
-        setOptions(generateOptions(game.game.questions![numberQuestion + 1].options, user.user.user?.amountOptions!))
+      if (route.params.isConnection) {
+        if (numberQuestion < game.game.questions!.length - 1) {
+          setOptions(generateOptions(game.game.questions![numberQuestion + 1].options, user.user.user?.amountOptions!))
+        }
+      } else {
+        if (numberQuestion < route.params.allQuestions.length - 1) {
+          setOptions(generateOptions(route.params.allQuestions[numberQuestion + 1].options, 4))
+        }
       }
       setRealSeconds(seconds)
       setRealMinutes(minutes)
     } else {
       if (numberQuestion < gameErrors.length - 1) {
-        setOptions(generateOptions(gameErrors[numberQuestion + 1].options, user.user.user?.amountOptions!))
+        setOptions(generateOptions(gameErrors[numberQuestion + 1].options, route.params.isConnection ? user.user.user?.amountOptions! : 4))
       }
     }
 
-    if (numberQuestion === game.game.questions!.length - 1 || numberQuestion === gameErrors.length - 1) {
+    if (numberQuestion === (route.params.isConnection ? game.game.questions!.length - 1 : route.params.allQuestions.length - 1) || numberQuestion === gameErrors.length - 1) {
       setIsPreFinish(true)
       if (errors.length > 0) {
-        setOptions(generateOptions(errors[0].options, user.user.user?.amountOptions!))
+        setOptions(generateOptions(errors[0].options, route.params.isConnection ? user.user.user?.amountOptions! : 4))
       }
     }
 
@@ -142,7 +148,7 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
 
   const preFinish = () => {
 
-    if (!isGameError) {
+    if (!isGameError && route.params.isConnection) {
       setPointsData({
         points: Math.ceil((user.user.user?.amountOptions! * user.user.user?.amountQuestions! *
           user.user.user?.statistics?.filter(s => s.isSelect).length! * corrects) / (totalSeconds))
@@ -239,10 +245,12 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
   }
 
   useEffect(() => {
-    if (user.user.user?.isSounds) {
-      return listen ? () => {
-        listen.unloadAsync();
-      } : undefined;
+    if (route.params.isConnection) {
+      if (user.user.user?.isSounds) {
+        return listen ? () => {
+          listen.unloadAsync();
+        } : undefined;
+      }
     }
   }, [listen]);
 
@@ -285,23 +293,25 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
         }
 
       }
-      setOptionsHelped(helpsOptions(options, game.game.questions![numberQuestion], user.user.user?.amountOptions!))
+      setOptionsHelped(helpsOptions(options, route.params.isConnection ? game.game.questions![numberQuestion] : route.params.allQuestions[numberQuestion], route.params.isConnection ? user.user.user?.amountOptions! : 4))
 
       return
     }
 
-    setOptionsHelped(helpsOptions(options, gameErrors[numberQuestion], user.user.user?.amountOptions!))
+    setOptionsHelped(helpsOptions(options, gameErrors[numberQuestion], route.params.isConnection ? user.user.user?.amountOptions! : 4))
   }, [numberQuestion])
 
   useEffect(() => {
     (async () => {
-      if (user.user.user?.isSounds && isCorrect) {
-        await playAudio(require('../../assets/success.mp3'))
-        return
-      }
+      if (route.params.isConnection) {
+        if (user.user.user?.isSounds && isCorrect) {
+          await playAudio(require('../../assets/success.mp3'))
+          return
+        }
 
-      if (user.user.user?.isSounds && isIncorrect) {
-        await playAudio(require('../../assets/error.mp3'))
+        if (user.user.user?.isSounds && isIncorrect) {
+          await playAudio(require('../../assets/error.mp3'))
+        }
       }
     })()
   }, [isCorrect, isIncorrect])
@@ -331,21 +341,24 @@ const Playing = ({ navigation, route }: PlayingPropsType) => {
 
   return (
     <View style={generalStyles.containerGeneral}>
-      <Question question={!isGameError ? game.game.questions![numberQuestion] : gameErrors[numberQuestion]} />
-      <StatisticsGame minutes={minutes} seconds={seconds} setSeconds={setSeconds} setMinutes={setMinutes} setTotalSeconds={setTotalSeconds} totalSeconds={totalSeconds}
+      <Question question={!isGameError ? route.params.isConnection ? game.game.questions![numberQuestion] : route.params.allQuestions[numberQuestion] : gameErrors[numberQuestion]} />
+      {
+        route.params.isConnection &&
+        <StatisticsGame minutes={minutes} seconds={seconds} setSeconds={setSeconds} setMinutes={setMinutes} setTotalSeconds={setTotalSeconds} totalSeconds={totalSeconds}
         questions={user.user.user?.amountQuestions!} numberQuestion={numberQuestion + 1} realSeconds={realSeconds} realMinutes={realMinutes} isGameError={isGameError}
-        isCorrect={isCorrect} isIncorrect={isIncorrect} isFinish={isFinish} isPreFinish={isPreFinish} helps={user.user.user?.helps!} isHelped={isHelped} changeHelp={changeHelp} isConnection={route.params.isConnection}
+        isCorrect={isCorrect} isIncorrect={isIncorrect} isFinish={isFinish} isPreFinish={isPreFinish} helps={user.user.user?.helps!} isHelped={isHelped} changeHelp={changeHelp}
       />
+      }
       {
         (isCorrect || isIncorrect) ?
-          <Answer answer={isCorrect} correctAnswer={!isGameError ? game.game.questions![numberQuestion].answer : gameErrors[numberQuestion].answer} continueGame={continueGame} />
-          : <OptionsGame options={options} nextQuestion={nextQuestion} amountOptions={user.user.user?.amountOptions!} isHelped={isHelped} optionsHelped={optionsHelped} />
+          <Answer answer={isCorrect} correctAnswer={!isGameError ? route.params.isConnection ? game.game.questions![numberQuestion].answer : route.params.allQuestions[numberQuestion].answer : gameErrors[numberQuestion].answer} continueGame={continueGame} />
+          : <OptionsGame options={options} nextQuestion={nextQuestion} amountOptions={route.params.isConnection ? user.user.user?.amountOptions! : 4} isHelped={isHelped} optionsHelped={optionsHelped} />
       }
       {
         isPreFinish && <PreFinish preFinish={preFinish} />
       }
       {
-        isFinish && <Finish seconds={realSeconds} minutes={realMinutes} corrects={corrects} questions={!isGameError ? game.game.questions!.length : gameErrors.length}
+        isFinish && <Finish seconds={realSeconds} minutes={realMinutes} corrects={corrects} questions={!isGameError ? route.params.isConnection ? game.game.questions!.length : route.params.allQuestions.length : gameErrors.length}
           showErrors={showErrors} continueHome={continueHome} isGameError={isGameError} points={points} changeHelp={changeHelp} isAdd={isAdd} isConnection={route.params.isConnection} />
       }
     </View>

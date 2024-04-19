@@ -177,11 +177,24 @@ export const addStatistic = async (req: Request, res: Response): Promise<Respons
             return res.status(400).json({ message: "Category does not exists" })
         }
 
-        await User.updateMany({}, {
-            $push: {
-                statistics: id
-            }
-        })
+        const users = await User.find()
+
+        for (let i = 0; i < users.length; i++) {
+
+            const newStatistic = new Statistic({
+                user: users[i]._id,
+                category: id
+            })
+    
+            const statistic = await newStatistic.save()
+    
+            await User.findByIdAndUpdate(users[i]._id, {
+                $push: {
+                    statistics: statistic._id
+                }
+            })
+            
+        }
 
         return res.status(200).json({ message: "Statistics updated successfully" })
 

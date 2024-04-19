@@ -7,7 +7,7 @@ import { jwt_key } from '../config/config';
 export const generateToken = (id: Types.ObjectId): string => {
 
     const token: string = jwt.sign({ id }, `${jwt_key}`, {
-        expiresIn: '20d'
+        expiresIn: '150d'
     })
 
     return token

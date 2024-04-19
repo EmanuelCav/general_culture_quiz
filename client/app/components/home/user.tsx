@@ -10,7 +10,7 @@ import { IUser } from '../../interface/User'
 const User = ({ user }: { user: IUser }) => {
     return (
         <View style={homeStyles.containerUser}>
-            <MainInfoUser user={user} />
+            <MainInfoUser user={user} isGuest={false} />
             <CountryUser country={user?.country!} />
         </View>
     )

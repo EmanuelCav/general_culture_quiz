@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { View } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
-// import { fetch } from "@react-native-community/netinfo";
+import { fetch } from "@react-native-community/netinfo";
 
 import { StackNavigation } from '../types/props.types'
 import { IReducer } from '../interface/General';
@@ -9,16 +9,15 @@ import { IReducer } from '../interface/General';
 import Menu from '../components/home/menu'
 import Banner from '../components/adds/banner'
 import User from '../components/home/user'
-import Guess from '../components/home/Guest';
+import Guest from '../components/home/Guest';
 
 import { generalStyles } from '../styles/general.styles'
 
 import { firstTimeAction, loginAction } from '../server/actions/user.actions';
-import { dateApi, usersApi } from '../server/api/user.api';
+import { usersApi } from '../server/api/user.api';
 import { users } from '../server/reducers/user.reducer';
 
 import { selector } from '../helper/selector';
-import { isNewDate } from '../helper/date';
 
 const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
@@ -28,18 +27,6 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
   const [isConnection, setIsConnection] = useState<boolean>(true)
   const [isChangeView, setIsChangeView] = useState<boolean>(false)
-
-  const getNewDate = async () => {
-
-    try {
-
-      await dateApi(user.user.token!)
-
-    } catch (error) {
-      console.log(error);
-    }
-
-  }
 
   const getUsers = async () => {
 
@@ -54,17 +41,13 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
   }
 
-  // useEffect(() => {
-  //   fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
-  // }, [isConnection, isChangeView])
+  useEffect(() => {
+    fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
+  }, [isConnection, isChangeView])
 
   useEffect(() => {
     if (isConnection && user.isLoggedIn) {
       getUsers()
-
-      if (isNewDate(new Date(new Date().setHours(new Date().getHours() - 3)).toISOString().split("T")[0], user)) {
-        getNewDate()
-      }
     }
   }, [])
 
@@ -83,7 +66,6 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
   }, [dispatch, user.isLoggedIn])
 
-
   return (
     <View style={generalStyles.containerGeneral}>
       {
@@ -100,7 +82,7 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
           </>
         ) : (
           <>
-            <Guess />
+            <Guest />
             <Menu navigation={navigation} dispatch={dispatch} user={null} isConnection={isConnection} setIsChangeView={setIsChangeView} isChangeView={isChangeView} />
           </>
         )

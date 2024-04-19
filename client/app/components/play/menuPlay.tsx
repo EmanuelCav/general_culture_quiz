@@ -13,17 +13,19 @@ const MenuPlay = ({ navigation, user, dispatch, isConnection, setIsChangeView, i
     const start = () => {
         setIsChangeView(!isChangeView)
 
-        if (user.user?.statistics?.filter(statistic => statistic.isSelect).length === 0) {
-            navigation.navigate('Categories', {
-                isPlay: true
-            })
+        if (isConnection) {
+            if (user.user?.statistics?.filter(statistic => statistic.isSelect).length === 0) {
+                navigation.navigate('Categories', {
+                    isPlay: true
+                })
 
-            return
+                return
+            }
         }
 
         dispatch(gameAction({
             navigation,
-            token: user.token!,
+            token: "",
             isConnection
         }) as any)
     }

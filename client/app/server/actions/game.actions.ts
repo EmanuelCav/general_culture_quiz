@@ -7,7 +7,7 @@ import * as gameReducer from '../reducers/game.reducer';
 
 import { GameActionPropsType } from "../../types/action.type";
 
-import { generateGame } from "../../helper/guest";
+import { shuffle } from "../../helper/playing";
 
 export const gameAction = createAsyncThunk('games/generate', async (gameData: GameActionPropsType, { dispatch }) => {
 
@@ -28,10 +28,8 @@ export const gameAction = createAsyncThunk('games/generate', async (gameData: Ga
             return
         }
 
-        dispatch(gameReducer.showGame(generateGame(allQuestions)))
-
         gameData.navigation.navigate('Playing', {
-            allQuestions,
+            allQuestions: shuffle(allQuestions.filter((q) => q.image === undefined) as any[]),
             isConnection: gameData.isConnection
         })
 

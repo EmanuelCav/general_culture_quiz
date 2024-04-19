@@ -18,7 +18,12 @@ const Finish = ({ seconds, minutes, corrects, questions, showErrors, continueHom
                             <Text style={playingStyles.textPreFinish}>¡Repaso realizado!</Text>
                         </View>
                         :
-                        <StatisticsFinish seconds={seconds} minutes={minutes} questions={questions} corrects={corrects} points={points} />
+                        <>
+                            {
+                                isConnection &&
+                                <StatisticsFinish seconds={seconds} minutes={minutes} questions={questions} corrects={corrects} points={points} />
+                            }
+                        </>
                 }
                 {
                     isConnection &&

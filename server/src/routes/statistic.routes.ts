@@ -11,6 +11,6 @@ router.put('/statistics/:id', auth, statisticCtrl.selectCategory)
 router.put('/statistics', auth, statisticCtrl.changeAllCategory)
 router.put('/statistics/:id/games/:gid/correct', auth, statisticCtrl.correctCategory)
 router.put('/statistics/:id/count', auth, statisticCtrl.countCategory)
-router.patch('/statistics/categories/:id', [auth, access], statisticCtrl.addStatistic)
+router.put('/statistics/categories/:id', [auth, access], statisticCtrl.addStatistic)
 
 export default router
