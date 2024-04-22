@@ -1,4 +1,4 @@
-<h1 align="center">General Culture - Trivia</h1>
+<h1 align="center">Trivia Blast</h1>
 <div align="center">
   <img src="https://res.cloudinary.com/projects-emanuek/image/upload/v1713812172/culture/logo_trivia_mpgg7y.png" width="40%" />
 </div>
