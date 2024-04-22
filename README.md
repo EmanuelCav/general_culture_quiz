@@ -1,6 +1,6 @@
 <h1 align="center">General Culture - Trivia</h1>
 <div align="center">
-  <img src="https://res.cloudinary.com/projects-emanuek/image/upload/v1709490947/culture/icon_kfyizi.png" width="40%" />
+  <img src="https://res.cloudinary.com/projects-emanuek/image/upload/v1713812172/culture/logo_trivia_mpgg7y.png" width="40%" />
 </div>
 
 <h3>General culture quiz application. It has a series of quizzes of any type of question from numerous categories such as geography, history, science, art and much more. 
