@@ -7,6 +7,6 @@
     "typeRoots": ["/types"],
   },
   "exclude": ["node_modules"],
-  "include": ["app"],
+  "include": ["app", "firebase.config.ts"],
   "files": ["types/env.d.ts"]
 }

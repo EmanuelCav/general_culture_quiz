@@ -8,13 +8,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import Container from './Container';
 import Home from "./app/screens/home.screen";
-import Play from "./app/screens/play.screen";
-import Ranking from "./app/screens/ranking.screen";
-import Playing from "./app/screens/playing.screen";
-import Options from "./app/screens/options.screen";
-import Categories from "./app/screens/categories.screen";
-import Statistics from "./app/screens/statistics.screen";
-import Settings from "./app/screens/settings.screen";
+import History from "./app/screens/history.screen";
+import Configuration from "./app/screens/configuration.screen";
+import Generate from "./app/screens/generate.screen";
 import Loading from "./app/components/response/loading";
 
 import { store } from './app/server/store';
@@ -39,32 +35,20 @@ export default function App() {
         <PersistGate persistor={persistor} loading={null}>
           <Container>
             <Loading />
-            <StatusBar backgroundColor='#FF8C00' style="light" translucent={false} />
+            <StatusBar backgroundColor='#F18212' style="light" translucent={false} />
             <Stack.Navigator initialRouteName="Home" screenOptions={{
               headerShown: false
             }}>
               <Stack.Screen name="Home" component={Home} options={{
                 animation: 'fade'
               }} />
-              <Stack.Screen name="Play" component={Play} options={{
+              <Stack.Screen name="History" component={History} options={{
                 animation: 'fade'
               }} />
-              <Stack.Screen name="Categories" component={Categories as any} options={{
+              <Stack.Screen name="Configuration" component={Configuration} options={{
                 animation: 'fade'
               }} />
-              <Stack.Screen name="Options" component={Options} options={{
-                animation: 'fade'
-              }} />
-              <Stack.Screen name="Playing" component={Playing as any} options={{
-                animation: 'fade'
-              }} />
-              <Stack.Screen name="Ranking" component={Ranking} options={{
-                animation: 'fade'
-              }} />
-              <Stack.Screen name="Settings" component={Settings} options={{
-                animation: 'fade'
-              }} />
-              <Stack.Screen name="Statistics" component={Statistics} options={{
+              <Stack.Screen name="Generate" component={Generate} options={{
                 animation: 'fade'
               }} />
             </Stack.Navigator>

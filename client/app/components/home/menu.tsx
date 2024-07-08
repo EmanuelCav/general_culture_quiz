@@ -6,49 +6,25 @@ import { homeStyles } from '../../styles/home.styles'
 
 import ButtonMenu from '../components/buttonMenu'
 
-import { profileAction, usersRankingAction } from '../../server/actions/user.actions'
+const Menu = ({ navigation, dispatch, isConnection, setIsChangeView, isChangeView }: MenuPropsType) => {
 
-const Menu = ({ navigation, dispatch, user, isConnection, setIsChangeView, isChangeView }: MenuPropsType) => {
-
-    const play = () => {
-        setIsChangeView(!isChangeView)
-
-        navigation.navigate('Play')
+    const generator = () => {
+        navigation.navigate('Generator')
     }
 
-    const statistics = () => {
-        setIsChangeView(!isChangeView)
-
-        dispatch(profileAction({
-            id: user?.user.user?._id!,
-            token: user?.user.token!,
-            navigation
-        }) as any)
+    const configuration = () => {
+        navigation.navigate('Configuration')
     }
 
-    const ranking = () => {
-        setIsChangeView(!isChangeView)
-
-        dispatch(usersRankingAction({
-            date: 'total',
-            token: user?.user.token!,
-            navigation,
-            isNavigate: true
-        }) as any)
-    }
-
-    const settings = () => {
-        setIsChangeView(!isChangeView)
-
-        navigation.navigate('Settings')
+    const history = () => {
+        navigation.navigate('History')
     }
 
     return (
         <View style={homeStyles.containerMenu}>
-            <ButtonMenu text='JUGAR' func={play} isConnection={true} />
-            <ButtonMenu text='ESTADÍSTICAS' func={statistics} isConnection={isConnection} />
-            <ButtonMenu text='CLASIFICACIÓN' func={ranking} isConnection={isConnection} />
-            <ButtonMenu text='AJUSTES' func={settings} isConnection={isConnection} />
+            <ButtonMenu text='NUEVO' func={generator} />
+            <ButtonMenu text='HISTORIAL' func={history} />
+            <ButtonMenu text='CONFIGURACIÓN' func={configuration} />
         </View>
     )
 }

@@ -1,11 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 import userReducer from './user.reducer';
-import gameReducer from './game.reducer';
+import dashboardReducer from './dashboard.reducer';
 import responseReducer from './response.reducer';
 
 export default combineReducers({
     user: userReducer,
-    game: gameReducer,
+    dashboard: dashboardReducer,
     response: responseReducer
 })

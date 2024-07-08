@@ -2,11 +2,21 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 export const homeStyles = StyleSheet.create({
 
+    containerMenuPlay: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        width: '100%'
+    },
+
     containerMenu: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: '100%'
     },
 
     containerUser: {
@@ -16,9 +26,9 @@ export const homeStyles = StyleSheet.create({
         justifyContent: 'space-between',
         alignContent: 'center',
         flexDirection: 'row',
-        backgroundColor: '#FF8C00',
+        backgroundColor: '#222222',
         borderRadius: 8,
-        shadowColor: "#000",
+        shadowColor: "#ffffff",
         shadowOffset: {
             width: 0,
             height: 3,
@@ -67,7 +77,7 @@ export const homeStyles = StyleSheet.create({
         justifyContent: 'space-evenly',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        height: '30%',
+        height: '15%',
         paddingHorizontal: Dimensions.get("window").height / 106
     },
 
@@ -94,12 +104,15 @@ export const homeStyles = StyleSheet.create({
     },
 
     experience: {
-        fontSize: Dimensions.get("window").height / 41,
+        fontSize: Dimensions.get("window").height / 46,
         color: '#ffffff'
     },
 
-    containMainStatistics: {
-        width: '100%'
+    helpsUser: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        marginTop: Dimensions.get("window").height / 106
     },
 
     textMainStatistics: {
@@ -113,30 +126,44 @@ export const homeStyles = StyleSheet.create({
         marginLeft: Dimensions.get("window").width / 72
     },
 
+    imageTitle: {
+        width: '100%',
+        height: '100%'
+    },
+
     containCategoryStatistic: {
         padding: Dimensions.get("window").height / 74,
-        borderWidth: 1,
-        borderColor: '#FF8C00',
+        marginVertical: Dimensions.get("window").height / 106,
+        backgroundColor: '#222222',
+        borderColor: '#ffffff',
+        borderWidth: 2,
         borderStyle: 'solid',
-        marginVertical: Dimensions.get("window").height / 106
+        shadowColor: "#ffffff",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     containUser: {
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        width: '50%',
+        width: '40%',
         flexDirection: 'column'
     },
 
     containCountryUser: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: '50%',
+        width: '60%',
         flexDirection: 'column'
     },
 
     country: {
-        fontSize: Dimensions.get("window").height / 46,
+        fontSize: Dimensions.get("window").height / 51,
         fontWeight: '500',
         color: '#ffffff'
     },

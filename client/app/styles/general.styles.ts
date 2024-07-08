@@ -37,7 +37,10 @@ export const generalStyles = StyleSheet.create({
         alignItems: 'center',
         height: Dimensions.get("window").height / 14,
         borderRadius: 8,
-        shadowColor: "#000",
+        borderColor: '#ffffff',
+        borderStyle: 'solid',
+        borderWidth: 2,
+        shadowColor: "#ffffff",
         shadowOffset: {
             width: 0,
             height: 3,
@@ -54,10 +57,10 @@ export const generalStyles = StyleSheet.create({
         alignItems: 'center',
         height: Dimensions.get("window").height / 14,
         borderRadius: 8,
-        borderColor: '#FF8C00',
+        borderColor: '#2222222',
         borderWidth: 2,
         borderStyle: 'solid',
-        shadowColor: "#000",
+        shadowColor: "#ffffff",
         shadowOffset: {
             width: 0,
             height: 3,
@@ -70,20 +73,12 @@ export const generalStyles = StyleSheet.create({
     buttonMenuText: {
         fontSize: Dimensions.get("window").height / 42,
         color: '#ffffff',
-        fontWeight: '500',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-        elevation: 7,
+        fontWeight: '500'
     },
 
     textButtonNotSelected: {
         fontSize: Dimensions.get("window").height / 42,
-        color: '#FF8C00',
+        color: '#222222',
         fontWeight: '500'
     },
 
@@ -96,7 +91,7 @@ export const generalStyles = StyleSheet.create({
     },
 
     contaierMainLoading: {
-        backgroundColor: '#FF8C00',
+        backgroundColor: '#6e6e6e',
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
         top: 0,
