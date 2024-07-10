@@ -16,3 +16,8 @@ export interface ITeam {
     name: string;
     points: number;
 }
+
+export interface IDashboardGenerator {
+    icon: string;
+    name: string;
+}

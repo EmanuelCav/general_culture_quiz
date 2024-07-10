@@ -31,10 +31,12 @@ export const generalStyles = StyleSheet.create({
     },
 
     buttonMenu: {
+        position: 'relative',
         padding: Dimensions.get("window").height / 62,
         width: '66%',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        flexDirection: 'row',
         height: Dimensions.get("window").height / 14,
         borderRadius: 8,
         borderColor: '#ffffff',
@@ -48,6 +50,13 @@ export const generalStyles = StyleSheet.create({
         shadowOpacity: 0.29,
         shadowRadius: 4.65,
         elevation: 7,
+    },
+
+    buttonMenuIcon: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        borderRadius: Dimensions.get("window").height / 45,
     },
 
     buttonNotSelected: {
@@ -73,7 +82,8 @@ export const generalStyles = StyleSheet.create({
     buttonMenuText: {
         fontSize: Dimensions.get("window").height / 42,
         color: '#ffffff',
-        fontWeight: '500'
+        fontWeight: '500',
+        marginLeft: Dimensions.get("window").width / 36
     },
 
     textButtonNotSelected: {

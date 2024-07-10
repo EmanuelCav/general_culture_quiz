@@ -9,7 +9,7 @@ import ButtonMenu from '../components/buttonMenu'
 const Menu = ({ navigation, dispatch, isConnection, setIsChangeView, isChangeView }: MenuPropsType) => {
 
     const generator = () => {
-        navigation.navigate('Generator')
+        navigation.navigate('Generate')
     }
 
     const configuration = () => {
@@ -22,9 +22,9 @@ const Menu = ({ navigation, dispatch, isConnection, setIsChangeView, isChangeVie
 
     return (
         <View style={homeStyles.containerMenu}>
-            <ButtonMenu text='NUEVO' func={generator} />
-            <ButtonMenu text='HISTORIAL' func={history} />
-            <ButtonMenu text='CONFIGURACIÓN' func={configuration} />
+            <ButtonMenu text='NUEVO' func={generator} icon="add" />
+            <ButtonMenu text='HISTORIAL' func={history} icon="history" />
+            <ButtonMenu text='CONFIGURACIÓN' func={configuration} icon="settings" />
         </View>
     )
 }
