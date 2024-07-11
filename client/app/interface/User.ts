@@ -1,11 +1,13 @@
 import { LanguagesTypes } from "../types/key.type";
 
 export interface IUserReducer {
-    user: IUser
+    user: IUser;
+    isLoggedIn: boolean;
 }
 
 export interface IUser {
-    id?: number;
+    id?: string;
+    name?: string;
     language?: LanguagesTypes;
     isSounds?: boolean;
 }

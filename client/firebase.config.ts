@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore'
+import firebase from "firebase/compat/app";
+import 'firebase/compat/firestore';
 
 import { EXPO_API_KEY, EXPO_AUTH_DOMAIN, EXPO_PROJECT_ID, EXPO_STORAGE_BUCKET, EXPO_MESSAGING_SENDER_ID, EXPO_APP_ID, EXPO_MEASUREMENT_ID } from "@env";
 
@@ -13,5 +13,14 @@ const firebaseConfig = {
   measurementId: EXPO_MEASUREMENT_ID
 };
 
-export const firebase_app = initializeApp(firebaseConfig);
-export const firestore = getFirestore(firebase_app);
+let app
+
+if (!firebase.apps.length) {
+  app = firebase.initializeApp(firebaseConfig);
+} else {
+  app = firebase.app()
+}
+
+const firestore = app.firestore();
+
+export { firestore };

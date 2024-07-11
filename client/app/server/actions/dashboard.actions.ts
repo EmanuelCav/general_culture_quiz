@@ -1,8 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const dashboardAction = createAsyncThunk('games/generate', async (_, { dispatch }) => {
+import { firebase } from "../../../firebase.config";
+
+export const createDashboardAction = createAsyncThunk('games/generate', async (_, { dispatch }) => {
 
     try {
+
+        await firebase.firestore().collection('dashboard').add({
+            name: "",
+            user: ""
+        });
 
     } catch (error) {
         console.log(error);

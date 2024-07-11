@@ -1,4 +1,6 @@
 declare module '@env' {
+    export const NODE_ENV: string;
+    
     export const EXPO_STORE_KEY: string;
 
     export const EXPO_API_KEY: string;

@@ -19,12 +19,25 @@ const responseSlice = createSlice({
         }
     },
     extraReducers(builder) {
-        // builder.addCase(gameAction.gameAction.pending, (state) => {
-        //     state.loading = true
-        // })
-        // builder.addCase(gameAction.gameAction.fulfilled, (state) => {
-        //     state.loading = false
-        // })
+        builder.addCase(userAction.createUserAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(userAction.createUserAction.fulfilled, (state) => {
+            state.loading = false
+        })
+        builder.addCase(userAction.createUserAction.rejected, (state) => {
+            state.loading = false
+        })
+
+        builder.addCase(dashboardAction.createDashboardAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(dashboardAction.createDashboardAction.fulfilled, (state) => {
+            state.loading = false
+        })
+        builder.addCase(dashboardAction.createDashboardAction.rejected, (state) => {
+            state.loading = false
+        })
     },
 })
 
