@@ -13,8 +13,11 @@ const dashboardSlice = createSlice({
     initialState,
     reducers: {
         createDashboard: (state, action: PayloadAction<IDashboard>) => {
-            state.dashboards = [...state.dashboards, action.payload],
+            state.dashboards = [...state.dashboards, action.payload]
             state.dashboard = action.payload
+        },
+        getDashboards: (state, action: PayloadAction<IDashboard[]>) => {
+            state.dashboards = action.payload
         },
         getDashboard: (state, action: PayloadAction<IDashboard>) => {
             state.dashboard = action.payload
@@ -22,6 +25,6 @@ const dashboardSlice = createSlice({
     }
 })
 
-export const { createDashboard, getDashboard } = dashboardSlice.actions
+export const { createDashboard, getDashboard, getDashboards } = dashboardSlice.actions
 
 export default dashboardSlice.reducer

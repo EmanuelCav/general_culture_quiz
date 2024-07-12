@@ -5,8 +5,9 @@ import { MenuPropsType } from '../../types/props.types'
 import { homeStyles } from '../../styles/home.styles'
 
 import ButtonMenu from '../components/buttonMenu'
+import { dashboardsAction } from '../../server/actions/dashboard.actions'
 
-const Menu = ({ navigation, dispatch, isConnection, setIsChangeView, isChangeView }: MenuPropsType) => {
+const Menu = ({ navigation, dispatch, user }: MenuPropsType) => {
 
     const generator = () => {
         navigation.navigate('Generate')
@@ -17,7 +18,10 @@ const Menu = ({ navigation, dispatch, isConnection, setIsChangeView, isChangeVie
     }
 
     const history = () => {
-        navigation.navigate('History')
+        dispatch(dashboardsAction({
+            navigation,
+            user
+        }))
     }
 
     return (

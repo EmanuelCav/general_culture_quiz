@@ -38,6 +38,26 @@ const responseSlice = createSlice({
         builder.addCase(dashboardAction.createDashboardAction.rejected, (state) => {
             state.loading = false
         })
+
+        builder.addCase(dashboardAction.dashboardsAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(dashboardAction.dashboardsAction.fulfilled, (state) => {
+            state.loading = false
+        })
+        builder.addCase(dashboardAction.dashboardsAction.rejected, (state) => {
+            state.loading = false
+        })
+
+        builder.addCase(dashboardAction.getDashboardAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(dashboardAction.getDashboardAction.fulfilled, (state) => {
+            state.loading = false
+        })
+        builder.addCase(dashboardAction.getDashboardAction.rejected, (state) => {
+            state.loading = false
+        })
     },
 })
 

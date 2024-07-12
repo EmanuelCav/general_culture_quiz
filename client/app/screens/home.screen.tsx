@@ -41,7 +41,7 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
         // isConnection && <Banner />
       }
       <Title />
-      <Menu navigation={navigation} dispatch={dispatch} isConnection={isConnection} setIsChangeView={setIsChangeView} isChangeView={isChangeView} />
+      <Menu navigation={navigation} dispatch={dispatch} user={user.user.id!} />
     </View>
   )
 }

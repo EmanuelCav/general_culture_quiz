@@ -5,5 +5,5 @@ import { IUserReducer } from "./User";
 export interface IReducer {
     user: IUserReducer;
     response: IResponseReducer;
-    game: IDashboardReducer;
+    dashboard: IDashboardReducer;
 }

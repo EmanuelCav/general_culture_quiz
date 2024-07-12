@@ -1,10 +1,25 @@
-import { Text, View } from 'react-native'
+import { FlatList } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
 
-const History = () => {
+import ItemHistory from '../components/history/itemHistory'
+
+import { IReducer } from '../interface/General'
+import { StackNavigation } from '../types/props.types'
+
+import { selector } from '../helper/selector'
+
+const History = ({ navigation }: { navigation: StackNavigation }) => {
+
+  const dashboard = useSelector((state: IReducer) => selector(state).dashboard)
+
+  const dispatch = useDispatch()
+
   return (
-    <View>
-        <Text>Text</Text>
-    </View>
+    <FlatList
+      data={dashboard.dashboards}
+      renderItem={({ item }) => <ItemHistory item={item} dispatch={dispatch} navigation={navigation} />}
+      keyExtractor={(_, index) => String(index)}
+    />
   )
 }
 

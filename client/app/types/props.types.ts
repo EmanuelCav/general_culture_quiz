@@ -1,7 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Dispatch } from "@reduxjs/toolkit";
 
-import { IDashboardGenerator } from "../interface/Dashboard";
+import { IDashboard, IDashboardGenerator } from "../interface/Dashboard";
 
 type RouteTypes = {
     Home: undefined;
@@ -27,10 +26,8 @@ export type ButtonMenuPropsType = {
 
 export type MenuPropsType = {
     navigation: StackNavigation;
-    dispatch: Dispatch;
-    isConnection: boolean;
-    setIsChangeView: (isChangeView: boolean) => void;
-    isChangeView: boolean;
+    dispatch: any;
+    user: string;
 }
 
 export type ItemPropsType = {
@@ -38,4 +35,10 @@ export type ItemPropsType = {
     dispatch: any;
     navigation: StackNavigation;
     user: string;
+}
+
+export type ItemHistoryPropsType = {
+    item: IDashboard;
+    dispatch: any;
+    navigation: StackNavigation;
 }

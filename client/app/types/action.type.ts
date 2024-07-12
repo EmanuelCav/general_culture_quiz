@@ -5,3 +5,13 @@ export type CreateDashboardActionPropsType = {
     user: string;
     category: string;
 }
+
+export type DashboardsActionPropsType = {
+    navigation: StackNavigation;
+    user: string;
+}
+
+export type GetDashboardActionPropsType = {
+    navigation: StackNavigation;
+    id: string;
+}
