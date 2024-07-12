@@ -49,4 +49,7 @@ export type TimePropsType = {
     hours: number;
     minutes: number;
     seconds: number;
+    handleRestartTime: () => void;
+    handleRunTime: () => void;
+    isStarted: boolean;
 }

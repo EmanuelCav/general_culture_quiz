@@ -35,6 +35,7 @@ export const annotatorStyles = StyleSheet.create({
 
     containerTime: {
         height: '10%',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -43,6 +44,21 @@ export const annotatorStyles = StyleSheet.create({
         color: '#FF8C00',
         fontSize: Dimensions.get("window").height / 37,
         fontWeight: '600'
+    },
+
+    buttonAgainTime: {
+        padding: Dimensions.get("window").height / 167,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: Dimensions.get("window").width / 66,
+        borderRadius: 8
+    },
+
+    containerActionsTime: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: Dimensions.get("window").height / 148
     }
 
 })

@@ -21,10 +21,14 @@ const dashboardSlice = createSlice({
         },
         getDashboard: (state, action: PayloadAction<IDashboard>) => {
             state.dashboard = action.payload
+        },
+        updateDashboard: (state, action: PayloadAction<IDashboard>) => {
+            state.dashboards = state.dashboards.map((d) => d.id === action.payload.id ? action.payload : d)
+            state.dashboard = action.payload
         }
     }
 })
 
-export const { createDashboard, getDashboard, getDashboards } = dashboardSlice.actions
+export const { createDashboard, getDashboard, getDashboards, updateDashboard } = dashboardSlice.actions
 
 export default dashboardSlice.reducer
