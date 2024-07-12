@@ -10,7 +10,7 @@ export interface IDashboard {
     name?: string;
     teams?: ITeam[];
     markers?: number[];
-    user?: number;
+    user?: string;
     category?: string;
 }
 

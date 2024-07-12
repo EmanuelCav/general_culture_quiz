@@ -8,12 +8,13 @@ import { ItemHistoryPropsType } from "../../types/props.types";
 
 import { historyStyles } from "../../styles/history.styles";
 
-const ItemHistory = ({ item, dispatch, navigation }: ItemHistoryPropsType) => {
+const ItemHistory = ({ item, dispatch, navigation, dashboards }: ItemHistoryPropsType) => {
 
     const getAnnotator = () => {
         dispatch(getDashboardAction({
             navigation,
-            id: item.id!
+            id: item.id!,
+            dashboards
         }))
     }
 

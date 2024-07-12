@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { firestore } from "../../../firebase.config";
 
+import { IDashboard } from "../../interface/Dashboard";
 import * as DashboardAction from "../../types/action.type";
 
 import { createDashboard, getDashboard, getDashboards } from "../reducers/dashboard.reducer";
@@ -10,17 +11,9 @@ export const createDashboardAction = createAsyncThunk('dashboard/generate', asyn
 
     try {
 
-        const dashboardCollection = await firestore.collection('dashboard')
-            .where('user', '==', dashboardData.user)
-            .get();
-
-        const dashboardList = dashboardCollection.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-        }))
-
-        const dashboard = await firestore.collection('dashboard').add({
-            name: `Annotator${dashboardList.length + 1}`,
+        const dashboard: IDashboard = {
+            id: Date.now().toString(),
+            name: `Annotator${dashboardData.dashboards.length + 1}`,
             user: dashboardData.user,
             teams: [{
                 name: "Team1",
@@ -31,11 +24,9 @@ export const createDashboardAction = createAsyncThunk('dashboard/generate', asyn
             }],
             markers: [],
             category: dashboardData.category
-        });
+        };
 
-        const dashboardDoc = await firestore.collection('dashboard').doc(dashboard.id).get();
-
-        dispatch(createDashboard({ id: dashboardDoc.id, ...dashboardDoc.data() }))
+        dispatch(createDashboard(dashboard))
 
         dashboardData.navigation.navigate('Annotator')
 
@@ -49,16 +40,7 @@ export const dashboardsAction = createAsyncThunk('dashboard/dashboards', async (
 
     try {
 
-        const dashboardCollection = await firestore.collection('dashboard')
-            .where('user', '==', dashboardData.user)
-            .get();
-
-        const dashboardList = dashboardCollection.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-        }))
-
-        dispatch(getDashboards(dashboardList))
+        dispatch(getDashboards(dashboardData.dashboards))
 
         dashboardData.navigation.navigate('History')
 
@@ -72,9 +54,9 @@ export const getDashboardAction = createAsyncThunk('dashboard/get', async (dashb
 
     try {
 
-        const dashboardDoc = await firestore.collection('dashboard').doc(dashboardData.id).get();
+        const dashboard: IDashboard = dashboardData.dashboards.find(d => d.id === dashboardData.id)!
 
-        dispatch(getDashboard({ id: dashboardDoc.id, ...dashboardDoc.data() }))
+        dispatch(getDashboard(dashboard))
 
         dashboardData.navigation.navigate('Annotator')
 

@@ -7,13 +7,14 @@ import { ItemPropsType } from "../../types/props.types";
 
 import { generateStyles } from "../../styles/generate.styles";
 
-const Item = ({ item, dispatch, navigation, user }: ItemPropsType) => {
+const Item = ({ item, dispatch, navigation, user, dashboards }: ItemPropsType) => {
 
     const generateAnnotator = () => {
         dispatch(createDashboardAction({
             navigation,
             user,
-            category: item.name
+            category: item.name,
+            dashboards
         }))
     }
 

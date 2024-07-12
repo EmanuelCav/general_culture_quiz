@@ -19,6 +19,7 @@ import { selector } from '../helper/selector';
 const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
   const user = useSelector((state: IReducer) => selector(state).user)
+  const dashboard = useSelector((state: IReducer) => selector(state).dashboard)
 
   const dispatch = useDispatch()
 
@@ -41,7 +42,7 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
         // isConnection && <Banner />
       }
       <Title />
-      <Menu navigation={navigation} dispatch={dispatch} user={user.user.id!} />
+      <Menu navigation={navigation} dispatch={dispatch} dashboards={dashboard.dashboards} />
     </View>
   )
 }

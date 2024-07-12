@@ -12,13 +12,14 @@ import { selector } from '../helper/selector'
 const Generate = ({ navigation }: { navigation: StackNavigation }) => {
 
   const user = useSelector((state: IReducer) => selector(state).user)
+  const dashboard = useSelector((state: IReducer) => selector(state).dashboard)
 
   const dispatch = useDispatch()
 
   return (
     <FlatList
       data={dashboardsGenerator}
-      renderItem={({ item }) => <Item item={item} dispatch={dispatch} navigation={navigation} user={user.user.id!} />}
+      renderItem={({ item }) => <Item item={item} dispatch={dispatch} navigation={navigation} user={user.user.id!} dashboards={dashboard.dashboards} />}
       keyExtractor={(_, index) => String(index)}
     />
   )

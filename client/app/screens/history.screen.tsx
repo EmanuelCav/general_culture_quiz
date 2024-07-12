@@ -17,7 +17,7 @@ const History = ({ navigation }: { navigation: StackNavigation }) => {
   return (
     <FlatList
       data={dashboard.dashboards}
-      renderItem={({ item }) => <ItemHistory item={item} dispatch={dispatch} navigation={navigation} />}
+      renderItem={({ item }) => <ItemHistory item={item} dispatch={dispatch} navigation={navigation} dashboards={dashboard.dashboards} />}
       keyExtractor={(_, index) => String(index)}
     />
   )

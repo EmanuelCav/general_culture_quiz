@@ -1,29 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { firestore } from "../../../firebase.config";
-
 import { createUser } from '../reducers/user.reducer';
+
+import { IUser } from '../../interface/User';
 
 export const createUserAction = createAsyncThunk('users/create', async (_, { dispatch }) => {
 
     try {
 
-        const usersCollection = await firestore.collection('user').get();
-
-        const usersList = usersCollection.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-        }))
-
-        const user = await firestore.collection('user').add({
-            name: `Users${usersList.length + 1}`,
+        const user: IUser = {
+            id: Date.now().toString(),
+            name: `Users${Date.now().toString()}`,
             isSounds: true,
             language: "English"
-        });
+        };
 
-        const userDoc = await firestore.collection('user').doc(user.id).get();
-
-        dispatch(createUser({ id: userDoc.id, ...userDoc.data() }))
+        dispatch(createUser(user))
 
     } catch (error) {
         console.log(error);

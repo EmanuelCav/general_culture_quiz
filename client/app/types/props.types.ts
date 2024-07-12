@@ -27,7 +27,7 @@ export type ButtonMenuPropsType = {
 export type MenuPropsType = {
     navigation: StackNavigation;
     dispatch: any;
-    user: string;
+    dashboards: IDashboard[];
 }
 
 export type ItemPropsType = {
@@ -35,10 +35,12 @@ export type ItemPropsType = {
     dispatch: any;
     navigation: StackNavigation;
     user: string;
+    dashboards: IDashboard[];
 }
 
 export type ItemHistoryPropsType = {
     item: IDashboard;
     dispatch: any;
     navigation: StackNavigation;
+    dashboards: IDashboard[];
 }
