@@ -2,7 +2,7 @@ import { IDashboardGenerator } from "../interface/Dashboard";
 
 export const dashboardsGenerator: IDashboardGenerator[] = [{
     icon: "basketball",
-    name: "Personalizado"
+    name: "Voleyball"
 }, {
     icon: "basketball",
     name: "Football"
@@ -11,7 +11,7 @@ export const dashboardsGenerator: IDashboardGenerator[] = [{
     name: "Basketball"
 }, {
     icon: "basketball",
-    name: "Tenisball"
+    name: "Tennis"
 }, {
     icon: "basketball",
     name: "Voleyball"

@@ -27,7 +27,6 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
   useEffect(() => {
     if (!user.isLoggedIn) {
-      console.log("created");
       dispatch(createUserAction() as any)
     }
   }, [])

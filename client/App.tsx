@@ -11,6 +11,7 @@ import Home from "./app/screens/home.screen";
 import History from "./app/screens/history.screen";
 import Configuration from "./app/screens/configuration.screen";
 import Generate from "./app/screens/generate.screen";
+import Annotator from "./app/screens/annotator.screen";
 import Loading from "./app/components/response/loading";
 
 import { store } from './app/server/store';
@@ -49,6 +50,9 @@ export default function App() {
                 animation: 'fade'
               }} />
               <Stack.Screen name="Generate" component={Generate} options={{
+                animation: 'fade'
+              }} />
+              <Stack.Screen name="Annotator" component={Annotator} options={{
                 animation: 'fade'
               }} />
             </Stack.Navigator>
