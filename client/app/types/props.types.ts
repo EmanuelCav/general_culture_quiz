@@ -44,3 +44,9 @@ export type ItemHistoryPropsType = {
     navigation: StackNavigation;
     dashboards: IDashboard[];
 }
+
+export type TimePropsType = {
+    hours: number;
+    minutes: number;
+    seconds: number;
+}

@@ -12,6 +12,9 @@ export interface IDashboard {
     markers?: number[];
     user?: string;
     category?: string;
+    seconds?: number;
+    minutes?: number;
+    hours?: number;
 }
 
 export interface ITeam {

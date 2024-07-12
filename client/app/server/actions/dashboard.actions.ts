@@ -1,7 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { firestore } from "../../../firebase.config";
-
 import { IDashboard } from "../../interface/Dashboard";
 import * as DashboardAction from "../../types/action.type";
 
@@ -23,7 +21,10 @@ export const createDashboardAction = createAsyncThunk('dashboard/generate', asyn
                 points: 0
             }],
             markers: [],
-            category: dashboardData.category
+            category: dashboardData.category,
+            hours: 0,
+            minutes: 0,
+            seconds: 0
         };
 
         dispatch(createDashboard(dashboard))

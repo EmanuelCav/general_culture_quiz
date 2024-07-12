@@ -13,7 +13,15 @@ export const historyStyles = StyleSheet.create({
         borderColor: '#ffffff',
         borderWidth: 2,
         borderStyle: 'solid',
-        marginTop: Dimensions.get("window").height / 55
+        marginTop: Dimensions.get("window").height / 55,
+        shadowColor: "#ffffff",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 
     nameHistory: {

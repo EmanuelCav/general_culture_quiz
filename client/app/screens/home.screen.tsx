@@ -24,7 +24,6 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
   const dispatch = useDispatch()
 
   const [isConnection, setIsConnection] = useState<boolean>(true)
-  const [isChangeView, setIsChangeView] = useState<boolean>(false)
 
   useEffect(() => {
     if (!user.isLoggedIn) {
@@ -34,7 +33,7 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
 
   useEffect(() => {
     fetch().then(conn => conn).then(state => setIsConnection(state.isConnected!));
-  }, [isConnection, isChangeView])
+  }, [isConnection])
 
   return (
     <View style={generalStyles.containerGeneral}>
