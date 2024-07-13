@@ -19,3 +19,8 @@ export type GetDashboardActionPropsType = {
     navigation: StackNavigation;
     id: string;
 }
+
+export type RemoveDashboardActionPropsType = {
+    dashboard: IDashboard;
+    navigation: StackNavigation;
+}

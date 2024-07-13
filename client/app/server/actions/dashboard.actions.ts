@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IDashboard } from "../../interface/Dashboard";
 import * as DashboardAction from "../../types/action.type";
 
-import { createDashboard, getDashboard, getDashboards } from "../reducers/dashboard.reducer";
+import { createDashboard, getDashboard, getDashboards, removeDashboard } from "../reducers/dashboard.reducer";
 
 import { addMarkers } from "../../helper/functions";
 
@@ -62,6 +62,20 @@ export const getDashboardAction = createAsyncThunk('dashboard/get', async (dashb
         dispatch(getDashboard(dashboard))
 
         dashboardData.navigation.navigate('Annotator')
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+
+export const removeDashboardAction = createAsyncThunk('dashboard/remove', async (dashboardData: DashboardAction.RemoveDashboardActionPropsType, { dispatch }) => {
+
+    try {
+
+        dispatch(removeDashboard(dashboardData.dashboard))
+
+        dashboardData.navigation.navigate('History')
 
     } catch (error) {
         console.log(error);

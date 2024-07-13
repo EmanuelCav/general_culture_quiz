@@ -63,10 +63,14 @@ export const annotatorStyles = StyleSheet.create({
 
     containerMarker: {
         position: 'absolute',
-        width: Dimensions.get("window").width / 2,
+        width: Dimensions.get("window").width / 1.4,
         height: Dimensions.get("window").height / 10,
         backgroundColor: '#ffffff',
         zIndex: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: Dimensions.get("window").width / 120
     },
 
     markerButton: {
@@ -94,6 +98,71 @@ export const annotatorStyles = StyleSheet.create({
         alignItems: 'center',
         position: 'relative',
         flex: 1
+    },
+
+    buttonActionMarker: {
+        padding: Dimensions.get("window").height / 148,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 8,
+        flex: 1
+    },
+
+    containerSettings: {
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 0,
+        width: '100%',
+        height: '100%',
+        left: 0,
+        zIndex: 20,
+        backgroundColor: 'rgba(255, 140, 0, .7)'
+    },
+
+    containSettings: {
+        width: Dimensions.get("window").width / 1.4,
+        padding: Dimensions.get("window").height / 106,
+        backgroundColor: '#ffffff'
+    },
+
+    buttonActionSettings: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        padding: Dimensions.get("window").height / 106,
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+        marginTop: Dimensions.get("window").height / 106
+    },
+
+    actionSettings: {
+        fontSize: Dimensions.get("window").height / 44,
+        fontWeight: '600',
+        color: '#ffffff',
+        marginLeft: Dimensions.get("window").width / 72
+    },
+
+    textComeBack: {
+        fontSize: Dimensions.get("window").height / 33,
+        color: '#FF8C00',
+        fontWeight: '600',
+        marginTop: Dimensions.get("window").height / 60,
+        textAlign: 'center'
+    },
+
+    textSettings: {
+        fontSize: Dimensions.get("window").height / 33,
+        color: '#FF8C00',
+        fontWeight: '600',
+        marginBottom: Dimensions.get("window").height / 60,
+        textAlign: 'center'
     }
 
 })

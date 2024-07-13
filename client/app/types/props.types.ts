@@ -57,6 +57,7 @@ export type TimePropsType = {
 export type MarkersPropsType = {
     markers: number[];
     handlePoints: (points: number, index: number) => void;
+    showSettings: () => void;
 }
 
 export type MarkerPropsType = {
@@ -69,4 +70,10 @@ export type AnnotatorScreenPropsType = {
     team: ITeam;
     index: number;
     handlePoints: (points: number, index: number) => void;
+}
+
+export type SettingsPropsType = {
+    showSettings: () => void;
+    restart: () => void;
+    remove: () => void;
 }
