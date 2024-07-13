@@ -77,3 +77,8 @@ export type SettingsPropsType = {
     restart: () => void;
     remove: () => void;
 }
+
+export type HeaderScreenPropsType = {
+    func: () => void;
+    text: string;
+}

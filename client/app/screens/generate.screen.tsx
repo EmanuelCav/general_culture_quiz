@@ -2,6 +2,7 @@ import { FlatList } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Item from '../components/generate/item'
+import HeaderScreen from '../components/components/headerScreen'
 
 import { StackNavigation } from '../types/props.types'
 import { IReducer } from '../interface/General'
@@ -16,11 +17,16 @@ const Generate = ({ navigation }: { navigation: StackNavigation }) => {
 
   const dispatch = useDispatch()
 
+  const comenback = () => {
+    navigation.goBack()
+  }
+
   return (
     <FlatList
       data={dashboardsGenerator}
       renderItem={({ item }) => <Item item={item} dispatch={dispatch} navigation={navigation} user={user.user.id!} dashboards={dashboard.dashboards} />}
       keyExtractor={(_, index) => String(index)}
+      ListHeaderComponent={<HeaderScreen func={comenback} text='Select a sport to generate a point marker' />}
     />
   )
 }

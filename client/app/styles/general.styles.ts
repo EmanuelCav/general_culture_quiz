@@ -92,14 +92,6 @@ export const generalStyles = StyleSheet.create({
         fontWeight: '500'
     },
 
-    containerButtonAccept: {
-        padding: Dimensions.get("window").height / 46,
-        height: '15%',
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-
     contaierMainLoading: {
         backgroundColor: '#6e6e6e',
         width: Dimensions.get('window').width,
@@ -115,6 +107,37 @@ export const generalStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+
+    containComeback: {
+        width: '100%',
+        alignItems: 'flex-start',
+        justifyContent: 'center'
+    },
+    
+    textComeback: {
+        color: '#FF8C00',
+        marginLeft: Dimensions.get("window").width / 63,
+        fontSize: Dimensions.get("window").height / 43,
+        fontWeight: '600'
+    },
+    
+    buttonComeback: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    containerHeaderScreen: {
+        width: '100%'
+    },
+
+    titleHeaderScreen: {
+        fontSize: Dimensions.get("window").height / 37,
+        color: '#FF8C00',
+        fontWeight: '600',
+        textAlign: 'center',
+        marginVertical: Dimensions.get("window").height / 74
     }
 
 })
