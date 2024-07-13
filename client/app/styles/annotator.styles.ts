@@ -18,7 +18,7 @@ export const annotatorStyles = StyleSheet.create({
         },
         shadowOpacity: 0.29,
         shadowRadius: 4.65,
-        elevation: 7,
+        elevation: 7
     },
 
     nameAnnotator: {
@@ -59,6 +59,41 @@ export const annotatorStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: Dimensions.get("window").height / 148
+    },
+
+    containerMarker: {
+        position: 'absolute',
+        width: Dimensions.get("window").width / 2,
+        height: Dimensions.get("window").height / 10,
+        backgroundColor: '#ffffff',
+        zIndex: 10,
+    },
+
+    markerButton: {
+        padding: Dimensions.get("window").height / 167,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 8,
+        flex: 1,
+        marginHorizontal: Dimensions.get("window").width / 90
+    },
+
+    textMarkerButton: {
+        fontSize: Dimensions.get("window").height / 47
+    },
+
+    containPointsAnnotator: {
+        height: '50%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+
+    screenAnnotator: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+        flex: 1
     }
 
 })

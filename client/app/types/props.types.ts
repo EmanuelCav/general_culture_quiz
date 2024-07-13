@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-import { IDashboard, IDashboardGenerator } from "../interface/Dashboard";
+import { IDashboard, IDashboardGenerator, ITeam } from "../interface/Dashboard";
 
 type RouteTypes = {
     Home: undefined;
@@ -52,4 +52,21 @@ export type TimePropsType = {
     handleRestartTime: () => void;
     handleRunTime: () => void;
     isStarted: boolean;
+}
+
+export type MarkersPropsType = {
+    markers: number[];
+    handlePoints: (points: number, index: number) => void;
+}
+
+export type MarkerPropsType = {
+    marker: number;
+    handlePoints: (points: number, index: number) => void;
+    index: number;
+}
+
+export type AnnotatorScreenPropsType = {
+    team: ITeam;
+    index: number;
+    handlePoints: (points: number, index: number) => void;
 }

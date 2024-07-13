@@ -5,6 +5,8 @@ import * as DashboardAction from "../../types/action.type";
 
 import { createDashboard, getDashboard, getDashboards } from "../reducers/dashboard.reducer";
 
+import { addMarkers } from "../../helper/functions";
+
 export const createDashboardAction = createAsyncThunk('dashboard/generate', async (dashboardData: DashboardAction.CreateDashboardActionPropsType, { dispatch }) => {
 
     try {
@@ -20,7 +22,7 @@ export const createDashboardAction = createAsyncThunk('dashboard/generate', asyn
                 name: "Team2",
                 points: 0
             }],
-            markers: [],
+            markers: addMarkers(dashboardData.category),
             category: dashboardData.category,
             hours: 0,
             minutes: 0,

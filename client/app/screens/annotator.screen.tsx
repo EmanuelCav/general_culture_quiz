@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import AnnotatorScreen from '../components/annotator/annotatorScreen'
 import Time from '../components/annotator/time'
+import Markers from '../components/annotator/markers'
 
 import { updateDashboard } from '../server/reducers/dashboard.reducer'
 
@@ -13,6 +14,7 @@ import { IReducer } from '../interface/General'
 import { ITeam } from '../interface/Dashboard'
 
 import { selector } from '../helper/selector'
+import { annotatorStyles } from '../styles/annotator.styles'
 
 const Annotator = () => {
 
@@ -25,6 +27,27 @@ const Annotator = () => {
   const [hours, setHours] = useState<number>(dashboard.dashboard.hours!)
 
   const dispatch = useDispatch()
+
+  const handlePoints = (points: number, index: number) => {
+    
+    const teams = dashboard.dashboard.teams?.map((t, i) => i === index ? {
+      name: t.name,
+      points: t.points + points
+    } : t)
+    
+    dispatch(updateDashboard({
+      seconds: dashboard.dashboard.seconds,
+      minutes: dashboard.dashboard.minutes,
+      hours: dashboard.dashboard.hours,
+      category: dashboard.dashboard.category,
+      id: dashboard.dashboard.id,
+      markers: dashboard.dashboard.markers,
+      name: dashboard.dashboard.name,
+      teams,
+      user: dashboard.dashboard.user,
+    }))
+
+  }
 
   const handleRestartTime = () => {
 
@@ -88,11 +111,14 @@ const Annotator = () => {
   return (
     <View style={generalStyles.containerGeneral}>
       <Time hours={hours} minutes={minutes} seconds={seconds} handleRestartTime={handleRestartTime} handleRunTime={handleRunTime} isStarted={isStarted} />
-      {
-        dashboard.dashboard.teams?.map((team: ITeam, index: number) => {
-          return <AnnotatorScreen team={team} key={index} />
-        })
-      }
+      <View style={annotatorStyles.screenAnnotator}>
+        <Markers markers={dashboard.dashboard.markers!} handlePoints={handlePoints} />
+        {
+          dashboard.dashboard.teams?.map((team: ITeam, index: number) => {
+            return <AnnotatorScreen team={team} index={index} handlePoints={handlePoints} key={index} />
+          })
+        }
+      </View>
     </View>
   )
 }

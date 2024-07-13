@@ -1,2 +1,2 @@
 export type LanguagesTypes = 'English' | 'Español' | 'Português'
-export type CategoriesTypes = 'Football' | 'Basketball' | 'Table Tenis' | 'Baseball' | 'Badminton' | 'Football' | 'American Football' | 'Tennis' | 'Voleyball';
+export type CategoriesTypes = 'Football' | 'Basketball' | 'Table Tenis' | 'Baseball' | 'Badminton' | 'Football' | 'American Football' | 'Tennis' | 'Voleyball' | 'Handball' | 'Boxing' | 'Cricket' | 'Fencing' | 'Hockey';
