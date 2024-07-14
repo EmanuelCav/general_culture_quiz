@@ -58,6 +58,8 @@ export type MarkersPropsType = {
     markers: number[];
     handlePoints: (points: number, index: number) => void;
     showSettings: () => void;
+    returnPoints: () => void;
+    historyLength: number;
 }
 
 export type MarkerPropsType = {

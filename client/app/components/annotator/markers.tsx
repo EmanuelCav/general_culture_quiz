@@ -8,15 +8,15 @@ import { MarkersPropsType } from "../../types/props.types"
 
 import { annotatorStyles } from "../../styles/annotator.styles"
 
-const Markers = ({ markers, handlePoints, showSettings }: MarkersPropsType) => {
+const Markers = ({ markers, handlePoints, showSettings, returnPoints, historyLength }: MarkersPropsType) => {
     return (
         <View style={annotatorStyles.containerMarker}>
             <Pressable style={({ pressed }) => [
                 {
-                    backgroundColor: pressed ? '#ffa420' : '#FF8C00'
+                    backgroundColor: pressed ? '#ffa420' : historyLength === 0 ? '#dddddd' : '#FF8C00'
                 },
                 annotatorStyles.buttonActionMarker
-            ]}>
+            ]} onPress={returnPoints} disabled={historyLength === 0}>
                 <Icon name="arrow-left-drop-circle" color="#ffffff" size={Dimensions.get("window").height / 47} />
             </Pressable>
             <View style={{ width: '70%', height: '100%' }}>

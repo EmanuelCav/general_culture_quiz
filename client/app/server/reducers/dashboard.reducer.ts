@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-import { IDashboard, IDashboardReducer } from '../../interface/Dashboard'
+import { IDashboard, IDashboardReducer, IPoint } from '../../interface/Dashboard'
 
 const initialState: IDashboardReducer = {
     dashboards: [],

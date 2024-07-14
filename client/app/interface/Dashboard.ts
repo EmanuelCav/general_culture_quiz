@@ -11,6 +11,7 @@ export interface IDashboard {
     teams?: ITeam[];
     markers?: number[];
     user?: string;
+    pointsHistory?: IPoint[];
     category?: string;
     seconds?: number;
     minutes?: number;
@@ -19,7 +20,14 @@ export interface IDashboard {
 
 export interface ITeam {
     name: string;
-    points: number;
+    points: IPoint[];
+    sets: number[];
+}
+
+export interface IPoint {
+    team: number;
+    point: number;
+    player: string;
 }
 
 export interface IDashboardGenerator {

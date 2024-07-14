@@ -14,7 +14,7 @@ import { generalStyles } from '../styles/general.styles'
 import { annotatorStyles } from '../styles/annotator.styles'
 
 import { IReducer } from '../interface/General'
-import { ITeam } from '../interface/Dashboard'
+import { IPoint, ITeam } from '../interface/Dashboard'
 import { StackNavigation } from '../types/props.types'
 
 import { selector } from '../helper/selector'
@@ -54,7 +54,7 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
     const teams = dashboard.dashboard.teams?.map(item => ({
       ...item,
       name: item.name,
-      points: 0
+      points: []
     }))
 
     dispatch(updateDashboard({
@@ -67,6 +67,7 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
       name: dashboard.dashboard.name,
       teams,
       user: dashboard.dashboard.user,
+      pointsHistory: []
     }))
 
     setSeconds(0)
@@ -78,9 +79,21 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
 
   const handlePoints = (points: number, index: number) => {
 
+    const newPoint: IPoint = {
+      player: '',
+      point: points,
+      team: index
+    }
+
+    const addPoint = (p: IPoint[]): IPoint[] => {
+      return [...p, newPoint]
+    }
+
     const teams = dashboard.dashboard.teams?.map((t, i) => i === index ? {
+      ...t,
       name: t.name,
-      points: t.points + points
+      points: addPoint(t.points),
+      sets: t.sets
     } : t)
 
     dispatch(updateDashboard({
@@ -93,6 +106,37 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
       name: dashboard.dashboard.name,
       teams,
       user: dashboard.dashboard.user,
+      pointsHistory: addPoint([...dashboard.dashboard.pointsHistory!])
+    }))
+
+  }
+
+  const returnPoints = () => {
+
+    let index = dashboard.dashboard.pointsHistory![dashboard.dashboard.pointsHistory?.length! - 1].team
+
+    const removeLastPoint = (p: IPoint[]): IPoint[] => {
+      return p.slice(0, -1);
+    }
+
+    const teams = dashboard.dashboard.teams?.map((t, i) => i === index ? {
+      ...t,
+      name: t.name,
+      points: removeLastPoint(t.points),
+      sets: t.sets
+    } : t)
+
+    dispatch(updateDashboard({
+      seconds: dashboard.dashboard.seconds,
+      minutes: dashboard.dashboard.minutes,
+      hours: dashboard.dashboard.hours,
+      category: dashboard.dashboard.category,
+      id: dashboard.dashboard.id,
+      markers: dashboard.dashboard.markers,
+      name: dashboard.dashboard.name,
+      teams,
+      user: dashboard.dashboard.user,
+      pointsHistory: removeLastPoint([...dashboard.dashboard.pointsHistory!])
     }))
 
   }
@@ -111,6 +155,7 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
       name: dashboard.dashboard.name,
       teams: dashboard.dashboard.teams,
       user: dashboard.dashboard.user,
+      pointsHistory: dashboard.dashboard.pointsHistory
     }))
 
     setSeconds(0)
@@ -149,6 +194,7 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
           name: dashboard.dashboard.name,
           teams: dashboard.dashboard.teams,
           user: dashboard.dashboard.user,
+          pointsHistory: dashboard.dashboard.pointsHistory
         }))
       }
 
@@ -163,7 +209,8 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
       }
       <Time hours={hours} minutes={minutes} seconds={seconds} handleRestartTime={handleRestartTime} handleRunTime={handleRunTime} isStarted={isStarted} />
       <View style={annotatorStyles.screenAnnotator}>
-        <Markers markers={dashboard.dashboard.markers!} handlePoints={handlePoints} showSettings={showSettings} />
+        <Markers markers={dashboard.dashboard.markers!} handlePoints={handlePoints} showSettings={showSettings} returnPoints={returnPoints} 
+        historyLength={dashboard.dashboard.pointsHistory?.length!} />
         {
           dashboard.dashboard.teams?.map((team: ITeam, index: number) => {
             return <AnnotatorScreen team={team} index={index} handlePoints={handlePoints} key={index} />

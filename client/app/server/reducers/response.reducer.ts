@@ -58,6 +58,16 @@ const responseSlice = createSlice({
         builder.addCase(dashboardAction.getDashboardAction.rejected, (state) => {
             state.loading = false
         })
+
+        builder.addCase(dashboardAction.removeDashboardAction.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(dashboardAction.removeDashboardAction.fulfilled, (state) => {
+            state.loading = false
+        })
+        builder.addCase(dashboardAction.removeDashboardAction.rejected, (state) => {
+            state.loading = false
+        })
     },
 })
 

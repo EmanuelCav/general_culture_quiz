@@ -4,6 +4,8 @@ import { AnnotatorScreenPropsType } from "../../types/props.types"
 
 import { annotatorStyles } from "../../styles/annotator.styles"
 
+import { calculatePoints } from "../../helper/functions"
+
 const AnnotatorScreen = ({ team, handlePoints, index }: AnnotatorScreenPropsType) => {
     return (
         <Pressable style={({ pressed }) => [
@@ -13,7 +15,7 @@ const AnnotatorScreen = ({ team, handlePoints, index }: AnnotatorScreenPropsType
             annotatorStyles.containerScreenAnnotator
         ]} onPress={() => handlePoints(1, index)}>
             <Text style={annotatorStyles.nameAnnotator}>{team.name}</Text>
-            <Text style={annotatorStyles.pointsAnnotator}>{team.points}</Text>
+            <Text style={annotatorStyles.pointsAnnotator}>{team.points.length === 0 ? 0 : calculatePoints(team.points)}</Text>
         </Pressable>
     )
 }

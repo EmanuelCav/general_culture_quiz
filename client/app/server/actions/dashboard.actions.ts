@@ -17,16 +17,19 @@ export const createDashboardAction = createAsyncThunk('dashboard/generate', asyn
             user: dashboardData.user,
             teams: [{
                 name: "Team1",
-                points: 0
+                points: [],
+                sets: []
             }, {
                 name: "Team2",
-                points: 0
+                points: [],
+                sets: []
             }],
             markers: addMarkers(dashboardData.category),
             category: dashboardData.category,
             hours: 0,
             minutes: 0,
-            seconds: 0
+            seconds: 0,
+            pointsHistory: []
         };
 
         dispatch(createDashboard(dashboard))
