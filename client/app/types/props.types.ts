@@ -38,6 +38,7 @@ export type ItemHistoryPropsType = {
     dispatch: any;
     navigation: StackNavigation;
     dashboards: IDashboard[];
+    user: IUser;
 }
 
 export type TimePropsType = {
@@ -47,6 +48,7 @@ export type TimePropsType = {
     handleRestartTime: () => void;
     handleRunTime: () => void;
     isStarted: boolean;
+    user: IUser;
 }
 
 export type MarkersPropsType = {
@@ -55,18 +57,21 @@ export type MarkersPropsType = {
     showSettings: () => void;
     returnPoints: () => void;
     historyLength: number;
+    user: IUser;
 }
 
 export type MarkerPropsType = {
     marker: number;
     handlePoints: (points: number, index: number) => void;
     index: number;
+    user: IUser;
 }
 
 export type AnnotatorScreenPropsType = {
     team: ITeam;
     index: number;
     handlePoints: (points: number, index: number) => void;
+    user: IUser;
 }
 
 export type SettingsPropsType = {
@@ -108,4 +113,15 @@ export type PallettesPropsType = {
 export type ListConfigPropsType = {
     list: string[];
     isColor: boolean;
+    func: (action: any) => void;
+}
+
+export type TeamsHistoryPropsType = {
+    user: IUser;
+    teams: ITeam[];
+}
+
+export type TeamHistoryPropsType = {
+    user: IUser;
+    team: ITeam;
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Text, View } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Pallettes from '../components/configuration/pallettes'
 import Language from '../components/configuration/language'
@@ -9,6 +9,8 @@ import Accept from '../components/configuration/accept'
 
 import { generalStyles } from '../styles/general.styles'
 import { configurationStyles } from '../styles/configuration.styles'
+
+import { updateBackground, updateLanguage, updateText } from '../server/reducers/user.reducer'
 
 import { IReducer } from '../interface/General'
 import { StackNavigation } from '../types/props.types'
@@ -19,6 +21,8 @@ import { colors, languages } from '../helper/config'
 const Configuration = ({ navigation }: { navigation: StackNavigation }) => {
 
   const user = useSelector((state: IReducer) => selector(state).user)
+
+  const dispatch = useDispatch()
 
   const [isBackground, setIsBackground] = useState<boolean>(false)
   const [isText, setIsText] = useState<boolean>(false)
@@ -41,12 +45,27 @@ const Configuration = ({ navigation }: { navigation: StackNavigation }) => {
     setList(languages)
   }
 
+  const selectOption = (action: any) => {
+
+    if(isBackground) {
+      dispatch(updateBackground(action))
+      setIsBackground(false)
+    } else if (isText) {
+      dispatch(updateText(action))
+      setIsText(false)
+    } else {
+      dispatch(updateLanguage(action))
+      setIsLanguage(false)
+    }
+
+  }
+
   return (
     <View style={generalStyles.containerGeneral}>
       {
         (isBackground || isText || isLanguage) &&
         <ListConfig list={(isBackground || isText) ? isBackground ? list.filter(l => l !== user.user.palletteText) : list.filter(l => l !== user.user.palletteBackground) : list}
-          isColor={isBackground || isText} />
+          isColor={isBackground || isText} func={selectOption} />
       }
       <View style={configurationStyles.containerConfiguration}>
         <Text style={configurationStyles.textConfiguration}>Configuration</Text>

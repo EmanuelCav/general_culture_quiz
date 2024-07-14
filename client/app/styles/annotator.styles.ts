@@ -8,10 +8,8 @@ export const annotatorStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        borderColor: '#ffffff',
         borderWidth: 4,
         borderStyle: 'solid',
-        shadowColor: "#ffffff",
         shadowOffset: {
             width: 0,
             height: 3,
@@ -41,7 +39,6 @@ export const annotatorStyles = StyleSheet.create({
     },
 
     textTime: {
-        color: '#FF8C00',
         fontSize: Dimensions.get("window").height / 37,
         fontWeight: '600'
     },
@@ -65,7 +62,6 @@ export const annotatorStyles = StyleSheet.create({
         position: 'absolute',
         width: Dimensions.get("window").width / 1.4,
         height: Dimensions.get("window").height / 10,
-        backgroundColor: '#ffffff',
         zIndex: 10,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -83,7 +79,8 @@ export const annotatorStyles = StyleSheet.create({
     },
 
     textMarkerButton: {
-        fontSize: Dimensions.get("window").height / 47
+        fontSize: Dimensions.get("window").height / 47,
+        fontWeight: '600'
     },
 
     containPointsAnnotator: {

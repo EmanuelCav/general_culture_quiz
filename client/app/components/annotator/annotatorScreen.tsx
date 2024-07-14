@@ -6,16 +6,18 @@ import { annotatorStyles } from "../../styles/annotator.styles"
 
 import { calculatePoints } from "../../helper/functions"
 
-const AnnotatorScreen = ({ team, handlePoints, index }: AnnotatorScreenPropsType) => {
+const AnnotatorScreen = ({ team, handlePoints, index, user }: AnnotatorScreenPropsType) => {
     return (
         <Pressable style={({ pressed }) => [
             {
-                backgroundColor: pressed ? '#ffa420' : '#FF8C00'
+                backgroundColor: pressed ? user.palletteBackground?.slice(0, user.palletteBackground.length - 1) + '5' : user.palletteBackground,
+                borderColor: user.palletteText,
+                shadowColor: user.palletteText
             },
             annotatorStyles.containerScreenAnnotator
         ]} onPress={() => handlePoints(1, index)}>
-            <Text style={annotatorStyles.nameAnnotator}>{team.name}</Text>
-            <Text style={annotatorStyles.pointsAnnotator}>{team.points.length === 0 ? 0 : calculatePoints(team.points)}</Text>
+            <Text style={[annotatorStyles.nameAnnotator, { color: user.palletteText }]}>{team.name}</Text>
+            <Text style={[annotatorStyles.pointsAnnotator, { color: user.palletteText }]}>{team.points.length === 0 ? 0 : calculatePoints(team.points)}</Text>
         </Pressable>
     )
 }

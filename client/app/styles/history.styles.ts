@@ -10,11 +10,9 @@ export const historyStyles = StyleSheet.create({
         flexDirection: 'column',
         paddingHorizontal: Dimensions.get("window").height / 66,
         paddingVertical: Dimensions.get("window").height / 74,
-        borderColor: '#ffffff',
         borderWidth: 2,
         borderStyle: 'solid',
         marginTop: Dimensions.get("window").height / 55,
-        shadowColor: "#ffffff",
         shadowOffset: {
             width: 0,
             height: 3,
@@ -26,8 +24,7 @@ export const historyStyles = StyleSheet.create({
 
     nameHistory: {
         fontSize: Dimensions.get("window").height / 41,
-        color: '#ffffff',
-        fontWeight: '500'
+        fontWeight: '600'
     },
 
     teamsHistory: {
@@ -45,12 +42,12 @@ export const historyStyles = StyleSheet.create({
 
     nameTeamHistory: {
         fontSize: Dimensions.get("window").height / 41,
-        color: '#ffffff'
+        fontWeight: '500'
     },
 
     pointsTeamHistory: {
         fontSize: Dimensions.get("window").height / 43,
-        color: '#ffffff'
+        fontWeight: '500'
     },
 
     textHistory: {

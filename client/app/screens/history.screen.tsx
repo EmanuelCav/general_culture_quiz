@@ -14,6 +14,7 @@ import { selector } from '../helper/selector'
 const History = ({ navigation }: { navigation: StackNavigation }) => {
 
   const dashboard = useSelector((state: IReducer) => selector(state).dashboard)
+  const user = useSelector((state: IReducer) => selector(state).user)
 
   const dispatch = useDispatch()
 
@@ -27,7 +28,7 @@ const History = ({ navigation }: { navigation: StackNavigation }) => {
         dashboard.dashboards.length > 0 ? (
           <FlatList
             data={dashboard.dashboards}
-            renderItem={({ item }) => <ItemHistory item={item} dispatch={dispatch} navigation={navigation} dashboards={dashboard.dashboards} />}
+            renderItem={({ item }) => <ItemHistory item={item} dispatch={dispatch} navigation={navigation} dashboards={dashboard.dashboards} user={user.user} />}
             keyExtractor={(_, index) => String(index)}
             ListHeaderComponent={<HeaderScreen func={comeback} text='Point marker history' />}
           />

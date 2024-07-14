@@ -10,7 +10,7 @@ const Accept = ({ func }: { func: () => void }) => {
         },
         configurationStyles.buttonAccept
       ]} onPress={func}>
-        <Text style={configurationStyles.textAccept}>Aceptar</Text>
+        <Text style={configurationStyles.textAccept}>Accept</Text>
     </Pressable>
   )
 }

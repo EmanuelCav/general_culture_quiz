@@ -22,6 +22,7 @@ import { selector } from '../helper/selector'
 const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
 
   const dashboard = useSelector((state: IReducer) => selector(state).dashboard)
+  const user = useSelector((state: IReducer) => selector(state).user)
 
   const [isStarted, setIsStarted] = useState<boolean>(false)
   const [isSettings, setIsSettings] = useState<boolean>(false)
@@ -207,13 +208,13 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
       {
         isSettings && <Settings showSettings={showSettings} restart={restart} remove={remove} />
       }
-      <Time hours={hours} minutes={minutes} seconds={seconds} handleRestartTime={handleRestartTime} handleRunTime={handleRunTime} isStarted={isStarted} />
+      <Time hours={hours} minutes={minutes} seconds={seconds} handleRestartTime={handleRestartTime} handleRunTime={handleRunTime} isStarted={isStarted} user={user.user} />
       <View style={annotatorStyles.screenAnnotator}>
         <Markers markers={dashboard.dashboard.markers!} handlePoints={handlePoints} showSettings={showSettings} returnPoints={returnPoints} 
-        historyLength={dashboard.dashboard.pointsHistory?.length!} />
+        historyLength={dashboard.dashboard.pointsHistory?.length!} user={user.user} />
         {
           dashboard.dashboard.teams?.map((team: ITeam, index: number) => {
-            return <AnnotatorScreen team={team} index={index} handlePoints={handlePoints} key={index} />
+            return <AnnotatorScreen team={team} index={index} handlePoints={handlePoints} user={user.user} key={index} />
           })
         }
       </View>

@@ -4,7 +4,7 @@ import { ListConfigPropsType } from "../../types/props.types"
 
 import { configurationStyles } from "../../styles/configuration.styles"
 
-const ListConfig = ({ list, isColor }: ListConfigPropsType) => {
+const ListConfig = ({ list, isColor, func }: ListConfigPropsType) => {
     return (
         <View style={configurationStyles.backgroundListConfig}>
             <View style={configurationStyles.containerListConfig}>
@@ -14,7 +14,7 @@ const ListConfig = ({ list, isColor }: ListConfigPropsType) => {
                         <View key={index}>
                             {
                                 isColor ? (
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => func(option)}>
                                         <View style={[{ backgroundColor: option }, configurationStyles.colorSelected]} />
                                     </TouchableOpacity>
                                 ) : (
@@ -23,7 +23,7 @@ const ListConfig = ({ list, isColor }: ListConfigPropsType) => {
                                             backgroundColor: pressed ? '#ffa420' : '#FF8C00'
                                         },
                                         configurationStyles.buttonAccept
-                                    ]}>
+                                    ]} onPress={() => func(option)}>
                                         <Text style={configurationStyles.textLanguage}>{option}</Text>
                                     </Pressable>
                                 )
