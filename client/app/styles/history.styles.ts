@@ -51,6 +51,13 @@ export const historyStyles = StyleSheet.create({
     pointsTeamHistory: {
         fontSize: Dimensions.get("window").height / 43,
         color: '#ffffff'
+    },
+
+    textHistory: {
+        fontSize: Dimensions.get("window").height / 43,
+        color: '#FF8C00',
+        textAlign: 'center',
+        fontWeight: '600'
     }
 
 })

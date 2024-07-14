@@ -1,6 +1,5 @@
 import { Dimensions, Pressable, Text, View } from "react-native"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import IconSettings from 'react-native-vector-icons/Ionicons';
 
 import Marker from "./components/marker"
 
@@ -41,7 +40,7 @@ const Markers = ({ markers, handlePoints, showSettings, returnPoints, historyLen
                 },
                 annotatorStyles.buttonActionMarker
             ]} onPress={showSettings}>
-                <IconSettings name="settings" color="#ffffff" size={Dimensions.get("window").height / 43} />
+                <Icon name="menu" color="#ffffff" size={Dimensions.get("window").height / 43} />
             </Pressable>
         </View>
     )

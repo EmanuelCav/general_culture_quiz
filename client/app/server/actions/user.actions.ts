@@ -11,8 +11,9 @@ export const createUserAction = createAsyncThunk('users/create', async (_, { dis
         const user: IUser = {
             id: Date.now().toString(),
             name: `Users${Date.now().toString()}`,
-            isSounds: true,
-            language: "English"
+            language: "English",
+            palletteBackground: '#FF8C00',
+            palletteText: '#FFFFFF'
         };
 
         dispatch(createUser(user))

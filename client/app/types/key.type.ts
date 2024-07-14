@@ -1,2 +1,3 @@
 export type LanguagesTypes = 'English' | 'Español' | 'Português'
 export type CategoriesTypes = 'Football' | 'Basketball' | 'Table Tenis' | 'Baseball' | 'Badminton' | 'Football' | 'American Football' | 'Tennis' | 'Voleyball' | 'Handball' | 'Boxing' | 'Cricket' | 'Fencing' | 'Hockey';
+export type PallettesTypes = '#FF8C00' | '#32FF00' | '#FFF300' | '#FF2A00' | '#00FFFB' | '#0017FF' | '#FF00D1' | '#6800FF' | '#0A0A09' | '#FFFFFF'

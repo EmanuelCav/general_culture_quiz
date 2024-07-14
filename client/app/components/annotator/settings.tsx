@@ -1,5 +1,6 @@
-import { Dimensions, Pressable, Text, View } from "react-native"
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Pressable, Text, View } from "react-native"
+
+import Setting from "./components/settings";
 
 import { SettingsPropsType } from "../../types/props.types";
 
@@ -10,24 +11,11 @@ const Settings = ({ showSettings, restart, remove }: SettingsPropsType) => {
         <View style={annotatorStyles.containerSettings}>
             <View style={annotatorStyles.containSettings}>
                 <Text style={annotatorStyles.textSettings}>Settings</Text>
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? '#ff4444' : '#ff5555'
-                    },
-                    annotatorStyles.buttonActionSettings
-                ]} onPress={restart}>
-                    <Icon name="restart" color="#ffffff" size={Dimensions.get("window").height / 41} />
-                    <Text style={annotatorStyles.actionSettings}>Restart</Text>
-                </Pressable>
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? '#ff4444' : '#ff5555'
-                    },
-                    annotatorStyles.buttonActionSettings
-                ]} onPress={remove}>
-                    <Icon name="delete" color="#ffffff" size={Dimensions.get("window").height / 41} />
-                    <Text style={annotatorStyles.actionSettings}>Delete</Text>
-                </Pressable>
+                <Setting text="Update title" action={remove} icon="pencil-box" color="#5555ff" pressedColor="#4444ff" />
+                <Setting text="Points history" action={remove} icon="clock-edit-outline" color="#5555ff" pressedColor="#4444ff" />
+                <Setting text="Restart" action={restart} icon="restart" color="#ff5555" pressedColor="#ff4444" />
+                <Setting text="Delete" action={remove} icon="delete" color="#ff5555" pressedColor="#ff4444" />
+                <Setting text="Quit" action={remove} icon="keyboard-return" color="#ff5555" pressedColor="#ff4444" />
                 <Pressable style={({ pressed }) => [
                     {
                         backgroundColor: pressed ? '#ffa420' : '#FF8C00'

@@ -13,23 +13,6 @@ export const generalStyles = StyleSheet.create({
         alignItems: 'center'
     },
 
-    buttonAccept: {
-        padding: Dimensions.get("window").height / 62,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: Dimensions.get("window").height / 14,
-        borderRadius: 8,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-        elevation: 7,
-    },
-
     buttonMenu: {
         position: 'relative',
         padding: Dimensions.get("window").height / 62,
@@ -59,37 +42,11 @@ export const generalStyles = StyleSheet.create({
         borderRadius: Dimensions.get("window").height / 45,
     },
 
-    buttonNotSelected: {
-        padding: Dimensions.get("window").height / 62,
-        width: '66%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: Dimensions.get("window").height / 14,
-        borderRadius: 8,
-        borderColor: '#2222222',
-        borderWidth: 2,
-        borderStyle: 'solid',
-        shadowColor: "#ffffff",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-        elevation: 7,
-    },
-
     buttonMenuText: {
         fontSize: Dimensions.get("window").height / 42,
         color: '#ffffff',
         fontWeight: '500',
         marginLeft: Dimensions.get("window").width / 36
-    },
-
-    textButtonNotSelected: {
-        fontSize: Dimensions.get("window").height / 42,
-        color: '#222222',
-        fontWeight: '500'
     },
 
     contaierMainLoading: {

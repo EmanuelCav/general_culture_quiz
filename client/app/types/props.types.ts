@@ -1,6 +1,7 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { IDashboard, IDashboardGenerator, ITeam } from "../interface/Dashboard";
+import { IUser } from "../interface/User";
 
 type RouteTypes = {
     Home: undefined;
@@ -10,13 +11,7 @@ type RouteTypes = {
     Annotator: undefined;
 }
 
-export type StackNavigation = NativeStackNavigationProp<RouteTypes>
-
-export type ButtonAcceptPropsType = {
-    func: () => void;
-    text: string;
-    isCategory: boolean;
-}
+export type StackNavigation = NativeStackNavigationProp<RouteTypes>;
 
 export type ButtonMenuPropsType = {
     func: () => void;
@@ -83,4 +78,34 @@ export type SettingsPropsType = {
 export type HeaderScreenPropsType = {
     func: () => void;
     text: string;
+}
+
+export type SettingPropsType = {
+    action: () => void;
+    text: string;
+    icon: string;
+    color: string;
+    pressedColor: string;
+}
+
+export type PallettePropsType = {
+    color: string;
+    text: string;
+    func: () => void;
+}
+
+export type LanguagePropsType = {
+    languageSelect: () => void;
+    user: IUser;
+}
+
+export type PallettesPropsType = {
+    user: IUser;
+    colorSelect: () => void;
+    backgroundSelect: () => void;
+}
+
+export type ListConfigPropsType = {
+    list: string[];
+    isColor: boolean;
 }

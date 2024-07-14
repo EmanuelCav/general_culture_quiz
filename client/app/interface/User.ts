@@ -1,4 +1,4 @@
-import { LanguagesTypes } from "../types/key.type";
+import { LanguagesTypes, PallettesTypes } from "../types/key.type";
 
 export interface IUserReducer {
     user: IUser;
@@ -9,5 +9,6 @@ export interface IUser {
     id?: string;
     name?: string;
     language?: LanguagesTypes;
-    isSounds?: boolean;
+    palletteBackground?: PallettesTypes;
+    palletteText?: PallettesTypes;
 }
