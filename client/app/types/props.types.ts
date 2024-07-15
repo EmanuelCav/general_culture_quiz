@@ -78,6 +78,9 @@ export type SettingsPropsType = {
     showSettings: () => void;
     restart: () => void;
     remove: () => void;
+    quit: () => void;
+    dashboard: IDashboard;
+    dispatch: any;
 }
 
 export type HeaderScreenPropsType = {
@@ -124,4 +127,18 @@ export type TeamsHistoryPropsType = {
 export type TeamHistoryPropsType = {
     user: IUser;
     team: ITeam;
+}
+
+export type InputPropsType = {
+    title: string;
+    placeholder: string;
+    handleChange: (value: string) => void;
+    maxLength: number;
+    value: string;
+}
+
+export type UpdateSettingsPropsType = {
+    dashboard: IDashboard;
+    handleUpdate: () => void;
+    dispatch: any;
 }

@@ -160,6 +160,50 @@ export const annotatorStyles = StyleSheet.create({
         fontWeight: '600',
         marginBottom: Dimensions.get("window").height / 60,
         textAlign: 'center'
+    },
+
+    labelSettings: {
+        fontSize: Dimensions.get("window").height / 43,
+        fontWeight: '600',
+        color: '#FF8C00'
+    },
+
+    containerInput: {
+        marginVertical: Dimensions.get("window").height / 74,
+        width: '100%'
+    },
+
+    inputSettings: {
+        padding: Dimensions.get("window").height / 106,
+        marginTop: Dimensions.get("window").height / 148,
+        fontSize: Dimensions.get("window").height / 47,
+        borderColor: '#FF8C00',
+        color: '#FF8C00',
+        borderStyle: 'solid',
+        borderWidth: 1
+    },
+
+    buttonAcceptSettings: {
+        padding: Dimensions.get("window").height / 106,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: Dimensions.get("window").height / 74,
+        borderRadius: 8,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+    },
+
+    textAcceptSettings: {
+        color: '#ffffff',
+        fontWeight: '600',
+        fontSize: Dimensions.get("window").height / 41
     }
 
 })

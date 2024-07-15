@@ -34,3 +34,12 @@ export interface IDashboardGenerator {
     icon: string;
     name: CategoriesTypes;
 }
+
+export interface IUpdateTeams {
+    team1: string;
+    team2: string;
+}
+
+export interface IUpdateTitle {
+    name: string;
+}

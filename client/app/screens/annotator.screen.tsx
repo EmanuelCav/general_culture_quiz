@@ -78,6 +78,24 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
     setIsSettings(false)
   }
 
+  const quit = () => {
+
+    navigation.goBack()
+
+    dispatch(updateDashboard({
+      seconds,
+      minutes,
+      hours,
+      category: dashboard.dashboard.category,
+      id: dashboard.dashboard.id,
+      markers: dashboard.dashboard.markers,
+      name: dashboard.dashboard.name,
+      teams: dashboard.dashboard.teams,
+      user: dashboard.dashboard.user,
+      pointsHistory: dashboard.dashboard.pointsHistory
+    }))
+  }
+
   const handlePoints = (points: number, index: number) => {
 
     const newPoint: IPoint = {
@@ -185,18 +203,6 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
           setHours(hours + 1)
         }
 
-        dispatch(updateDashboard({
-          seconds,
-          minutes,
-          hours,
-          category: dashboard.dashboard.category,
-          id: dashboard.dashboard.id,
-          markers: dashboard.dashboard.markers,
-          name: dashboard.dashboard.name,
-          teams: dashboard.dashboard.teams,
-          user: dashboard.dashboard.user,
-          pointsHistory: dashboard.dashboard.pointsHistory
-        }))
       }
 
     }, 1000);
@@ -206,7 +212,7 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
   return (
     <View style={generalStyles.containerGeneral}>
       {
-        isSettings && <Settings showSettings={showSettings} restart={restart} remove={remove} />
+        isSettings && <Settings showSettings={showSettings} restart={restart} remove={remove} quit={quit} dashboard={dashboard.dashboard} dispatch={dispatch} />
       }
       <Time hours={hours} minutes={minutes} seconds={seconds} handleRestartTime={handleRestartTime} handleRunTime={handleRunTime} isStarted={isStarted} user={user.user} />
       <View style={annotatorStyles.screenAnnotator}>
