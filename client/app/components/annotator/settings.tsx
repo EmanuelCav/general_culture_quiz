@@ -4,6 +4,7 @@ import { Pressable, Text, View } from "react-native"
 import Setting from "./components/settings";
 import UpdateTile from "./components/updateTitle";
 import UpdateTeams from "./components/updateTeams";
+import PointsHistory from "./components/pointsHistory";
 
 import { SettingsPropsType } from "../../types/props.types";
 
@@ -34,6 +35,9 @@ const Settings = ({ showSettings, restart, remove, quit, dashboard, dispatch }: 
             }
             {
                 isUpdateTeams && <UpdateTeams handleUpdate={handleUpdateTeams} dashboard={dashboard} dispatch={dispatch} />
+            }
+            {
+                isPointsHistory && <PointsHistory handleUpdate={handlePointsHistory} dashboard={dashboard} dispatch={dispatch} />
             }
             <View style={annotatorStyles.containSettings}>
                 <Text style={annotatorStyles.textSettings}>Settings</Text>

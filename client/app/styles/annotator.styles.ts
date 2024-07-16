@@ -204,6 +204,39 @@ export const annotatorStyles = StyleSheet.create({
         color: '#ffffff',
         fontWeight: '600',
         fontSize: Dimensions.get("window").height / 41
+    },
+
+    containPoint: {
+        backgroundColor: '#FF8C00',
+        width: '100%',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
+        borderColor: '#ffffff',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        padding: Dimensions.get("window").height / 106,
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+    },
+
+    textPoint: {
+        fontSize: Dimensions.get("window").height / 47,
+        fontWeight: '500',
+        color: '#ffffff'
+    },
+
+    textNotPoint: {
+        color: '#FF8C00',
+        fontSize: Dimensions.get("window").height / 43,
+        fontWeight: '600',
+        textAlign: 'center',
+        marginVertical: Dimensions.get("window").height / 106
     }
 
 })
