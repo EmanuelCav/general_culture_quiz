@@ -1,4 +1,4 @@
-import { CategoriesTypes } from "../types/key.type";
+import { CategoriesTypes, CategoriesTypesEsp, CategoriesTypesPor } from "../types/key.type";
 
 export interface IDashboardReducer {
     dashboards: IDashboard[];
@@ -33,6 +33,19 @@ export interface IPoint {
 export interface IDashboardGenerator {
     icon: string;
     name: CategoriesTypes;
+    text: CategoriesTypes;
+}
+
+export interface IDashboardGeneratorPor {
+    icon: string;
+    name: CategoriesTypes;
+    text: CategoriesTypesPor;
+}
+
+export interface IDashboardGeneratorEsp {
+    icon: string;
+    name: CategoriesTypes;
+    text: CategoriesTypesEsp;
 }
 
 export interface IUpdateTeams {

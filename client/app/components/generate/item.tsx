@@ -26,7 +26,7 @@ const Item = ({ item, dispatch, navigation, user, dashboards }: ItemPropsType) =
             generateStyles.containerGenerate
         ]} onPress={generateAnnotator}>
             <Icon name={item.icon} color={'#ffffff'} size={Dimensions.get("window").height / 37} />
-            <Text style={generateStyles.textGenerate} numberOfLines={1}>{item.name}</Text>
+            <Text style={generateStyles.textGenerate} numberOfLines={1}>{item.text}</Text>
         </Pressable>
     )
 }

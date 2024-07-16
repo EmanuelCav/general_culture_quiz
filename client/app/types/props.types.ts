@@ -28,7 +28,7 @@ export type MenuPropsType = {
 }
 
 export type ItemPropsType = {
-    item: IDashboardGenerator;
+    item: any;
     dispatch: any;
     navigation: StackNavigation;
     user: string;

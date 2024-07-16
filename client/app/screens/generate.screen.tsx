@@ -7,7 +7,7 @@ import HeaderScreen from '../components/components/headerScreen'
 import { StackNavigation } from '../types/props.types'
 import { IReducer } from '../interface/General'
 
-import { dashboardsGenerator } from '../helper/dashboard'
+import { dashboardsGenerator, dashboardsGeneratorEsp, dashboardsGeneratorPor } from '../helper/dashboard'
 import { selector } from '../helper/selector'
 
 const Generate = ({ navigation }: { navigation: StackNavigation }) => {
@@ -23,7 +23,7 @@ const Generate = ({ navigation }: { navigation: StackNavigation }) => {
 
   return (
     <FlatList
-      data={dashboardsGenerator}
+      data={user.user.language === 'English' ? dashboardsGenerator: user.user.language === 'Español' ? dashboardsGeneratorEsp : dashboardsGeneratorPor as any[]}
       renderItem={({ item }) => <Item item={item} dispatch={dispatch} navigation={navigation} user={user.user.id!} dashboards={dashboard.dashboards} />}
       keyExtractor={(_, index) => String(index)}
       ListHeaderComponent={<HeaderScreen func={comenback} language={user.user.language!}
