@@ -40,8 +40,8 @@ const Home = ({ navigation }: { navigation: StackNavigation }) => {
       {
         // isConnection && <Banner />
       }
-      <Title />
-      <Menu navigation={navigation} dispatch={dispatch} dashboards={dashboard.dashboards} />
+      <Title language={user.user.language!} />
+      <Menu navigation={navigation} dispatch={dispatch} dashboards={dashboard.dashboards} user={user.user} />
     </View>
   )
 }

@@ -47,7 +47,7 @@ const Configuration = ({ navigation }: { navigation: StackNavigation }) => {
 
   const selectOption = (action: any) => {
 
-    if(isBackground) {
+    if (isBackground) {
       dispatch(updateBackground(action))
       setIsBackground(false)
     } else if (isText) {
@@ -68,7 +68,9 @@ const Configuration = ({ navigation }: { navigation: StackNavigation }) => {
           isColor={isBackground || isText} func={selectOption} />
       }
       <View style={configurationStyles.containerConfiguration}>
-        <Text style={configurationStyles.textConfiguration}>Configuration</Text>
+        <Text style={configurationStyles.textConfiguration}>
+          {user.user.language === 'English' ? 'CONFIGURATION' : user.user.language === 'Español' ? 'CONFIGURACIÓN' : 'CONFIGURAÇÃO'}
+        </Text>
         <View style={configurationStyles.containConfig}>
           <Pallettes user={user.user} colorSelect={colorSelect} backgroundSelect={backgroundSelect} />
           <Language user={user.user} languageSelect={languageSelect} />

@@ -212,7 +212,7 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
   return (
     <View style={generalStyles.containerGeneral}>
       {
-        isSettings && <Settings showSettings={showSettings} restart={restart} remove={remove} quit={quit} dashboard={dashboard.dashboard} dispatch={dispatch} />
+        isSettings && <Settings showSettings={showSettings} restart={restart} remove={remove} quit={quit} dashboard={dashboard.dashboard} dispatch={dispatch} user={user.user} />
       }
       <Time hours={hours} minutes={minutes} seconds={seconds} handleRestartTime={handleRestartTime} handleRunTime={handleRunTime} isStarted={isStarted} user={user.user} />
       <View style={annotatorStyles.screenAnnotator}>

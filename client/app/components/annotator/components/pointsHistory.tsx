@@ -1,6 +1,6 @@
 import { Pressable, ScrollView, Text, View } from 'react-native';
 
-import Points from './components/point';
+import Point from './components/point';
 
 import { UpdateSettingsPropsType } from '../../../types/props.types';
 
@@ -18,7 +18,7 @@ const PointsHistory = ({ dashboard, handleUpdate }: UpdateSettingsPropsType) => 
               <>
                 {
                   dashboard.pointsHistory?.map((point, index) => {
-                    return <Points point={point} key={index} />
+                    return <Point point={point} dashboard={dashboard} key={index} />
                   })
                 }
               </>

@@ -26,7 +26,8 @@ const Generate = ({ navigation }: { navigation: StackNavigation }) => {
       data={dashboardsGenerator}
       renderItem={({ item }) => <Item item={item} dispatch={dispatch} navigation={navigation} user={user.user.id!} dashboards={dashboard.dashboards} />}
       keyExtractor={(_, index) => String(index)}
-      ListHeaderComponent={<HeaderScreen func={comenback} text='Select a sport to generate a point marker' />}
+      ListHeaderComponent={<HeaderScreen func={comenback} language={user.user.language!}
+      text={user.user.language === 'English' ? 'Select a sport to generate a scorecard' : user.user.language === 'Español' ? 'Selecciona un deporte para generar un marcador' : 'Selecione um esporte para gerar um placar'} />}
     />
   )
 }

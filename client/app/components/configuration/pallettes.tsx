@@ -9,8 +9,10 @@ import { PallettesPropsType } from "../../types/props.types"
 const Pallettes = ({ user, backgroundSelect, colorSelect }: PallettesPropsType) => {
     return (
         <View style={configurationStyles.containerSectionConfig}>
-            <Pallette color={user.palletteBackground!} text="Marker Background" func={backgroundSelect} />
-            <Pallette color={user.palletteText!} text="Marker Text" func={colorSelect} />
+            <Pallette color={user.palletteBackground!} func={backgroundSelect} 
+            text={user.language === 'English' ? 'Scoreboard background' : user.language === 'Español' ? 'Fondo del marcador' : 'Fundo do placar'} />
+            <Pallette color={user.palletteText!} func={colorSelect} 
+            text={user.language === 'English' ? 'Scoreboard text' : user.language === 'Español' ? 'Texto del marcador' : 'Texto do placar'} />
         </View>
     )
 }

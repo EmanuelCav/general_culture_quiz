@@ -30,12 +30,14 @@ const History = ({ navigation }: { navigation: StackNavigation }) => {
             data={dashboard.dashboards}
             renderItem={({ item }) => <ItemHistory item={item} dispatch={dispatch} navigation={navigation} dashboards={dashboard.dashboards} user={user.user} />}
             keyExtractor={(_, index) => String(index)}
-            ListHeaderComponent={<HeaderScreen func={comeback} text='Point marker history' />}
+            ListHeaderComponent={<HeaderScreen func={comeback} language={user.user.language!}
+            text={user.user.language === 'English' ? 'Point marker history' : user.user.language === 'Español' ? 'Historial del marcador de puntos' : 'Histórico do marcador de ponto'} />}
           />
         ) : (
           <>
-            <HeaderScreen func={comeback} text='Point marker history' />
-            <Text style={historyStyles.textHistory}>You have not scoreboards yet.</Text>
+            <HeaderScreen func={comeback} language={user.user.language!}
+            text={user.user.language === 'English' ? 'Point marker history' : user.user.language === 'Español' ? 'Historial del marcador de puntos' : 'Histórico do marcador de ponto'} />
+            <Text style={historyStyles.textHistory}>{user.user.language === 'English' ? 'You have not scoreboards yet' : user.user.language === 'Español' ? 'Aún no tienes marcadores' : 'Você ainda não tem placares'}</Text>
           </>
         )
       }

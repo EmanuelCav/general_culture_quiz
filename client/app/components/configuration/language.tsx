@@ -12,7 +12,9 @@ const Language = ({ user, languageSelect }: LanguagePropsType) => {
             },
             configurationStyles.buttonConfig
         ]} onPress={languageSelect}>
-            <Text style={configurationStyles.textConfig}>Language</Text>
+            <Text style={configurationStyles.textConfig}>
+                {user.language === 'English' ? 'Language' : user.language === 'Español' ? 'Idioma' : 'Idioma'}
+            </Text>
             <Text style={configurationStyles.textConfig}>{user.language}</Text>
         </Pressable>
     )

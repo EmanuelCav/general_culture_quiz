@@ -1,13 +1,13 @@
 import { Text, View } from "react-native"
 
-import { IPoint } from "../../../../interface/Dashboard"
-
 import { annotatorStyles } from "../../../../styles/annotator.styles"
 
-const Point = ({ point }: { point: IPoint }) => {
+import { PointPropsType } from "../../../../types/props.types"
+
+const Point = ({ point, dashboard }: PointPropsType) => {
     return (
         <View style={annotatorStyles.containPoint}>
-            <Text style={annotatorStyles.textPoint}>{point.team}</Text>
+            <Text style={annotatorStyles.textPoint}>{dashboard.teams![point.team].name}</Text>
             <Text style={annotatorStyles.textPoint}>{point.point}</Text>
         </View>
     )

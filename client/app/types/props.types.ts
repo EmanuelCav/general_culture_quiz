@@ -1,7 +1,8 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-import { IDashboard, IDashboardGenerator, ITeam } from "../interface/Dashboard";
+import { IDashboard, IDashboardGenerator, IPoint, ITeam } from "../interface/Dashboard";
 import { IUser } from "../interface/User";
+import { LanguagesTypes } from "./key.type";
 
 type RouteTypes = {
     Home: undefined;
@@ -23,6 +24,7 @@ export type MenuPropsType = {
     navigation: StackNavigation;
     dispatch: any;
     dashboards: IDashboard[];
+    user: IUser;
 }
 
 export type ItemPropsType = {
@@ -81,11 +83,13 @@ export type SettingsPropsType = {
     quit: () => void;
     dashboard: IDashboard;
     dispatch: any;
+    user: IUser;
 }
 
 export type HeaderScreenPropsType = {
     func: () => void;
     text: string;
+    language: LanguagesTypes;
 }
 
 export type SettingPropsType = {
@@ -141,4 +145,14 @@ export type UpdateSettingsPropsType = {
     dashboard: IDashboard;
     handleUpdate: () => void;
     dispatch: any;
+}
+
+export type PointPropsType = {
+    dashboard: IDashboard;
+    point: IPoint;
+}
+
+export type ComebackPropsType = {
+    func: () => void;
+    language: LanguagesTypes
 }
