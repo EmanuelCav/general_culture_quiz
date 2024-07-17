@@ -22,6 +22,7 @@ export interface ITeam {
     name: string;
     points: IPoint[];
     sets: number[];
+    games: number[];
 }
 
 export interface IPoint {

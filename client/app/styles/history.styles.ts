@@ -24,7 +24,8 @@ export const historyStyles = StyleSheet.create({
 
     nameHistory: {
         fontSize: Dimensions.get("window").height / 41,
-        fontWeight: '600'
+        fontWeight: '600',
+        textAlign: 'center'
     },
 
     teamsHistory: {

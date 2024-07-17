@@ -112,7 +112,8 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
       ...t,
       name: t.name,
       points: addPoint(t.points),
-      sets: t.sets
+      sets: t.sets,
+      games: t.games
     } : t)
 
     dispatch(updateDashboard({
@@ -142,7 +143,8 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
       ...t,
       name: t.name,
       points: removeLastPoint(t.points),
-      sets: t.sets
+      sets: t.sets,
+      games: t.games
     } : t)
 
     dispatch(updateDashboard({

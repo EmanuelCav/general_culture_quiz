@@ -29,6 +29,7 @@ const ItemHistory = ({ item, dispatch, navigation, dashboards, user }: ItemHisto
         ]} onPress={getAnnotator}>
             <Text style={[historyStyles.nameHistory, { color: user.palletteText }]}>{item.name}</Text>
             <TeamsHistory teams={item.teams!} user={user} />
+            <Text style={[historyStyles.nameHistory, { color: user.palletteText }]}>{item.category}</Text>
         </Pressable>
     )
 }
