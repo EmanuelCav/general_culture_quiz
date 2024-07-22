@@ -11,7 +11,7 @@ const Marker = ({ marker, handlePoints, index, user }: MarkerPropsType) => {
                 backgroundColor: pressed ? user.palletteBackground?.slice(0, user.palletteBackground.length - 1) + '5' : user.palletteBackground
             },
             annotatorStyles.markerButton  
-        ]} onPress={() => handlePoints(marker, index)}>
+        ]} onPress={() => handlePoints(marker, index, false)}>
             <Text style={[annotatorStyles.textMarkerButton, { color: user.palletteText }]}>{marker}</Text>
         </Pressable>
     )

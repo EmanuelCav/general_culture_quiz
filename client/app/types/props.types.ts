@@ -2,7 +2,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { IDashboard, IDashboardGenerator, IPoint, ITeam } from "../interface/Dashboard";
 import { IUser } from "../interface/User";
-import { LanguagesTypes } from "./key.type";
+import { CategoriesTypes, LanguagesTypes } from "./key.type";
 
 type RouteTypes = {
     Home: undefined;
@@ -67,7 +67,7 @@ export type HeaderAnnotatorPropsType = {
 
 export type MarkersPropsType = {
     markers: number[];
-    handlePoints: (points: number, index: number) => void;
+    handlePoints: (points: number, index: number, isAffectRival: boolean) => void;
     showSettings: () => void;
     returnPoints: () => void;
     historyLength: number;
@@ -76,7 +76,7 @@ export type MarkersPropsType = {
 
 export type MarkerPropsType = {
     marker: number;
-    handlePoints: (points: number, index: number) => void;
+    handlePoints: (points: number, index: number, isAffectRival: boolean) => void;
     index: number;
     user: IUser;
 }
@@ -84,8 +84,10 @@ export type MarkerPropsType = {
 export type AnnotatorScreenPropsType = {
     team: ITeam;
     index: number;
-    handlePoints: (points: number, index: number) => void;
+    handlePoints: (points: number, index: number, isAffectRival: boolean) => void;
     user: IUser;
+    category: CategoriesTypes;
+    rival: ITeam;
 }
 
 export type SettingsPropsType = {

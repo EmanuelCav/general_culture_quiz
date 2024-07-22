@@ -19,6 +19,7 @@ import { IPoint, ITeam } from '../interface/Dashboard'
 import { StackNavigation } from '../types/props.types'
 
 import { selector } from '../helper/selector'
+import { calculatePoints, calculatePointsRival } from '../helper/functions'
 
 const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
 
@@ -97,7 +98,7 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
     }))
   }
 
-  const handlePoints = (points: number, index: number) => {
+  const handlePoints = (points: number, index: number, isAffectRival: boolean) => {
 
     const newPoint: IPoint = {
       player: '',
@@ -129,6 +130,39 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
       user: dashboard.dashboard.user,
       pointsHistory: addPoint([...dashboard.dashboard.pointsHistory!])
     }))
+
+    if (isAffectRival) {
+      const newPoint: IPoint = {
+        player: '',
+        point: calculatePointsRival(dashboard.dashboard.category!, calculatePoints(dashboard.dashboard.teams?.find((t, i) => i !== index)?.points!)),
+        team: index === 0 ? 1 : 0
+      }
+
+      const addPoint = (p: IPoint[]): IPoint[] => {
+        return [...p, newPoint]
+      }
+
+      const teamsRival = teams?.map((t, i) => i !== index ? {
+        ...t,
+        name: t.name,
+        points: addPoint(t.points),
+        sets: t.sets,
+        games: t.games
+      } : t)
+
+      dispatch(updateDashboard({
+        seconds: dashboard.dashboard.seconds,
+        minutes: dashboard.dashboard.minutes,
+        hours: dashboard.dashboard.hours,
+        category: dashboard.dashboard.category,
+        id: dashboard.dashboard.id,
+        markers: dashboard.dashboard.markers,
+        name: dashboard.dashboard.name,
+        teams: teamsRival,
+        user: dashboard.dashboard.user,
+        pointsHistory: addPoint([...dashboard.dashboard.pointsHistory!])
+      }))
+    }
 
   }
 
@@ -222,13 +256,14 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
         isSettings && <Settings showSettings={showSettings} restart={restart} remove={remove} quit={quit} dashboard={dashboard.dashboard} dispatch={dispatch} user={user.user} />
       }
       <HeaderAnnotator quit={quit} handleSpin={handleSpin}
-      hours={hours} minutes={minutes} seconds={seconds} handleRestartTime={handleRestartTime} handleRunTime={handleRunTime} isStarted={isStarted} user={user.user} />
+        hours={hours} minutes={minutes} seconds={seconds} handleRestartTime={handleRestartTime} handleRunTime={handleRunTime} isStarted={isStarted} user={user.user} />
       <View style={annotatorStyles.screenAnnotator}>
-        <Markers markers={dashboard.dashboard.markers!} handlePoints={handlePoints} showSettings={showSettings} returnPoints={returnPoints} 
-        historyLength={dashboard.dashboard.pointsHistory?.length!} user={user.user} />
+        <Markers markers={dashboard.dashboard.markers!} handlePoints={handlePoints} showSettings={showSettings} returnPoints={returnPoints}
+          historyLength={dashboard.dashboard.pointsHistory?.length!} user={user.user} />
         {
           dashboard.dashboard.teams?.map((team: ITeam, index: number) => {
-            return <AnnotatorScreen team={team} index={index} handlePoints={handlePoints} user={user.user} key={index} />
+            return <AnnotatorScreen category={dashboard.dashboard.category!} team={team} index={index} handlePoints={handlePoints} user={user.user}
+              rival={index === 0 ? dashboard.dashboard.teams![1] : dashboard.dashboard.teams![0]} key={index} />
           })
         }
       </View>
