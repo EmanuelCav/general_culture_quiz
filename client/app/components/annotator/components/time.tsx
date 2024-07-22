@@ -1,9 +1,9 @@
 import { Dimensions, Pressable, Text, View } from "react-native"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { TimePropsType } from "../../types/props.types"
+import { TimePropsType } from "../../../types/props.types"
 
-import { annotatorStyles } from "../../styles/annotator.styles"
+import { annotatorStyles } from "../../../styles/annotator.styles"
 
 const Time = ({ minutes, seconds, hours, handleRestartTime, handleRunTime, isStarted, user }: TimePropsType) => {
     return (

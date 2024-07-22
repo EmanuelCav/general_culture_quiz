@@ -53,6 +53,18 @@ export type TimePropsType = {
     user: IUser;
 }
 
+export type HeaderAnnotatorPropsType = {
+    hours: number;
+    minutes: number;
+    seconds: number;
+    handleRestartTime: () => void;
+    handleRunTime: () => void;
+    isStarted: boolean;
+    user: IUser;
+    quit: () => void;
+    handleSpin: () => void;
+}
+
 export type MarkersPropsType = {
     markers: number[];
     handlePoints: (points: number, index: number) => void;

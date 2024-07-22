@@ -37,7 +37,7 @@ export const dashboardsGenerator: IDashboardGenerator[] = [{
     name: "Table Tennis",
     text: "Table Tennis"
 }, {
-    icon: "volleyball-ball",
+    icon: "volleyball",
     name: "Voleyball",
     text: "Voleyball"
 }, {
@@ -119,7 +119,7 @@ export const dashboardsGeneratorPor: IDashboardGeneratorPor[] = [{
     name: "Table Tennis",
     text: "Tênis de mesa"
 }, {
-    icon: "volleyball-ball",
+    icon: "volleyball",
     name: "Voleyball",
     text: "Voleibol"
 }, {
@@ -201,7 +201,7 @@ export const dashboardsGeneratorEsp: IDashboardGeneratorEsp[] = [{
     name: "Table Tennis",
     text: "Tenis de mesa"
 }, {
-    icon: "volleyball-ball",
+    icon: "volleyball",
     name: "Voleyball",
     text: "Voleibol"
 }, {

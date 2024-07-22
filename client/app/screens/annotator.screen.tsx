@@ -3,9 +3,10 @@ import { View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 
 import AnnotatorScreen from '../components/annotator/annotatorScreen'
-import Time from '../components/annotator/time'
+import Time from '../components/annotator/components/time'
 import Markers from '../components/annotator/markers'
 import Settings from '../components/annotator/settings'
+import HeaderAnnotator from '../components/annotator/headerAnnotator'
 
 import { updateDashboard } from '../server/reducers/dashboard.reducer'
 import { removeDashboardAction } from '../server/actions/dashboard.actions'
@@ -184,6 +185,10 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
     setHours(0)
   }
 
+  const handleSpin = () => {
+
+  }
+
   const handleRunTime = () => {
     setIsStarted(!isStarted)
   }
@@ -216,7 +221,8 @@ const Annotator = ({ navigation }: { navigation: StackNavigation }) => {
       {
         isSettings && <Settings showSettings={showSettings} restart={restart} remove={remove} quit={quit} dashboard={dashboard.dashboard} dispatch={dispatch} user={user.user} />
       }
-      <Time hours={hours} minutes={minutes} seconds={seconds} handleRestartTime={handleRestartTime} handleRunTime={handleRunTime} isStarted={isStarted} user={user.user} />
+      <HeaderAnnotator quit={quit} handleSpin={handleSpin}
+      hours={hours} minutes={minutes} seconds={seconds} handleRestartTime={handleRestartTime} handleRunTime={handleRunTime} isStarted={isStarted} user={user.user} />
       <View style={annotatorStyles.screenAnnotator}>
         <Markers markers={dashboard.dashboard.markers!} handlePoints={handlePoints} showSettings={showSettings} returnPoints={returnPoints} 
         historyLength={dashboard.dashboard.pointsHistory?.length!} user={user.user} />

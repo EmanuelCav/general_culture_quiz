@@ -32,7 +32,6 @@ export const annotatorStyles = StyleSheet.create({
     },
 
     containerTime: {
-        height: '10%',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
@@ -237,6 +236,14 @@ export const annotatorStyles = StyleSheet.create({
         fontWeight: '600',
         textAlign: 'center',
         marginVertical: Dimensions.get("window").height / 106
+    },
+
+    headerAnnotator: {
+        width: '100%',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
+        height: '10%',
     }
 
 })

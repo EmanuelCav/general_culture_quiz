@@ -12,7 +12,7 @@ export interface IDashboard {
     markers?: number[];
     user?: string;
     pointsHistory?: IPoint[];
-    category?: string;
+    category?: CategoriesTypes;
     seconds?: number;
     minutes?: number;
     hours?: number;
